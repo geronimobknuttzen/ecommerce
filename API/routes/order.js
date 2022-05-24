@@ -73,7 +73,7 @@ router.post('/new',(req,res)=>{
                     user_id: userId
                 })
                 .then(newOrderId=>{
-                    if(newOrderId > 0){
+                    if(newOrderId.insertId > 0){
                         products.forEach(async(products) => {
                             let data = await database.table('products as p')
                                                     .filter({'p.id': products.id})
@@ -94,7 +94,7 @@ router.post('/new',(req,res)=>{
                             }
                         // INSERTAR LOS DETALLES DE LA ORDEN
                         database.table('orders_details')
-                                .insert({order_id: newOrderId, product_id: products.id, quantity: inCart 
+                                .insert({order_id: newOrderId.insertId, product_id: products.id, quantity: inCart 
                                 }).then(newId=>{
                                     database.table('products')
                                             .filter({id: products.id
@@ -110,7 +110,7 @@ router.post('/new',(req,res)=>{
                     res.json({
                         message:'Orden realizada con exito',
                         success: true,
-                        order_id: newOrderId,
+                        order_id: newOrderId.insertId,
                         products: products
                     });
                 })
