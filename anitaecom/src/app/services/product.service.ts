@@ -23,8 +23,8 @@ export class ProductService {
     return this.http.get<Preset[]>(this.SERVER_URL + '/presets')
   }
 
-  getAProduct(id:number):Observable<Preset[]>{
-    return this.http.get<Preset[]>(this.SERVER_URL + '/presets/' + id)
+  getAProduct(id:number):Observable<Preset>{
+    return this.http.get<Preset>(this.SERVER_URL + '/presets/' + id)
   }
 
 }

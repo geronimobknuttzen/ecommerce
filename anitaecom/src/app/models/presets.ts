@@ -1,13 +1,19 @@
 export interface Presets {
     id: number;
-    title: string;
+    name: string;
 }
 
 export class Preset implements Presets {
     id: number;
-    title: string;
+    name: string;
+    quantity: number;
+    image: string;
+    description: string;
+    price: number;
+    precioPesos:number;
     constructor(presetData: any) {
         this.id = presetData.id;
-        this.title = presetData.title;
+        this.name = presetData.name;
+        this.quantity =  presetData.quantity;
     }
 }
