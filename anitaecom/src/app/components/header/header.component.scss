@@ -1,0 +1,32 @@
+
+img{
+    width: 25%;
+}
+
+.container>.row{
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+}
+
+.container>.row>*{
+    flex-shrink: 1;
+}
+
+ul>li>a{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+@media (max-width: 990px) {
+    img{
+        width: 70%;
+    }
+}
+@media screen and (max-width: 600px) {
+    img{
+        width: 100%;
+    }
+}

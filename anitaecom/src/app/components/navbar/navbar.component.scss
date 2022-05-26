@@ -1,0 +1,125 @@
+.mobile{
+    display: none;
+}
+.menu-btn{
+    height: 0;
+}
+.navigation{
+    margin-bottom: 0;
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+}
+
+@media only screen and (max-width: 600px){
+    .desktop{
+        display: none;
+    }
+    .mobile{
+        display: inherit;
+    }
+    .navigation{
+        position: fixed;
+        z-index: 5555;
+        display: flex;
+        flex-wrap: wrap;
+        right: 0%;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        transition: 0.4s ease-in-out;
+    }
+
+    .navigation .navbar-nav > li {
+        position: static;
+        border-bottom: 1px solid black;
+    }
+    .menu-icon{
+        display: flex;
+        position: fixed;
+        background: white;
+        left: 50%;
+        border-radius: 50%;
+        height: 35px;
+        width: 35px;
+        top: 93px;
+        z-index: 9999;
+        flex-direction: column;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+    }
+    .menu-icon span{
+        position: relative;
+        display: block;
+        width: 15px;
+        height: 2px;
+        background: black;
+        transition: 0.2s ease-in-out;
+    }
+    .menu-icon span:nth-child(2){
+        margin: 4px 0;
+    }
+    .menu-icon-class span:nth-child(2){
+        display: none;
+    }
+    .menu-icon-class span:nth-child(1){
+        transform: rotate(40deg);
+        top: 2px;
+    }
+    .menu-icon-class span:nth-child(3){
+        transform: rotate(-40deg);
+    }
+    .hide{
+        right: 0px;
+    }
+    .navigation .dropdown-slide .dropdown-menu {
+        border: none;
+        top: 0;
+        left:0%;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    .arrow-btn{
+        position: absolute;
+        display: flex;
+        width: 35px;
+        height: 60px;
+        left: 95px;
+        z-index: 3;
+        flex-direction: column;
+        align-items: center;
+        flex-wrap: nowrap;
+        justify-content: center;
+        align-content: center;
+    }
+    .arrow:nth-child(1){
+        width: 10px;
+        height: 2px;
+        background: black;
+        position: absolute;
+        transform: rotate(-45deg);
+        top: 34px;
+        left: 10px;
+    }
+
+    .arrow:nth-child(2){
+        width: 10px;
+        height: 2px;
+        position: absolute;
+        background: black;
+        transform: rotate(45deg);
+        top: 27px;
+        left: 10px;
+    }
+}

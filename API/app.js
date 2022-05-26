@@ -6,6 +6,7 @@ const logger = require('morgan');
 const cors = require('cors');
 //ROUTES
 const imagesRoute = require('./routes/images');
+const portfoliosRoute = require('./routes/portfolios');
 const usersRoute = require('./routes/users');
 const ordersRoute = require('./routes/order');
 const productsRoute = require('./routes/products');
@@ -27,6 +28,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 //USE ROUTES
 app.use('/api/presets', productsRoute);
 app.use('/api/images', imagesRoute);
+app.use('/api/portfolios', portfoliosRoute);
 app.use('/api/orders', ordersRoute);
 app.use('/api/users', usersRoute);
 

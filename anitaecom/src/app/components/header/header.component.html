@@ -1,0 +1,73 @@
+<!-- Start Top Header Bar -->
+<section class="top-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2 col-xs-12 col-sm-4">
+				<div class="contact-number">
+					<i class="bi bi-telephone"></i>
+					<a><span>Contacto</span></a>
+				</div>
+			</div>
+			<div class="col-md-8 col-xs-12 col-sm-4">
+				<!-- Site Logo -->
+				<div class="logo text-center">
+					<a href="index.html">
+						<img src="../../../assets/images/logo.png" alt="Anita Thomas Logo">
+					</a>
+				</div>
+			</div>
+			<div class="col-md-2 col-xs-12 col-sm-4">
+				<!-- Cart -->
+				<ul class="top-menu text-right list-inline">
+					<li class="dropdown cart-nav dropdown-slide">
+						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
+							<i class="bi bi-cart"></i></a>
+						<div class="dropdown-menu cart-dropdown">
+							<!-- Cart Item -->
+							<div class="media">
+								<a class="pull-left" href="#!">
+									<img class="media-object" src="assets/images/shop/cart/cart-1.jpg" alt="image" />
+								</a>
+								<div class="media-body">
+									<h4 class="media-heading"><a href="#!">Original Pack</a></h4>
+									<div class="cart-price">
+										<span>1 x</span>
+										<span>1250.00</span>
+									</div>
+									<h5><strong>u$s20</strong></h5>
+								</div>
+								<a href="#!" class="remove"><i class="bi bi-x-circle"></i></a>
+							</div><!-- / Cart Item -->
+							<!-- Cart Item -->
+							<div class="media">
+								<a class="pull-left" href="#!">
+									<img class="media-object" src="assets/images/shop/cart/cart-2.jpg" alt="image" />
+								</a>
+								<div class="media-body">
+									<h4 class="media-heading"><a href="#!">Movie Pack</a></h4>
+									<div class="cart-price">
+										<span>1 x</span>
+										<span>1250.00</span>
+									</div>
+									<h5><strong>u$d20</strong></h5>
+								</div>
+								<a href="#!" class="remove"><i class="bi bi-x-circle"></i></a>
+							</div><!-- / Cart Item -->
+
+							<div class="cart-summary">
+								<span>Total</span>
+								<span class="total-price">u$d 40.00</span>
+							</div>
+							<ul class="text-center cart-buttons">
+								<li><a [routerLink]="['/cart']" class="btn btn-small">Ver Carrito</a></li>
+								<li><a [routerLink]="['/checkout']" class="btn btn-small btn-solid-border">Confirmar</a></li>
+							</ul>
+						</div>
+
+					</li><!-- / Cart -->
+
+				</ul><!-- / .nav .navbar-nav .navbar-right -->
+			</div>
+		</div>
+	</div>
+</section><!-- End Top Header Bar -->

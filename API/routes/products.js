@@ -11,6 +11,8 @@ router.get('/', function(req, res) {
             'p.id',
             'p.title as name',
             'p.description',
+            'p.image',
+            'p.precioPesos',
             'p.price',
             'p.short_desc'
         ])
@@ -33,6 +35,20 @@ router.get('/:presId', (req,res)=>{
     let presetId = req.params.presId;
     console.log(presetId)
 
-})
+    database.table('products as p')
+        .withFields([
+            'p.id',
+            'p.title as name'
+        ])
+        .filter({'p.id' : presetId})
+        .get()
+        .then(preset => {
+            if (preset) {
+                res.status(200).json(preset);
+            } else {
+                res.json({message: 'No se encontró preset'})
+            }
+        })
+        .catch(err => console.log(err));})
 
 module.exports = router;
