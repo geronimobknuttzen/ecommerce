@@ -1,4 +1,7 @@
 
+span{
+    margin-right: 5px;
+}
 img{
     width: 25%;
 }
@@ -28,5 +31,12 @@ ul>li>a{
 @media screen and (max-width: 600px) {
     img{
         width: 100%;
+    }
+}
+@media screen and (max-width: 350px) {
+    img{
+        width: 150%;
+        left: -10px;
+        position: relative;
     }
 }

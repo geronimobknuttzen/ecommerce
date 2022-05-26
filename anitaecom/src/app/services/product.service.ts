@@ -20,6 +20,11 @@ export class ProductService {
 
   /* FETCH PRESETS FROM THE BACKEND */
   getAllProducts():Observable<Preset[]> {
-    return this.http.get<Preset[]>(this.SERVER_URL+'/presets')
+    return this.http.get<Preset[]>(this.SERVER_URL + '/presets')
   }
+
+  getAProduct(id:number):Observable<Preset[]>{
+    return this.http.get<Preset[]>(this.SERVER_URL + '/presets/' + id)
+  }
+
 }
