@@ -1,1 +1,140 @@
-<p>cart works!</p>
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">Canasta de Presets</h1>
+					<ol class="breadcrumb">
+						<li><a routerLink="/home">Inicio</a></li>
+						<li class="active">Canasta</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- SHOW EMPTY -->
+<section class="empty-cart page-wrapper" *ngIf="cartData.data[0].numInCart == 0">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <div class="block text-center">
+                    <i class="bi bi-cart-outline"></i>
+                    <h2 class="text-center">La canasta está vacia</h2>
+                    <p>Te invito a ver los presets que tengo para vos</p>
+                    <a routerLink="/preset" class="btn btn-main mt-20">Volver a la sección de Presets</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- SHOW PRESETS -->
+<ng-container *ngIf="cartData.data[0].numInCart !== 0">
+    <div class="cash-container">
+        <div class="container">
+            <div class="row">
+                <div class="cash">
+                    <h3 class="text-center">Elegir forma de Pago</h3>
+                    <div class="buttons">
+                        <button class="btn btn-primary cash-btn" (click)="tipoPagoPeso()">MercadoPago</button>
+                        <button class="btn btn-primary cash-btn" (click)="tipoPagoDolar()">PayPal</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-container *ngIf="this.medioDePago == 'payPal'">
+            <div class="cart shopping">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                      <div class="block">
+                        <div class="product-list">
+                          <form method="post">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th class="">Preset</th>
+                                  <th class="">Subtotal(USD)</th>
+                                  <th class="">Quitar</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="border-0" *ngFor="let c of cartData.data; let i= index">
+                                  <td class="">
+                                    <div class="product-info">
+                                      <img width="80" src="{{c.product.image}}" alt="" />
+                                      <a>{{c.product.name}}</a>
+                                    </div>
+                                  </td>
+                                  <td class="text-center">u$d{{c.product.price}}</td>
+                                  <td class="text-center">
+                                    <button class="btn btn-danger"(click)="cartSvc.deleteProdFromCart(i)"><i class="bi bi-trash"></i></button>
+                                  </td>
+                                </tr>
+                              </tbody>
+                              <tfoot style="border-top: 2px solid #ddd;">
+                                  <tr class="border-0">
+                                      <td class="text-start"><strong>Total:</strong></td>
+                                      <td class="text-center">{{cartTotalUsd | currency: 'u$d'}}</td>
+                                  </tr>
+                              </tfoot>
+                            </table>
+                            <a routerLink="/checkout" class="btn btn-main pull-right">Finalizar Compra</a>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </ng-container>
+        <ng-container *ngIf="this.medioDePago == 'mercadoPago'">
+            <div class="cart shopping">
+                <div class="container">
+                  <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                      <div class="block">
+                        <div class="product-list">
+                          <form method="post">
+                            <table class="table">
+                              <thead>
+                                <tr>
+                                  <th class="">Preset</th>
+                                  <th class="">Subtotal(ARS)</th>
+                                  <th class="">Quitar</th>
+                                </tr>
+                              </thead>
+                              <tbody>
+                                <tr class="border-0" *ngFor="let c of cartData.data; let i= index">
+                                  <td class="">
+                                    <div class="product-info">
+                                      <img width="80" src="{{c.product.image}}" alt="" />
+                                      <a>{{c.product.name}}</a>
+                                    </div>
+                                  </td>
+                                  <td class="text-center">${{c.product.precioPesos}}</td>
+                                  <td class="text-center">
+                                    <button class="btn btn-danger"(click)="cartSvc.deleteProdFromCart(i)"><i class="bi bi-trash"></i></button>
+                                  </td>
+                                </tr>
+                              </tbody>
+                              <tfoot style="border-top: 2px solid #ddd;">
+                                  <tr class="border-0">
+                                      <td class="text-start"><strong>Total:</strong></td>
+                                      <td class="text-center">{{cartTotalPesos | currency:'$'}}</td>
+                                  </tr>
+                              </tfoot>
+                            </table>
+                            <a routerLink="/terminarCompra" class="btn btn-main pull-right">Finalizar Compra</a>
+                          </form>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+        </ng-container>        
+    </div>
+</ng-container>
+

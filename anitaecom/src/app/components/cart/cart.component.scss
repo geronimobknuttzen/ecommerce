@@ -1,0 +1,15 @@
+.cash-container{
+    margin-bottom: 25px;
+}
+.cash{
+    margin-bottom: 25px;
+    display: flex;
+    flex-direction: column;
+}
+.buttons{
+    display: flex;
+    justify-content: space-evenly;
+}
+.cash-btn{
+    width: 150px;
+}

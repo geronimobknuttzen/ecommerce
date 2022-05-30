@@ -10,6 +10,7 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { TrabajosComponent } from './components/trabajos/trabajos.component';
 import { AutorretratosComponent } from './components/autorretratos/autorretratos.component';
 import { RetratosComponent } from './components/retratos/retratos.component';
+import { TerminarComponent } from './components/terminar/terminar.component';
 
 const routes: Routes = [
   {path:'', component: HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'retratos', component: RetratosComponent},
   {path:'cart', component: CartComponent},
   {path:'checkout', component: CheckoutComponent},
+  {path:'terminarCompra', component: TerminarComponent},
   {path:'gracias', component: ThankComponent}
 ];
 

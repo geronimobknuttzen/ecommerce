@@ -38,7 +38,11 @@ router.get('/:presId', (req,res)=>{
     database.table('products as p')
         .withFields([
             'p.id',
-            'p.title as name'
+            'p.title as name',
+            'p.price',
+            'p.precioPesos',
+            'p.description',
+            'p.image'
         ])
         .filter({'p.id' : presetId})
         .get()

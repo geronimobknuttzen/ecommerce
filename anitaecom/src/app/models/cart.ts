@@ -1,7 +1,8 @@
 import { Preset } from './presets';
 
 export interface CartResponse{
-    total: number;
+    totalDolar: number;
+    totalPesos: number;
     data: [{
         product: Preset,
         numInCart: number
@@ -9,7 +10,8 @@ export interface CartResponse{
 
 }
 export interface Cart{
-    total: number,
+    totalDolar: number;
+    totalPesos: number;
     prodData:[
         {
             id: number,

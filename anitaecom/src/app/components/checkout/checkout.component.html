@@ -1,1 +1,129 @@
-<p>checkout works!</p>
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">Confirmación de Compra</h1>
+					<ol class="breadcrumb">
+						<li><a routerLink="/cart">Canasta</a></li>
+						<li class="active">Confirmación de Compra</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<ngx-spinner
+   bdColor="rgba(151,149,49,0.4)"
+   size="large"
+   color="orange"
+   type="ball-clip-rotate-pulse"
+   [fullScreen]="true"
+>
+   <p style="font-size: 20px; color:black;">Almacenando Orden</p>
+</ngx-spinner>
+
+<section class="empty-cart page-wrapper" *ngIf="cartData.totalDolar <= 0;">
+   <div class="container">
+       <div class="row">
+           <div class="col-md-6 col-md-offset-3">
+               <div class="block text-center">
+                   <i class="bi bi-cart-outline"></i>
+                   <h2 class="text-center">La canasta está vacia</h2>
+                   <p>Te invito a ver los presets que tengo para vos</p>
+                   <a routerLink="/preset" class="btn btn-main mt-20">Volver a la sección de Presets</a>
+               </div>
+           </div>
+       </div>
+   </div>
+</section>
+
+<div class="page-wrapper" *ngIf="cartTotal > 0;">
+   <div class="checkout shopping">
+      <div class="container">
+         <div class="row">
+            <div class="col-md-8">
+               <div class="block billing-details">
+                  <h4 class="widget-title">Billing Details</h4>
+                  <form class="checkout-form">
+                     <div class="form-group">
+                        <label for="full_name">Full Name</label>
+                        <input type="text" class="form-control" id="full_name" placeholder="">
+                     </div>
+                     <div class="form-group">
+                        <label for="user_address">Address</label>
+                        <input type="text" class="form-control" id="user_address" placeholder="">
+                     </div>
+                     <div class="checkout-country-code clearfix">
+                        <div class="form-group">
+                           <label for="user_post_code">Zip Code</label>
+                           <input type="text" class="form-control" id="user_post_code" name="zipcode" value="">
+                        </div>
+                        <div class="form-group" >
+                           <label for="user_city">City</label>
+                           <input type="text" class="form-control" id="user_city" name="city" value="">
+                        </div>
+                     </div>
+                     <div class="form-group">
+                        <label for="user_country">Country</label>
+                        <input type="text" class="form-control" id="user_country" placeholder="">
+                     </div>
+                  </form>
+               </div>
+               <div class="block">
+                  <h4 class="widget-title">Payment Method</h4>
+                  <p>Credit Cart Details (Secure payment)</p>
+                  <div class="checkout-product-details">
+                     <div class="payment">
+                        <div class="card-details">
+                           <form  class="checkout-form">
+                              <div class="form-group">
+                                 <label for="card-number">Card Number <span class="required">*</span></label>
+                                 <input  id="card-number" class="form-control"   type="tel" placeholder="•••• •••• •••• ••••">
+                              </div>
+                              <div class="form-group half-width padding-right">
+                                 <label for="card-expiry">Expiry (MM/YY) <span class="required">*</span></label>
+                                 <input id="card-expiry" class="form-control" type="tel" placeholder="MM / YY">
+                              </div>
+                              <div class="form-group half-width padding-left">
+                                 <label for="card-cvc">Card Code <span class="required">*</span></label>
+                                 <input id="card-cvc" class="form-control"  type="tel" maxlength="4" placeholder="CVC" >
+                              </div>
+                              <a class="btn btn-main mt-20" (click)="onCheckout()">Place Order</a >
+                           </form>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-4">
+               <div class="product-checkout-details">
+                  <div class="block">
+                     <h4 class="widget-title">Resumen de compra</h4>
+                     <div *ngFor="let p of cartData.data; let i = index">
+                        <div class="media product-card summary-product">
+                           <button class="btn btn-danger"(click)="cartSvc.deleteProdFromCart(i)"><i class="bi bi-trash"></i></button>
+                           <div class="media-body">
+                              <h4 class="media-heading"><a routerLink="/cart" >{{p.product.name}}</a></h4>
+                              <ul class="">
+                                 <li>
+                                    <span class="price">{{p.product.price | currency: 'u$d'}}</span>
+                                 </li>
+                              </ul>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="summary-total">
+                        <span>Total</span>
+                        <span>{{cartTotal | currency: 'u$d'}}</span>
+                     </div>
+                     <div class="verified-icon">
+                        <img src="assets/images/shop/verified.png">
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>

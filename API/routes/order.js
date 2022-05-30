@@ -20,7 +20,7 @@ router.get('/', (req, res)=>{
           on:'u.id = o.user_id'
         }
         ])
-        .withFields(['o.id','p.title as name', 'p.description','p.price', 'u.username'])
+        .withFields(['o.id','p.title as name', 'p.description','p.price', 'p.image', 'u.username'])
         .sort({id:1})
         .getAll()
         .then(orders => {
@@ -50,7 +50,7 @@ router.get('/:id', (req, res)=>{
                 on:'u.id = o.user_id'
             }
         ])
-        .withFields(['o.id','p.title as name', 'p.description','p.price', 'u.username'])
+        .withFields(['o.id','p.title as name', 'p.description','p.price', 'p.image', 'u.username'])
         .filter({'o.id': orderId})
         .getAll()
         .then(orders => {
@@ -125,7 +125,7 @@ router.post('/new',(req,res)=>{
 /*PAYMENT GATEWAY CALL*/
 router.post('/payment', (res, req)=>{
     setTimeout(()=>{
-        res.status(200).json({success:true})
-    }, 2500)
+        req.status(200).json({success:true})
+    }, 2000)
 })
 module.exports = router;

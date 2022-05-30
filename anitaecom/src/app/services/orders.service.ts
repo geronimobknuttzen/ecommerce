@@ -13,7 +13,7 @@ export class OrdersService {
     
   }
   getSingleOrder(orderId:number){
-    return this.http.get<PresetResponse[]>(this.SERVER_URL + '/orders' + orderId).toPromise()
+    return this.http.get<PresetResponse[]>(this.SERVER_URL + '/orders/' + orderId).toPromise()
   }
 }
 

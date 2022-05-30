@@ -1,9 +1,9 @@
-import { NgModule } from '@angular/core';
+import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserAnimationsModule, NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
@@ -20,6 +20,9 @@ import { PortfolioComponent } from './components/portfolio/portfolio.component';
 import { TrabajosComponent } from './components/trabajos/trabajos.component';
 import { AutorretratosComponent } from './components/autorretratos/autorretratos.component';
 import { RetratosComponent } from './components/retratos/retratos.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { ToastrModule } from 'ngx-toastr';
+import { TerminarComponent } from './components/terminar/terminar.component';
 
 @NgModule({
   declarations: [
@@ -38,14 +41,19 @@ import { RetratosComponent } from './components/retratos/retratos.component';
     PortfolioComponent,
     TrabajosComponent,
     AutorretratosComponent,
-    RetratosComponent
+    RetratosComponent,
+    TerminarComponent
   ],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    NoopAnimationsModule,
+    NgxSpinnerModule,
+    ToastrModule.forRoot()
   ],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [],
   bootstrap: [AppComponent]
 })

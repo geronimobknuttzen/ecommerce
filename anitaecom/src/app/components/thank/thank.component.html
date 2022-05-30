@@ -1,1 +1,33 @@
-<p>thank works!</p>
+<section class="page-wrapper success-msg">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+          <div class="block text-center">
+              <i class="bi bi-bag-check-fill"></i>
+            <h2 class="text-center">Gracias por tu compra!</h2>
+            <p><strong>Por favor revisa haber recibido en tu email</strong> la orden de confirmación</p>
+            <p>Numero de Orden : <strong>{{orderId}}</strong></p>
+            <table class="table">
+              <thead>
+                <tr>
+                  <th>Imagen</th>
+                  <th>Titulo</th>
+                  <th>Precio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let p of products">
+                  <td>
+                    <img width="80" [src]="p.image" alt="">
+                  </td>
+                  <td class="text-start">{{p.name}}</td>
+                  <td class="text-start">{{p.price}}</td>
+                </tr>
+              </tbody>
+            </table>
+            <a routerLink="/" class="btn btn-main mt-20">Volver a Inicio</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>

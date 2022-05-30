@@ -15,11 +15,12 @@
 							<ul>
 								<li><a routerLink="{{p.shor_desc}}" title="Ver detalles" alt="Ver detalles"><i class="bi bi-search"></i></a>
 								</li>
-								<li><a href="#!" title="Me Gusta" alt="Me Gusta" ><i class="bi bi-heart"></i></a>
+								<li><a title="Me Gusta" alt="Me Gusta" (click)="AddToLike(p.id)"><i class="bi bi-heart-fill"></i></a>
 								</li>
 								<li>
-									<a title="Agregar al carrito" alt="Agregar al carrito">
-										<i class="bi bi-cart" [class.disabled]="p.quantity < 1">
+									<a title="Agregar al carrito" alt="Agregar al carrito" [class.disabled]="p.quantity < 1"
+									(click)="AddToCart(p.id)">
+										<i class="bi bi-bag-fill">
 										</i>
 									</a>
 								</li>

@@ -8,26 +8,28 @@
 					<li class="dropdown cart-nav dropdown-slide">
 							<a routerLink="/cart" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
 								<span>Canasta</span>
-								<i class="bi bi-basket-fill"></i>
+								<i class="bi bi-bag-fill"></i>
 							</a>
-						<div class="dropdown-menu cart-dropdown" style="left: 0px;z-index: 10000;">
+						<div class="dropdown-menu cart-dropdown" style="left: 0px;z-index: 10000;" *ngIf="cartData.data[0].numInCart !== 0">
 							<!-- Cart Item -->
-							<div class="media">
+							<div class="media cart-list" *ngFor="let c of cartData.data; let i=index">
 								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/shop/cart/cart-1.jpg" alt="image" />
+									<img class="media-object" [src]="c.product.image" alt="{{c.product.name}}" />
 								</a>
-								<div class="media-body">
-									<h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
-									<div class="cart-price">
-										<span>1 x</span>
-										<span>0</span>
+								<div class="product-widget">
+									<div class="media-body">
+										<h4 class="media-heading"><a>{{c.product.name}}</a></h4>
+										<div class="cart-price">
+											<span>{{c.numInCart}} x</span>
+											<span>{{c.product?.price | currency:'USD'}}</span>
+										</div>
 									</div>
+									<a class="remove" (click)="cartSvc.deleteProdFromCart(i)"><i class="bi bi-x"></i></a>
 								</div>
-								<a href="#!" class="remove"><i class="bi bi-x"></i></a>
 							</div><!-- / Cart Item -->
 							<div class="cart-summary">
 								<span>Total</span>
-								<span class="total-price">{{0 | currency: '$'}}</span>
+								<span class="total-price">{{cartTotalUsd | currency: 'USD'}}</span>
 							</div>
 							<ul class="text-center cart-buttons">
 								<li><a routerLink="/cart" class="btn btn-small">Ver canasta</a></li>
@@ -46,7 +48,6 @@
 				</div>
 			</div>
 			<div class="col-md-4 col-xs-4 col-sm-4">
-				<!-- Cart -->
 				<ul class="top-menu text-right list-inline">
 					<!-- Wish List -->
 					<li class="dropdown search dropdown-slide">
@@ -54,20 +55,17 @@
 							<i class="bi bi-bookmark-heart-fill"></i>
 							<span>Me Gusta</span>
 						</a>
-						<div class="dropdown-menu cart-dropdown">
+						<div class="dropdown-menu cart-dropdown" *ngIf="likeData.data[0].numInLike !== 0">
 							<!-- Wish Item -->
-							<div class="media">
-								<a class="pull-left" href="#!">
-									<img class="media-object" src="images/shop/cart/cart-1.jpg" alt="image" />
-								</a>
+							<div class="media" *ngFor="let l of likeData.data; let i=index">
 								<div class="media-body">
-									<h4 class="media-heading"><a href="#!">Ladies Bag</a></h4>
+									<h4 class="media-heading"><a>{{l.product.name}}</a></h4>
 								</div>
-								<a href="#!" class="remove"><i class="bi bi-x"></i></a>
-							</div><!-- / Wish Item -->
+								<a class="remove" (click)="cartSvc.deleteProdFromLike(i)"><i class="bi bi-x"></i></a>
+							</div>
 						</div>
-					</li><!-- / Wish List -->
-				</ul><!-- / .nav .navbar-nav .navbar-right -->
+					</li>
+				</ul>
 			</div>
 		</div>
 	</div>
