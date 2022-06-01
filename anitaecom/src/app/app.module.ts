@@ -23,6 +23,7 @@ import { RetratosComponent } from './components/retratos/retratos.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { ToastrModule } from 'ngx-toastr';
 import { TerminarComponent } from './components/terminar/terminar.component';
+import { LoginComponent } from './components/login/login.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { TerminarComponent } from './components/terminar/terminar.component';
     TrabajosComponent,
     AutorretratosComponent,
     RetratosComponent,
-    TerminarComponent
+    TerminarComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,

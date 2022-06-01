@@ -22,7 +22,22 @@
 >
    <p style="font-size: 20px; color:black;">Almacenando Orden</p>
 </ngx-spinner>
-<div class="page-wrapper">
+<section class="empty-cart page-wrapper" *ngIf="cartData.totalDolar <= 0;">
+   <div class="container">
+       <div class="row">
+           <div class="col-md-6 col-md-offset-3">
+               <div class="block text-center">
+                   <i class="bi bi-cart-outline"></i>
+                   <h2 class="text-center">La canasta está vacia</h2>
+                   <p>Te invito a ver los presets que tengo para vos</p>
+                   <a routerLink="/preset" class="btn btn-main mt-20">Volver a la sección de Presets</a>
+               </div>
+           </div>
+       </div>
+   </div>
+</section>
+
+<div class="page-wrapper" *ngIf="cartTotal > 0;">
    <div class="checkout shopping">
       <div class="container">
          <div class="row">
@@ -73,12 +88,13 @@
                                  <label for="card-cvc">Card Code <span class="required">*</span></label>
                                  <input id="card-cvc" class="form-control"  type="tel" maxlength="4" placeholder="CVC" >
                               </div>
-                              <a href="confirmation.html" class="btn btn-main mt-20">Place Order</a >
+                              <a class="btn btn-main mt-20" (click)="onCheckout()">Place Order</a >
                            </form>
                         </div>
                      </div>
                   </div>
                </div>
+            </div>
             </div>
             <div class="col-md-4">
                <div class="product-checkout-details">
@@ -110,4 +126,3 @@
          </div>
       </div>
    </div>
-</div>

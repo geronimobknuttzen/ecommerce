@@ -24,5 +24,10 @@ export class TerminarComponent implements OnInit {
     this.cartSvc.cartData$.subscribe((data:CartResponse)=>this.cartData = data);
     this.cartSvc.cartTotalPeso$.subscribe((cartTotalPesos)=>this.cartTotal = cartTotalPesos);
   }
+  onCheckout(){
+    this.spinner.show().then(p=>{
+      this.cartSvc.checkoutFromCart(4)
+    })
+  }
 
 }
