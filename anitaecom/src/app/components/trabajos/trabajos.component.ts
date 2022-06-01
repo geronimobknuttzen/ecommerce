@@ -14,7 +14,6 @@ export class TrabajosComponent implements OnInit {
 
   ngOnInit(): void {
     let album = 'TRABAJOS';
-    this.imgSvc.showMessage();
     this.imgSvc.getPortfolioImg(album).subscribe((img: any)=>{
       this.images = img.images
       console.log(img) 

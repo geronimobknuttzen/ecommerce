@@ -5,15 +5,23 @@
 				<h2>RETRATOS</h2>
 			</div>
 		</div>
-		<div class="row">		
-			<div class="col-md-4 col-sm-4" *ngFor="let i of images">
-				<div class="img-item">
-					<h4>{{i.name}}</h4>
-					<div class="img-thumb">
-						<img class="img-responsive" [src]="i.img_url" alt="{{i.name}}" />
+		<div class="row">
+			<div class="col-md-6 col-sm-6 text-center" *ngFor="let i of images">
+				<div class="col-md-12 img-container" >
+					<div class="product-item">
+						<div class="product-thumb">
+							<img class="img-responsive" [src]="i.img_url" alt="{{i.name}}" />
+							<div class="preview-meta">
+								<ul>
+									<li>{{i.name}}</li>
+									<br>
+									<li>{{i.description}}</li>
+								</ul>
+							  </div>
+						</div>
 					</div>
 				</div>
-			</div>
+			</div>		
 		</div>
 	</div>
 </section>

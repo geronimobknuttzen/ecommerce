@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "@angular/animations": "^13.3.10"
+    "@angular/animations": "^13.3.10",
+    "bcryptjs": "^2.4.3"
   }
 }

@@ -6,6 +6,7 @@ export interface Presets {
     description: string;
     price: number;
     precioPesos:number;
+    short_desc: string
 }
 
 export class Preset implements Presets {
@@ -16,6 +17,7 @@ export class Preset implements Presets {
     description: string;
     price: number;
     precioPesos:number;
+    short_desc: string
     constructor(presetData: any) {
         this.id = presetData.id;
         this.name = presetData.name;

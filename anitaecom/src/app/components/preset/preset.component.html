@@ -13,7 +13,7 @@
 						<img class="img-responsive" [src]="p.image" alt="{{p.name}}" />
 						<div class="preview-meta">
 							<ul>
-								<li><a routerLink="{{p.shor_desc}}" title="Ver detalles" alt="Ver detalles"><i class="bi bi-search"></i></a>
+								<li><a routerLink="{{p.short_desc}}" title="Ver detalles" alt="Ver detalles"><i class="bi bi-search"></i></a>
 								</li>
 								<li><a title="Me Gusta" alt="Me Gusta" (click)="AddToLike(p.id)"><i class="bi bi-heart-fill"></i></a>
 								</li>
@@ -28,7 +28,7 @@
                       	</div>
 					</div>
 					<div class="product-content">
-						<h4><a routerLink="{{p.shor_desc}}">{{p.name}}</a></h4>
+						<h4><a routerLink="{{p.short_desc}}">{{p.name}}</a></h4>
 						<p>{{p.description}}</p>
 					</div>
 				</div>

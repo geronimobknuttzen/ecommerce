@@ -1,4 +1,5 @@
 const express = require('express');
+const multer = require('multer')
 const router = express.Router();
 const { database } = require('../config/helpers');
 
@@ -31,8 +32,6 @@ router.get('/', function(req, res) {
             'i.createdAt',
             'i.updatedAt'
         ])
-        .slice(startValue, endValue)
-        .sort({id: -1})
         .getAll()
         .then(imgs => {
             if (imgs.length > 0) {
@@ -49,7 +48,6 @@ router.get('/', function(req, res) {
 /* GET ONE IMAGE. */
 router.get('/:imgID', (req,res)=>{
     let imgId = req.params.imgID;
-    console.log(imgId)
 
     database.table('images as i')
         .join([{
@@ -75,4 +73,46 @@ router.get('/:imgID', (req,res)=>{
         })
         .catch(err => console.log(err));
 })
+
+router.post('/upload', (req, res)=>{
+    if(req.method == 'POST'){
+        let {name, description, cat_id, category} = req.body;
+        if(!req.files || Object.keys(req.files).length === 0){
+        return res.status(400).send('No se subieron archivos');}
+        image = req.files.image;
+        uploadPath = `../anitaecom/src/assets/images/portfolio/${category}/` + image.name
+        savePath = `assets/images/portfolio/${category}/`+ image.name
+        console.log(image)
+        if(image.mimetype == 'image/jpeg' || image.mimetype == 'image/png'|| image.mimetype == 'image/jpg' ){
+            image.mv(uploadPath, (error)=>{
+                if(error)
+                    return res.status(500).send(error);
+                
+                database.table('images')
+                    .join([
+                        {
+                        table:'categories as c',
+                        on:'c.id = images.cat_id'
+                        },
+                    ])
+                    .insert({
+                        name: name,
+                        description: description,
+                        cat_id: cat_id,
+                        img_url: savePath,
+                        createdAt: Date.now()
+                    })
+                    .then(newImage=>{
+                        res.json({message:'Se cargó la nueva imagen', success: true})
+                    })
+                    .catch(error=>console.log(error))
+            })
+        } else {
+            message = 'El formato no se permite, solo permitido JPG, JPEG y PNG',
+            res.json({message: message})
+        }    
+    }
+})
+
+
 module.exports = router;

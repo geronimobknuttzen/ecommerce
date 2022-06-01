@@ -1,0 +1,43 @@
+<section class="page-header">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="content">
+					<h1 class="page-name">Dashboard</h1>
+					<ol class="breadcrumb">
+						<li><a routerLink="/">Home</a></li>
+						<li class="active">my account</li>
+					</ol>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<section class="user-dashboard page-wrapper">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <ul class="list-inline dashboard-menu text-center">
+          <li><a routerLink="/dashboard">Dashboard</a></li>
+          <li><a routerLink="/cart">Orders</a></li>
+          <li><a routerLink="/address">Address</a></li>
+          <li><a class="active"  routerLink="/profile">Detalles del perfil</a></li>
+        </ul>
+        <div class="dashboard-wrapper dashboard-user-profile">
+          <div class="media">
+            <div class="pull-left text-center" routerLink="#!">
+              <img class="media-object user-img" [src]="myUser?.photoUrl" alt="{{myUser?.firstname || myUser?.nombre}}">
+              <a routerLink="#x" class="btn btn-transparent mt-20">Change Image</a>
+            </div>
+            <div class="media-body">
+              <ul class="user-profile-list">
+                <li><span>Nombre</span>{{myUser?.name || (myUser?.nombre + ' ' + myUser?.apellido)}}</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <button class="btn btn-main text-center btn-block" (click)="logOut()">LogOut</button>
+      </div>
+    </div>
+  </div>
+</section>

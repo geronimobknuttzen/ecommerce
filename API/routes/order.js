@@ -74,6 +74,7 @@ router.post('/new',(req,res)=>{
                 })
                 .then(newOrderId=>{
                     if(newOrderId.insertId > 0){
+                        console.log(newOrderId)
                         products.forEach(async(products) => {
                             let data = await database.table('products as p')
                                                     .filter({'p.id': products.id})
@@ -114,7 +115,7 @@ router.post('/new',(req,res)=>{
                         products: products
                     });
                 })
-                .catch(error=>console.log(error))
+                
     } else {
         res.json({
             message:'Fallo el pedido',

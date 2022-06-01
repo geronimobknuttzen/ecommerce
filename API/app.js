@@ -2,7 +2,9 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
-const request = require('request')
+const request = require('request');
+const fileUpload = require('express-fileupload');
+const bodyParser = require("body-parser")
 
 const cors = require('cors');
 //ROUTES
@@ -11,6 +13,7 @@ const portfoliosRoute = require('./routes/portfolios');
 const usersRoute = require('./routes/users');
 const ordersRoute = require('./routes/order');
 const productsRoute = require('./routes/products');
+const authRoute = require('./routes/auth')
 
 const app = express();
 
@@ -45,10 +48,13 @@ const createPayment = (req, res)=>{
 }
 
 
-app.use(logger('dev'));
+app.use(logger('combined'));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+app.use(fileUpload());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //USE ROUTES
@@ -57,6 +63,7 @@ app.use('/api/images', imagesRoute);
 app.use('/api/portfolios', portfoliosRoute);
 app.use('/api/orders', ordersRoute);
 app.use('/api/users', usersRoute);
+app.use('/api/auth', authRoute);
 
 
 module.exports = app;

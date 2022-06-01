@@ -1,0 +1,25 @@
+<section class="original-pack">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="text-center">
+                    <h1>ORIGINAL PACK</h1>
+                </div>
+                <div class="desktop">
+                    <nav class="navbar navigation">
+                        <div class="container">
+                            <div id="navbar" class="text-center">
+                                <ul class="nav navbar-nav" *ngFor="let p of presets">
+                                    <li class="dropdown ">
+                                        <a routerLink="/preset/original/{{p.desc}}" routerLinkActive="activebutton">{{p.id}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </nav>
+                </div>
+			</div>
+        </div>
+        <router-outlet></router-outlet>
+    </div>
+</section>

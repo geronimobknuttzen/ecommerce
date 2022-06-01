@@ -42,7 +42,8 @@ router.get('/:presId', (req,res)=>{
             'p.price',
             'p.precioPesos',
             'p.description',
-            'p.image'
+            'p.image',
+            'p.short_desc'
         ])
         .filter({'p.id' : presetId})
         .get()
