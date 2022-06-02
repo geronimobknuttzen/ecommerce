@@ -1,0 +1,61 @@
+.hero-area{
+    background-image: url(../../../assets/images/about/about.jpg);
+    background-position-y: -400px;
+}
+.portfolioImg{
+    background-image: url("../../../assets/images/portadas/portfolio.jpg");
+    background-size: cover;
+    width: 100%;
+    height: 730px;
+}
+.portfolioImg:hover{
+    transition: all 0.3s ease-in-out;
+    transform: scale(1.1);
+}
+.container>.row>div>p{
+    margin-left: 15px;
+    margin-bottom: 35px;
+    text-align: justify;
+}
+
+.content>h3{
+    color: white;
+    font-weight: 600
+}
+
+.content>p{
+    color: whitesmoke;
+    font-weight: 600
+}
+
+.service-item::before{
+    content: "";
+    color: black;
+    width: auto;
+}
+@media only screen and (max-width:990px) {
+    .hero-area{
+        background-position-y: -250px;
+    }
+    .portfolioImg{
+        height: 400px;
+    }
+}
+@media only screen and (max-width:600px) {
+    .hero-area{
+        background-position-y: 0;
+    }
+    .portfolioImg{
+        height: 400px;
+    }
+}
+
+.img-responsive{
+   box-shadow: 2px 2px 14px 0px #606060;
+}
+
+ul>li{
+    width: 75%;
+    font-size: 14px;
+    color: white;
+}

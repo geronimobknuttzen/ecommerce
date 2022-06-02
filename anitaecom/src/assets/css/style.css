@@ -280,7 +280,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 
 @media (max-width: 768px) {
   .category-box.category-box-2 {
-    min-height: 400px;
+    min-height: 250px;
   }
 }
 

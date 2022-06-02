@@ -17,7 +17,7 @@ export class RetratosComponent implements OnInit {
     this.imgSvc.showMessage();
     this.imgSvc.getPortfolioImg(album).subscribe((img: any)=>{
       this.images = img.images
-      console.log(img) 
+      console.log(this.images) 
     })
   }
 

@@ -58,6 +58,7 @@ import { JunglaComponent } from './components/preset/nature/jungla/jungla.compon
 import { MoodyComponent } from './components/preset/nature/moody/moody.component';
 import { MountainComponent } from './components/preset/nature/mountain/mountain.component';
 import { PiletaComponent } from './components/preset/nature/pileta/pileta.component';
+import { NewsComponent } from './components/news/news.component';
 
 @NgModule({
   declarations: [
@@ -107,6 +108,7 @@ import { PiletaComponent } from './components/preset/nature/pileta/pileta.compon
     MoodyComponent,
     MountainComponent,
     PiletaComponent,
+    NewsComponent,
   ],
   imports: [
     BrowserModule,

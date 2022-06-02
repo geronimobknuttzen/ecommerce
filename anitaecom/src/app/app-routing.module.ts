@@ -44,6 +44,7 @@ import { MoodyComponent } from './components/preset/nature/moody/moody.component
 import { MountainComponent } from './components/preset/nature/mountain/mountain.component';
 import { NatureComponent } from './components/preset/nature/nature.component';
 import { PiletaComponent } from './components/preset/nature/pileta/pileta.component';
+import { NewsComponent } from './components/news/news.component';
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' }, 
@@ -64,7 +65,7 @@ const routes: Routes = [
       { path: 'verdeagua', component: VerdeaguaComponent, data:{ id:'verdeagua', title: 'Verde Agua' }},    
     ]
   },
-  { path: 'original', component: OriginalComponent, 
+  { path: 'preset/original', component: OriginalComponent, 
   data:{
     id: 'original/atardecer',
     title: 'original'
@@ -82,7 +83,7 @@ const routes: Routes = [
     { path: 'suave', component: SuaveComponent, data:{ id:'suave', title: 'Bien suave' }},    
     { path: 'verano', component: VeranoComponent, data:{ id:'verano', title: 'Llego el Verano' }},    
     { path: 'yinyang', component: YinyangComponent, data:{id:'yinyang', title: 'Yin Yang'}}]},
-    { path: 'nature', component: NatureComponent,
+    { path: 'preset/nature', component: NatureComponent,
     data:{
       id: 'nature/mountain',
       title: 'nature'
@@ -107,6 +108,7 @@ const routes: Routes = [
   {path:'login', component: LoginComponent},
   {path:'profile', component: ProfileComponent, canActivate:[ProfileGuard]},
   {path:'gracias', component: ThankComponent},
+  {path:'news', component: NewsComponent},
   { path: '**', component: Page404Component},
 
 

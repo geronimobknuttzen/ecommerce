@@ -4,8 +4,9 @@
 
 export const environment = {
   production: false,
-  SERVER_URL: 'http://localhost:3000/api'
-
+  SERVER_URL: 'http://localhost:3000/api',
+  INSTAGRAM_URL_GRAPH : 'http://graph.instagram.com/',
+  INSTAGRAM_URL_API : 'http://api.instagram.com/',
 };
 
 /*
