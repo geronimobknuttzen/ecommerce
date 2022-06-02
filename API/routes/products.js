@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
             'p.price',
             'p.short_desc'
         ])
-        .sort({id: -1})
+        .sort({id: 1})
         .getAll()
         .then(prods => {
             if (prods.length > 0) {

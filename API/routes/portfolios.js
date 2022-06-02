@@ -11,7 +11,7 @@ router.get('/', function(req, res) {
             'c.title as name',
             'c.img_url'
         ])
-        .sort({id: -1})
+        .sort({id: 1})
         .getAll()
         .then(alb => {
             if (alb.length > 0) {
@@ -63,7 +63,7 @@ router.get('/portfolio/:catTitle', (req, res)=>{
             'i.createdAt',
             'i.updatedAt'
         ])
-        .sort({id: -1})
+        .sort({id: 1})
         .getAll()
         .then(imgs => {
             if (imgs.length > 0) {
