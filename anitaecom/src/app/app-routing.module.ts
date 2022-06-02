@@ -98,9 +98,9 @@ const routes: Routes = [
       { path: 'moody', component: MoodyComponent, data:{ id:'moody', title: 'Moody'}}   
     ] }, 
   {path:'portfolio', component: PortfolioComponent},
-  {path: 'trabajos', component: TrabajosComponent},
-  {path: 'autorretratos', component: AutorretratosComponent},
-  {path: 'retratos', component: RetratosComponent},
+  {path: 'portfolio/trabajos', component: TrabajosComponent},
+  {path: 'portfolio/autorretratos', component: AutorretratosComponent},
+  {path: 'portfolio/retratos', component: RetratosComponent},
   {path:'cart', component: CartComponent},
   {path:'checkout', component: CheckoutComponent},
   {path:'terminarCompra', component: TerminarComponent},

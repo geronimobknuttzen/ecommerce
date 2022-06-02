@@ -32,6 +32,7 @@ router.get('/', function(req, res) {
             'i.createdAt',
             'i.updatedAt'
         ])
+        .sort({id: 1})
         .getAll()
         .then(imgs => {
             if (imgs.length > 0) {

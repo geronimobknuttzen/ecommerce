@@ -15,7 +15,7 @@
 						<img class="img-responsive" [src]="a.img_url" alt="{{a.name}}" />
 						<div class="preview-meta">
 							<ul>
-								<li><a routerLink="{{a.name}}" title="Ver detalles" alt="Ver detalles"><i class="bi bi-search"></i></a>
+								<li><a routerLink="{{a.name | lowercase}}" title="Ver detalles" alt="Ver detalles"><i class="bi bi-search"></i></a>
 								</li>
 							</ul>
                       	</div>

@@ -21,7 +21,7 @@ router.get('/', (req, res)=>{
         }
         ])
         .withFields(['o.id','p.title as name', 'p.description','p.price', 'p.image', 'u.username'])
-        .sort({id:1})
+        .sort({id: -1})
         .getAll()
         .then(orders => {
             if(orders.length > 0){
