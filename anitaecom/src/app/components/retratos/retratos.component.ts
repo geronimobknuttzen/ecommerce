@@ -14,10 +14,8 @@ export class RetratosComponent implements OnInit {
 
   ngOnInit(): void {
     let album = 'RETRATOS';
-    this.imgSvc.showMessage();
     this.imgSvc.getPortfolioImg(album).subscribe((img: any)=>{
       this.images = img.images
-      console.log(this.images) 
     })
   }
 

@@ -13,10 +13,8 @@ export class PortfolioComponent implements OnInit {
   constructor(private albumSvc: AlbumsService) { }
 
   ngOnInit(): void {
-    this.albumSvc.showMessage();
     this.albumSvc.getAllAlbums().subscribe((album: any)=>{
       this.albums = album.albums
-      console.log(this.albums) 
     })
   }
 

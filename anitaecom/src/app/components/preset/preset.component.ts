@@ -20,7 +20,6 @@ export class PresetComponent implements OnInit {
   ngOnInit(): void {
     this.prodSvc.getAllProducts().subscribe((pres: any)=>{
       this.presets = pres.presets
-      console.log(this.presets) 
     })
   }
 

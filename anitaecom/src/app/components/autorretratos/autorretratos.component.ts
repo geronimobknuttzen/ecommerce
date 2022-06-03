@@ -14,10 +14,8 @@ export class AutorretratosComponent implements OnInit {
 
   ngOnInit(): void {
     let album = 'AUTORRETRATOS';
-    this.imgSvc.showMessage();
     this.imgSvc.getPortfolioImg(album).subscribe((img: any)=>{
       this.images = img.images
-      console.log(this.images) 
     })
   }
 

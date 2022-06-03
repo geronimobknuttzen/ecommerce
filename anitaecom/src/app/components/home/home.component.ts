@@ -16,8 +16,6 @@ export class HomeComponent implements OnInit {
     this.instaSvc.getInstagram().subscribe((insta: any)=>{
       this.data = insta.data
       this.instaResponse = this.data
-      console.log(this.data) 
-      console.log(this.instaResponse) 
     });
   }
 
