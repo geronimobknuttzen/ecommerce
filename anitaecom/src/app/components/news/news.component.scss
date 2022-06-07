@@ -1,0 +1,11 @@
+.bg-dark{
+    --bs-bg-opacity: 1;
+    background-color: rgba(var(--bs-dark-rgb),var(--bs-bg-opacity))!important;
+}
+.h-100{
+    height: 100%!important;
+}
+.px-0 {
+    padding-right: 0!important;
+    padding-left: 0!important;
+}

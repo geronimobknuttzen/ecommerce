@@ -7,8 +7,14 @@ const fileUpload = require('express-fileupload');
 const bodyParser = require("body-parser")
 
 const cors = require('cors');
+const dotenv = require ("dotenv");
+
+dotenv.config()
+
+
 //ROUTES
 const imagesRoute = require('./routes/images');
+const newsRoute = require('./routes/news');
 const portfoliosRoute = require('./routes/portfolios');
 const usersRoute = require('./routes/users');
 const ordersRoute = require('./routes/order');
@@ -22,31 +28,6 @@ app.use(cors({
     method:['GET', 'POST', 'PATCH', 'DELETE', 'PUT'],
     allowedHeaders:'Content-type, Authorization, Origin, X-Requested-With, Accept'
 }));
-
-// Paypal
-const CLIENT = 'ARlz4s6tFW0y5ehq0LsbXqow2auml0nHpx68x1MEQHXKWpZq_5hLtegq4NARVxDNNJbnjoUSBlwwj6H4';
-const SECRET = 'EInTeVLadwL4KYmpE3UoeDb6uZrXRvO3Sc1EBv101hRu_4uh3n5s28AVohDc-sOkETNqYKP4v7qYJ6cb'; 
-const PAYPAL_API = 'https://api-m.sandbox.paypal.com'; //LIVE 'https://api-m.paypal.com
-const auth = {user: CLIENT, pass: SECRET}
-
-const createPayment = (req, res)=>{
-    const body ={
-        intent: 'CAPTURE',
-        purchase_units:[{
-            amount:{
-                currency_code: 'USD',
-                value: '150'
-            }
-        }],
-        application_context:{
-            brand_name: 'Anita Thomas',
-            landing_page: 'NO_PREFERENCE',
-            user_action: 'PAY_NOW',
-            return_url: ``,
-        }
-    }
-}
-
 
 app.use(logger('combined'));
 app.use(express.json());
@@ -64,6 +45,7 @@ app.use('/api/portfolios', portfoliosRoute);
 app.use('/api/orders', ordersRoute);
 app.use('/api/users', usersRoute);
 app.use('/api/auth', authRoute);
+app.use('/api/news', newsRoute);
 
 
 module.exports = app;

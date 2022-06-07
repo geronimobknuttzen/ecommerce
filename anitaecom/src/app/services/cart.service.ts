@@ -336,13 +336,13 @@ export class CartService {
     this.cartTotalUsd$.next(this.cartDataServer.totalDolar);
   }
 
-  checkoutFromCart(userId:number){
+  checkoutFromCart(email:string, name:string){
     this.http.post(`${this.SERVER_URL}/orders/payment`, null).subscribe((res:{success:boolean})=>{
       if(res.success){
         this.resetServerData();
-        console.log('HASTA ACA VENIAMOS BIEN')
         this.http.post(`${this.SERVER_URL}/orders/new`, {
-          userId: userId,
+          email: email,
+          name: name,
           products: this.cartDataClient.prodData
         }). subscribe((data: OrderResponse)=>{
 

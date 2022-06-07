@@ -4,6 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CartService } from 'src/app/services/cart.service';
 import { OrdersService } from 'src/app/services/orders.service';
+import { FormGroup, FormControl } from '@angular/forms'
 
 @Component({
   selector: 'app-checkout',
@@ -13,6 +14,8 @@ import { OrdersService } from 'src/app/services/orders.service';
 export class CheckoutComponent implements OnInit {
   cartTotal: number;
   cartData: CartResponse;
+  email: string;
+  name: string;
 
   constructor(
     public cartSvc: CartService, 
@@ -27,7 +30,7 @@ export class CheckoutComponent implements OnInit {
   }
   onCheckout(){
     this.spinner.show().then(p=>{
-      this.cartSvc.checkoutFromCart(4)
+      this.cartSvc.checkoutFromCart(this.email, this.name)
     })
   }
 }

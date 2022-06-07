@@ -1,6 +1,8 @@
+import { MaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
@@ -59,6 +61,7 @@ import { MoodyComponent } from './components/preset/nature/moody/moody.component
 import { MountainComponent } from './components/preset/nature/mountain/mountain.component';
 import { PiletaComponent } from './components/preset/nature/pileta/pileta.component';
 import { NewsComponent } from './components/news/news.component';
+import { CarruselComponent } from './components/news/carrusel/carrusel.component';
 
 @NgModule({
   declarations: [
@@ -109,6 +112,7 @@ import { NewsComponent } from './components/news/news.component';
     MountainComponent,
     PiletaComponent,
     NewsComponent,
+    CarruselComponent,
   ],
   imports: [
     BrowserModule,
@@ -119,7 +123,9 @@ import { NewsComponent } from './components/news/news.component';
     NgxSpinnerModule,
     ToastrModule.forRoot(),
     FormsModule,
-    SocialLoginModule
+    SocialLoginModule,
+    ReactiveFormsModule,
+    MaterialModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

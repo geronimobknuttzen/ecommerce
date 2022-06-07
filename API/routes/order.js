@@ -65,12 +65,13 @@ router.get('/:id', (req, res)=>{
 /*PLACE A NEW ORDER*/
 router.post('/new',(req,res)=>{
 
-    let {userId, products} = req.body;
+    let {email, name, products} = req.body;
 
     if(userId !== null && userId > 0 && !isNaN(userId)){
         database.table('orders')
                 .insert({
-                    user_id: userId
+                    email: email,
+                    fname: name
                 })
                 .then(newOrderId=>{
                     if(newOrderId.insertId > 0){
@@ -129,4 +130,5 @@ router.post('/payment', (res, req)=>{
         req.status(200).json({success:true})
     }, 2000)
 })
+
 module.exports = router;

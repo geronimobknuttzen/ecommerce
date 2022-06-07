@@ -14,10 +14,6 @@ export class ImagesService {
 
   constructor(private http: HttpClient) { }
 
-  showMessage(){
-    console.log('SERVICIO FUNCIONANDO')
-  }
-
   /* FETCH IMAGES FROM THE BACKEND */
   getAllImages():Observable<Image[]> {
     return this.http.get<Image[]>(this.SERVER_URL+'/images')

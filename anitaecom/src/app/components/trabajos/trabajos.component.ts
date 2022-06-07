@@ -16,6 +16,7 @@ export class TrabajosComponent implements OnInit {
     let album = 'TRABAJOS';
     this.imgSvc.getPortfolioImg(album).subscribe((img: any)=>{
       this.images = img.images
+      console.log(this.images)
     })
   }
 
