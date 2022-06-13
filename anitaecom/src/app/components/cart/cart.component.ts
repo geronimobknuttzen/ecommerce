@@ -77,10 +77,8 @@ export class CartComponent implements OnInit {
         onApprove: (data, actions) => {
           actions.order.get().then((details) => {
             this.zone.run(()=>{
-              console.log('onApprove - you can get full order details inside onApprove: ', details);
               this.spinner.show()
               .then(p=>{
-                console.log(p)
                 let fullName = details.payer.name.given_name + ' ' + details.payer.name.surname
                 this.cartSvc.checkoutFromCart(details.payer.email_address, fullName)
               })
@@ -95,9 +93,6 @@ export class CartComponent implements OnInit {
     const items:any[] = [];
     let item = {};
     return items
-  }
-  private initConfig(): void {
-    
   }
   tipoPagoPeso() {
     this.medioDePago = 'mercadoPago';
