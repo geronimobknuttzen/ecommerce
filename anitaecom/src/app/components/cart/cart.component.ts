@@ -1,37 +1,116 @@
-import { CartResponse } from './../../models/cart';
+import { environment } from './../../../environments/environment';
+import { CartModelServer } from './../../models/cart';
 import { CartService } from 'src/app/services/cart.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ProductService } from 'src/app/services/product.service';
-import { Preset } from 'src/app/models/presets';
+import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
+import { NgxSpinnerService } from 'ngx-spinner';
 
 @Component({
   selector: 'app-cart',
   templateUrl: './cart.component.html',
-  styleUrls: ['./cart.component.scss']
+  styleUrls: ['./cart.component.scss'],
 })
 export class CartComponent implements OnInit {
-  cartData: CartResponse;
+  public payPalConfig?: IPayPalConfig;
+  public showPaypalButtons: boolean;
+
+  cartData: CartModelServer;
   cartTotalUsd: number;
   cartTotalPesos: number;
   cartSubtotalUsd: number;
   cartSubtotalPesos: number;
-  presets:string;
+  presets: string;
   id: number;
+  email: string;
+  name: string;
 
-  medioDePago:string;
+  medioDePago: string;
 
-  constructor(public cartSvc: CartService, private prodSvc: ProductService) { }
+  constructor(
+    public cartSvc: CartService,
+    private spinner: NgxSpinnerService,
+    private zone: NgZone
+  ) {}
 
   ngOnInit(): void {
-    this.cartSvc.cartData$.subscribe((data:CartResponse)=>this.cartData = data);
-    this.cartSvc.cartTotalUsd$.subscribe((cartTotalUsd)=>this.cartTotalUsd = cartTotalUsd);
-    this.cartSvc.cartTotalPeso$.subscribe((cartTotalPesos)=>this.cartTotalPesos = cartTotalPesos);
+    this.cartSvc.cartData$.subscribe(
+      (data: CartModelServer) => (this.cartData = data)
+    );
+    this.cartSvc.cartTotalUsd$.subscribe(
+      (cartTotalUsd) => (this.cartTotalUsd = cartTotalUsd)
+    );
+    this.cartSvc.cartTotalPeso$.subscribe(
+      (cartTotalPesos) => (this.cartTotalPesos = cartTotalPesos)
+    );
+    
+    this.zone.runOutsideAngular(()=>{
+      this.payPalConfig = {
+        currency: 'USD',
+        clientId: `${environment.CLIENT_PAYPAL}`,
+        createOrderOnClient: (data) =>
+          <ICreateOrderRequest>{
+            intent: 'CAPTURE',
+            purchase_units: [
+              {
+                amount: {
+                  currency_code: 'USD',
+                  value: this.cartTotalUsd.toString(),
+                  breakdown: {
+                    item_total: {
+                      currency_code: 'USD',
+                      value: this.cartTotalUsd.toString(),
+                    },
+                  },
+                },
+                items:this.getItemList(),
+              },
+            ],
+          },
+        advanced: {
+          commit: 'true',
+        },
+        style: {
+          label: 'paypal',
+          layout: 'vertical',
+        },
+        onApprove: (data, actions) => {
+          actions.order.get().then((details) => {
+            this.zone.run(()=>{
+              console.log('onApprove - you can get full order details inside onApprove: ', details);
+              this.spinner.show()
+              .then(p=>{
+                console.log(p)
+                let fullName = details.payer.name.given_name + ' ' + details.payer.name.surname
+                this.cartSvc.checkoutFromCart(details.payer.email_address, fullName)
+              })
+            })
+          });
+        }
+      };
+    })
+
   }
-  tipoPagoPeso(){
-    this.medioDePago = 'mercadoPago'
+  getItemList(): any[]{
+    const items:any[] = [];
+    let item = {};
+    return items
   }
-  tipoPagoDolar(){
-    this.medioDePago = 'payPal'
+  private initConfig(): void {
+    
+  }
+  tipoPagoPeso() {
+    this.medioDePago = 'mercadoPago';
+  }
+  tipoPagoDolar() {
+    this.medioDePago = 'payPal';
   }
 
+  pay() {
+    this.showPaypalButtons = true;
+  }
+
+  back() {
+    this.showPaypalButtons = false;
+  }
 }

@@ -8,7 +8,7 @@ export interface LikeResponse{
 
 }
 export interface Like{
-    prodData:[
+    likeData:[
         {
             id: number,
             inlike: number

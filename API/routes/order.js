@@ -14,13 +14,9 @@ router.get('/', (req, res)=>{
         {
           table: 'products as p',
           on:'p.id = od.product_id'
-        },
-        {
-          table:'users as u',
-          on:'u.id = o.user_id'
         }
         ])
-        .withFields(['o.id','p.title as name', 'p.description','p.price', 'p.image', 'u.username'])
+        .withFields(['o.id','p.title as name', 'p.description','p.price', 'p.image'])
         .sort({id: -1})
         .getAll()
         .then(orders => {
@@ -44,13 +40,9 @@ router.get('/:id', (req, res)=>{
             {
                 table: 'products as p',
                 on:'p.id = od.product_id'
-            },
-            {
-                table:'users as u',
-                on:'u.id = o.user_id'
             }
         ])
-        .withFields(['o.id','p.title as name', 'p.description','p.price', 'p.image', 'u.username'])
+        .withFields(['o.id','p.title as name', 'p.description','p.price', 'p.image'])
         .filter({'o.id': orderId})
         .getAll()
         .then(orders => {
@@ -67,7 +59,7 @@ router.post('/new',(req,res)=>{
 
     let {email, name, products} = req.body;
 
-    if(userId !== null && userId > 0 && !isNaN(userId)){
+    if(email !== null && name !== null){
         database.table('orders')
                 .insert({
                     email: email,

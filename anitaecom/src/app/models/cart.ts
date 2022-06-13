@@ -1,6 +1,6 @@
 import { Preset } from './presets';
 
-export interface CartResponse{
+export interface CartModelServer{
     totalDolar: number;
     totalPesos: number;
     data: [{
@@ -9,7 +9,7 @@ export interface CartResponse{
     }],
 
 }
-export interface Cart{
+export interface CartModelPublic{
     totalDolar: number;
     totalPesos: number;
     prodData:[

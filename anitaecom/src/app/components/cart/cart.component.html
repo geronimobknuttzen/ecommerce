@@ -13,7 +13,15 @@
 		</div>
 	</div>
 </section>
-
+<ngx-spinner
+   bdColor="rgba(151,149,49,0.4)"
+   size="large"
+   color="orange"
+   type="ball-clip-rotate-pulse"
+   [fullScreen]="true"
+>
+   <p style="font-size: 20px; color:black;">Almacenando Orden</p>
+</ngx-spinner>
 <!-- SHOW EMPTY -->
 <section class="empty-cart page-wrapper" *ngIf="cartData.data[0].numInCart == 0">
     <div class="container">
@@ -80,7 +88,10 @@
                                   </tr>
                               </tfoot>
                             </table>
-                            <a routerLink="/checkout" class="btn btn-main pull-right">Finalizar Compra</a>
+                            <button class="btn btn-main pull-right" *ngIf="!showPaypalButtons" (click)="pay()">Pagar con paypal</button>
+                            <ngx-paypal *ngIf="showPaypalButtons" [config]="payPalConfig">
+                            </ngx-paypal>
+                            <button class="btn btn-main pull-right" *ngIf="showPaypalButtons" (click)="back()">Volver atras</button>
                           </form>
                         </div>
                       </div>

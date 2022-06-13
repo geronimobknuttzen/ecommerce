@@ -14,8 +14,8 @@ export class HomeComponent implements OnInit {
   
   ngOnInit(): void {
     this.instaSvc.getInstagram().subscribe((insta: any)=>{
-      this.data = insta.data
-      this.instaResponse = this.data
+      this.data = insta.data;
+      this.instaResponse = this.data;
     });
   }
 

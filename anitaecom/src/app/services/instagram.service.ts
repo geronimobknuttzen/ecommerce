@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class InstagramService {
   private instagramBaseGRAPH = environment.INSTAGRAM_URL_GRAPH
   
-  userToken = 'IGQVJXeU5vNlVidTJ2M1YzNnplUTR2MlYtaXp4X0ZAYOVR3djl3UkhFejZAwZAXFNUmQ4bVVnVXRiNlJQNjM5OUd3RUFlNHFCTEdHa3g2XzBVLVh5VXplYlRGNHF2Q080ZAGRwQ0FGeWI1c1VEZA1ctOTFCUQZDZD'
+  userToken = environment.ACCESS_TOKEN_IG
   queryUrl = `me/media?access_token=${this.userToken}&fields=id,username,timestamp,caption,media_url,media_type,permalink`;
   fullUrl = `${this.instagramBaseGRAPH}` + `${this.queryUrl}`;    
   constructor(private http: HttpClient) { }

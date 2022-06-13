@@ -5,6 +5,7 @@ import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
+import { NgxPayPalModule } from 'ngx-paypal';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
 import {
   GoogleLoginProvider,
@@ -125,7 +126,8 @@ import { CarruselComponent } from './components/news/carrusel/carrusel.component
     FormsModule,
     SocialLoginModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    NgxPayPalModule
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [

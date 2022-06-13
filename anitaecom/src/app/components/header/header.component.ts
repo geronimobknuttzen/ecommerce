@@ -1,6 +1,6 @@
 import { UserService } from './../../services/user.service';
-import { Component, OnInit } from '@angular/core';
-import { CartResponse } from 'src/app/models/cart';
+import { Component, NgZone, OnInit } from '@angular/core';
+import { CartModelServer } from 'src/app/models/cart';
 import { LikeResponse } from 'src/app/models/like';
 import { CartService } from 'src/app/services/cart.service';
 
@@ -11,13 +11,16 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class HeaderComponent implements OnInit {
 
-  cartData: CartResponse;
+  cartData: CartModelServer;
   likeData: LikeResponse;
   cartTotalPeso: number;
   cartTotalUsd: number;
   authState: boolean;
 
-  constructor( public cartSvc: CartService, private userSvc: UserService) { }
+  constructor( 
+    public cartSvc: CartService, 
+    private userSvc: UserService,
+    private zone: NgZone) { }
 
   ngOnInit(): void {
     this.cartSvc.cartTotalPeso$.subscribe( total => this.cartTotalPeso = total);

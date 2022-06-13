@@ -4,7 +4,7 @@
         <div class="row">
           <div class="col-lg-8 text-left">
             <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Hola! Soy Anita,</h1>
-            <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">fotógrafa, directora creativa y mamá del pequeño Silvestre.<br>
+            <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">Fotógrafa, directora creativa y mamá del pequeño Silvestre.<br>
               En este espacio voy a ir compartiendo con ustedes las últimas novedades.<br>
               Además pueden encontrar todos mis presets para dejar sus fotos iguales a las mias.<br>
               Si están buscando un poco de inspiración, les dejo algunos de mis últimos trabajos en mi portfolio.  
@@ -50,67 +50,7 @@
         </div>
       </div>
     </div>
-  </section>
-  <!-- <section class="product-category section">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-6">
-				<div class="category-box">
-					<a [routerLink]="['/presets']">
-						<img class="service-item" src="assets/images/portadas/presets.jpg" alt="" />
-						<div class="content">
-							<h3>PRESETS</h3>
-						</div>
-					</a>	
-				</div>
-				<div class="category-box">
-					<a [routerLink]="['/news']">
-						<img class="service-item" src="assets/images/portadas/novedades.jpg" alt="" />
-						<div class="content">
-							<h3>NOVEDADES</h3>
-						</div>
-					</a>	
-				</div>
-			</div>
-			<div class="col-md-6">
-				<div class="category-box category-box-2">
-					<a [routerLink]="['/portfolio']">
-						<img class="service-item" src="assets/images/portadas/portfolio.jpg" alt="" />
-						<div class="content">
-							<h3>PORTFOLIO</h3>
-						</div>
-					</a>	
-				</div>
-			</div>
-		</div>
-	</div>
-</section>
-   -->
-<!--
-  Start Call To Action
-  ==================================== -->
-  <section class="call-to-action bg-gray section">
-      <div class="container">
-          <div class="row">
-              <div class="col-md-12 text-center">
-                  <div class="title">
-                      <h2>SUBSCRIBE TO NEWSLETTER</h2>
-                      <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Fugiat, <br> facilis numquam impedit ut sequi. Minus facilis vitae excepturi sit laboriosam.</p>
-                  </div>
-                  <div class="col-lg-6 col-md-offset-3">
-                      <div class="input-group subscription-form">
-                        <input type="text" class="form-control" placeholder="Enter Your Email Address">
-                        <span class="input-group-btn">
-                          <button class="btn btn-main" type="button">Subscribe Now!</button>
-                        </span>
-                      </div><!-- /input-group -->
-                </div><!-- /.col-lg-6 -->
-  
-              </div>
-          </div> 		<!-- End row -->
-      </div>   	<!-- End container -->
-  </section>   <!-- End section -->
-  
+  </section>  
   <section class="section instagram-feed">
       <div class="container">
           <div class="row">
@@ -123,9 +63,11 @@
                   <img class="img-responsive" src="{{ir.media_url}}" alt="{{ir.media_type}}" />
                   <div class="preview-meta">
                     <ul>
+                      <a href="{{ir.permalink}}">
                       <li>
-                          {{ir.caption}}
-                      </li>
+                          {{ir.caption.slice(0,200)}}...
+                        </li>
+                      </a>
                     </ul>
                   </div>
                 </div>

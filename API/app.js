@@ -19,7 +19,8 @@ const portfoliosRoute = require('./routes/portfolios');
 const usersRoute = require('./routes/users');
 const ordersRoute = require('./routes/order');
 const productsRoute = require('./routes/products');
-const authRoute = require('./routes/auth')
+const authRoute = require('./routes/auth');
+const mpRoute = require('./routes/mercadoPago')
 
 const app = express();
 
@@ -46,6 +47,6 @@ app.use('/api/orders', ordersRoute);
 app.use('/api/users', usersRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/news', newsRoute);
-
+app.use('/api/mercadopago', mpRoute)
 
 module.exports = app;

@@ -1,4 +1,4 @@
-<section class="page-header">
+<!-- <section class="page-header">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-12">
@@ -48,36 +48,25 @@
                      <div class="form-group">
                         <label for="user_address">Nombre</label>
                         <input type="text" class="form-control" formControlName="nombre" id="full_name" placeholder="Nombre y Apellido">
-                        <!-- <ng-container *ngIf="isValidField(paymentForm.value.name)">
-                           {{getError(paymentForm.value.name)}}
-                        </ng-container> -->
+                        <ng-container *ngIf="isValidField('nombre')">
+                           <p class="errorMsg">{{getError('nombre')}}</p>
+                        </ng-container>
                      </div>
                      <div class="form-group">
                         <label for="user_address">Email</label>
                         <input type="email" formControlName="email" class="form-control" id="user_address" placeholder="Email">
+                        <ng-container *ngIf="isValidField('email')">
+                           <p class="errorMsg">{{getError('email')}}</p>
+                        </ng-container>
                      </div>
                   </form>
                </div>
                <div class="block">
-                  <h4 class="widget-title">Metodo de Pago</h4>
-                  <p>Detalles de la Tarjeta (Pago seguro)</p>
                   <div class="checkout-product-details">
                      <div class="payment">
                         <div class="card-details">
                            <form  class="checkout-form">
-                              <div class="form-group">
-                                 <label for="card-number">Numero de tarjeta<span class="required">*</span></label>
-                                 <input  id="card-number" class="form-control"   type="tel" placeholder="•••• •••• •••• ••••">
-                              </div>
-                              <div class="form-group half-width padding-right">
-                                 <label for="card-expiry">Vencimiento (MM/AA) <span class="required">*</span></label>
-                                 <input id="card-expiry" class="form-control" type="tel" placeholder="MM / YY">
-                              </div>
-                              <div class="form-group half-width padding-left">
-                                 <label for="card-cvc">CVC<span class="required">*</span></label>
-                                 <input id="card-cvc" class="form-control"  type="tel" maxlength="4" placeholder="CVC" >
-                              </div>
-                              <a class="btn btn-main mt-20" (click)="onCheckout()">Realizar compra</a >
+                              <button class="btn btn-main mt-20" (click)="onCheckout()" [disabled]="!paymentForm.valid">Realizar compra</button >
                            </form>
                         </div>
                      </div>
@@ -92,7 +81,8 @@
                         <div class="media product-card summary-product">
                            <button class="btn btn-danger"(click)="cartSvc.deleteProdFromCart(i)"><i class="bi bi-trash"></i></button>
                            <div class="media-body">
-                              <h4 class="media-heading"><a routerLink="/cart" >{{p.product.name}}</a></h4>
+                              <h4 class="media-heading"><a routerLink="/cart" >{{p.product.name}}</a>
+                              {{p.product.name}}</h4>
                               <ul class="">
                                  <li>
                                     <span class="price">{{p.product.precioPesos| currency: '$'}}</span>
@@ -114,4 +104,164 @@
             </div>
          </div>
       </div>
-   </div>
+   </div> -->
+
+   <section class="shopping-cart dark">
+      <div class="container" id="container">
+        <div class="block-heading">
+          <h2>Shopping Cart</h2>
+          <p>This is an example of Checkout Pro integration of Mercado Pago</p> 
+        </div>
+        <div class="content">
+          <div class="row">
+            <div class="col-md-12 col-lg-8">
+              <div class="items">
+                <div class="product">
+                  <div class="info">
+                    <div class="product-details">
+                      <div class="row justify-content-md-center">
+                        <div class="col-md-3">
+                          <img class="img-fluid mx-auto d-block image" src="img/product.png">
+                        </div>
+                        <div class="col-md-4 product-detail">
+                          <h5>Product</h5>
+                          <div class="product-info">
+                            <p><b>Description: </b><span id="product-description">Some book</span><br>
+                            <b>Author: </b>Dale Carnegie<br>
+                            <b>Number of pages: </b>336<br>
+                            <b>Price:</b> $ <span id="unit-price">10</span></p>
+                          </div>
+                        </div>
+                        <div class="col-md-3 product-detail">
+                          <label for="quantity"><h5>Quantity</h5></label>
+                          <input type="number" id="quantity" value="1" min="1" class="form-control">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-12 col-lg-4">
+              <div class="summary">
+                <h3>Cart</h3>
+                <div class="summary-item"><span class="text">Subtotal</span><span class="price" id="cart-total"></span></div>
+                <button class="btn btn-primary btn-lg btn-block" id="checkout-btn">Checkout</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!--payment-->
+    <section class="payment-form dark">
+      <div class="container_payment">
+        <div class="block-heading">
+          <h2>Checkout Payment</h2>
+          <p>This is an example of a Mercado Pago integration</p>
+        </div>
+        <div class="form-payment">
+          <div class="products">
+            <h2 class="title">Summary</h2>
+            <div class="item">
+              <span class="price" id="summary-price"></span>
+              <p class="item-name">Book x <span id="summary-quantity"></span></p>
+            </div>
+            <div class="total">Total<span class="price" id="summary-total"></span></div>
+          </div>
+          <div class="payment-details">
+            <div class="form-group col-sm-12">
+              <br>      
+              <div id="button-checkout">
+              </div>                 
+              <br>
+              <a id="go-back">
+                <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 10 10" class="chevron-left">
+                  <path fill="#009EE3" fill-rule="nonzero"id="chevron_left" d="M7.05 1.4L6.2.552 1.756 4.997l4.449 4.448.849-.848-3.6-3.6z"></path>
+                </svg>
+                Go back to Shopping Cart
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>      <section class="shopping-cart dark">
+        <div class="container" id="container">
+          <div class="block-heading">
+            <h2>Shopping Cart</h2>
+            <p>This is an example of Checkout Pro integration of Mercado Pago</p> 
+          </div>
+          <div class="content">
+            <div class="row">
+              <div class="col-md-12 col-lg-8">
+                <div class="items">
+                  <div class="product">
+                    <div class="info">
+                      <div class="product-details">
+                        <div class="row justify-content-md-center">
+                          <div class="col-md-3">
+                            <img class="img-fluid mx-auto d-block image" src="img/product.png">
+                          </div>
+                          <div class="col-md-4 product-detail">
+                            <h5>Product</h5>
+                            <div class="product-info">
+                              <p><b>Description: </b><span id="product-description">Some book</span><br>
+                              <b>Author: </b>Dale Carnegie<br>
+                              <b>Number of pages: </b>336<br>
+                              <b>Price:</b> $ <span id="unit-price">10</span></p>
+                            </div>
+                          </div>
+                          <div class="col-md-3 product-detail">
+                            <label for="quantity"><h5>Quantity</h5></label>
+                            <input type="number" id="quantity" value="1" min="1" class="form-control">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-4">
+                <div class="summary">
+                  <h3>Cart</h3>
+                  <div class="summary-item"><span class="text">Subtotal</span><span class="price" id="cart-total"></span></div>
+                  <button class="btn btn-primary btn-lg btn-block" id="checkout-btn">Checkout</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <!--payment-->
+      <section class="payment-form dark">
+        <div class="container_payment">
+          <div class="block-heading">
+            <h2>Checkout Payment</h2>
+            <p>This is an example of a Mercado Pago integration</p>
+          </div>
+          <div class="form-payment">
+            <div class="products">
+              <h2 class="title">Summary</h2>
+              <div class="item">
+                <span class="price" id="summary-price"></span>
+                <p class="item-name">Book x <span id="summary-quantity"></span></p>
+              </div>
+              <div class="total">Total<span class="price" id="summary-total"></span></div>
+            </div>
+            <div class="payment-details">
+              <div class="form-group col-sm-12">
+                <br>      
+                <div id="button-checkout">
+                </div>                 
+                <br>
+                <a id="go-back">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" viewBox="0 0 10 10" class="chevron-left">
+                    <path fill="#009EE3" fill-rule="nonzero"id="chevron_left" d="M7.05 1.4L6.2.552 1.756 4.997l4.449 4.448.849-.848-3.6-3.6z"></path>
+                  </svg>
+                  Go back to Shopping Cart
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
