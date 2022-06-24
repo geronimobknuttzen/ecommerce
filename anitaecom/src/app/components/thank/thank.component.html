@@ -17,11 +17,13 @@
               </thead>
               <tbody>
                 <tr *ngFor="let p of products">
-                  <td>
-                    <img width="80" [src]="p.image" alt="">
-                  </td>
-                  <td class="text-start">{{p.name}}</td>
-                  <td class="text-start">{{p.price}}</td>
+                  <ng-container *ngIf="p.price">
+                    <td>
+                      <img width="80" [src]="p.image" alt="">
+                    </td>
+                    <td class="text-start">{{p.name}}</td>
+                    <td class="text-start">Adquirido!</td>
+                  </ng-container>                  
                 </tr>
               </tbody>
             </table>

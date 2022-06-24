@@ -18,13 +18,11 @@
               </div>
               <div class="text-center">
                 <button class="btn btn-main text-center btn-block" (click)="login(myForm)" [disabled]="myForm.invalid && myForm.touched">Acceso</button>
-                <hr>
-                <h4 class="text-uppercase"><strong>usar una de estas opciones</strong></h4>
-                <button (click)="signInWithGoogle()" class="btn btn-danger btn-sm btn-block mt-6"><span><i class="bi bi-google"></i></span></button>
-                <button (click)="signInWithFacebook()" class="btn btn-primary btn-sm btn-block mt-6"><span><i class="bi bi-facebook"></i></span></button>
+                <ng-container *ngIf="">
+
+                </ng-container>
               </div>
             </form>
-            <p class="mt-20">Nuevo por aquí?<a href="signin.html"> Crear una cuenta</a></p>
           </div>
         </div>
       </div>

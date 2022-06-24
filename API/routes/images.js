@@ -74,7 +74,7 @@ router.get('/:imgID', (req,res)=>{
         })
         .catch(err => console.log(err));
 })
-
+/* UPLOAD ONE IMAGE. */
 router.post('/upload', (req, res)=>{
     if(req.method == 'POST'){
         let {name, description, cat_id, category} = req.body;
@@ -104,6 +104,7 @@ router.post('/upload', (req, res)=>{
                         createdAt: Date.now()
                     })
                     .then(newImage=>{
+                        console.log(newImage)
                         res.json({message:'Se cargó la nueva imagen', success: true})
                     })
                     .catch(error=>console.log(error))
@@ -114,6 +115,20 @@ router.post('/upload', (req, res)=>{
         }    
     }
 })
-
+/* DELETE ONE IMAGE. */
+router.delete('/delete/:id', (req, res)=>{
+    let imgId = req.params.id;
+    console.log(imgId)
+    database.table('images')
+        .filter({id: imgId})
+        .remove()
+        .then(img => {
+            if (img.affectedRows>0) {
+                res.status(200).json({message: 'Se eliminó la imagen', success: true});
+            } else {
+                res.json({message: 'No se encontró imagen'})
+            }
+    });
+})
 
 module.exports = router;

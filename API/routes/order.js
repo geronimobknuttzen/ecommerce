@@ -106,15 +106,20 @@ router.post("/new", (req, res) => {
             }
             // INSERTAR LOS DETALLES DE LA ORDEN
             let emailData1 = {
-                from: '"Preset Adquirido" <geronimo.bknuttzen@gmail.com>',
-                to: `${email}`,
-                subject: "Gracias por adquirir Original Preset Pack",
-                html: `<p><span style="font-size:16px">Hola ${name},</span><br />
+              from: '"Preset Adquirido" <presets.anitathomas@gmail.com>',
+              to: `${email}`,
+              subject: "Gracias por adquirir Original Preset Pack",
+              html: `<p><span style="font-size:16px">Hola ${name},</span><br />
                                 &iexcl;Gracias por tu compra!<br />
                                 <br />
                                 Ac&aacute; vas a encontrar un link de Dropbox , tocalo y te va a llevar a la carpeta donde est&aacute;n tus presets [Original Pack]<br />
                                 <br />
-                                <a href="https://www.dropbox.com/sh/xyh8q5o7hbyxojo/AACu432voF02zHAe62fw95tha?dl=0" target="_blank">https://www.dropbox.com/sh/xyh8q5o7hbyxojo/AACu432voF02zHAe62fw95tha?dl=0</a><br />
+                                <div style="display: flex; justify-content: center;">
+                                  <a href="https://www.dropbox.com/sh/g390d3f48y92n7e/AADabcbMUaxYAd4agHOAnGYRa?dl=0" target="_blank" rel="noopener">
+                                    <button style="border-radius: 5% 15%; border:none; background-color: black; color: white; height: 25px; font-size: 14px; font-family: Arial; font-weight: 600">
+                                      DESCARGAR</button>
+                                    </a><br />
+                                </div>
                                 * link de descarga valido por 5 d&iacute;as*<br />
                                 <br />
                                 Tambi&eacute;n te dejo el link al video instructivo para que puedas descargar todo y ya puedas empezar a editar.&nbsp;<br />
@@ -142,17 +147,23 @@ router.post("/new", (req, res) => {
                                 <span style="font-size:10px"><em>Las compras digitales no tienen devoluci&oacute;n.&nbsp;<br />
                                 La comercializaci&oacute;n de los productos Anita Thomas sin autorizaci&oacute;n est&aacute; prohibida.</em></span></p>
                                 `,
-              };
-              let emailData2 = {
-                from: '"Preset Adquirido" <geronimo.bknuttzen@gmail.com>',
-                to: `${email}`,
-                subject: "Gracias por adquirir Nature Preset Pack",
-                html: `<p><span style="font-size:16px">Hola ${name},</span><br />
+            };
+            let emailData2 = {
+              from: '"Preset Adquirido" <presets.anitathomas@gmail.com>',
+              to: `${email}`,
+              subject: "Gracias por adquirir Nature Preset Pack",
+              html: `<p><span style="font-size:16px">Hola ${name},</span><br />
                                 &iexcl;Gracias por tu compra!<br />
                                 <br />
                                 Ac&aacute; vas a encontrar un link de Dropbox , tocalo y te va a llevar a la carpeta donde est&aacute;n tus presets [Nature Pack]<br />
                                 <br />
-                                <a href="https://www.dropbox.com/sh/n427m4wmgp08zuk/AABlN6YGSkn_XlVlbnhU9ZSIa?dl=0" target="_blank">https://www.dropbox.com/sh/n427m4wmgp08zuk/AABlN6YGSkn_XlVlbnhU9ZSIa?dl=0</a><br />
+                                <div style="display: flex; justify-content: center;">
+                                  <a href="https://www.dropbox.com/sh/n427m4wmgp08zuk/AABlN6YGSkn_XlVlbnhU9ZSIa?dl=0" target="_blank">
+                                    <button style="border-radius: 5% 15%; border:none; background-color: black; color: white; height: 25px; font-size: 14px; font-family: Arial; font-weight: 600">
+                                      DESCARGAR
+                                    </button>
+                                  </a><br />
+                                </div>
                                 * link de descarga valido por 5 d&iacute;as*<br />
                                 <br />
                                 Tambi&eacute;n te dejo el link al video instructivo para que puedas descargar todo y ya puedas empezar a editar.&nbsp;<br />
@@ -180,17 +191,23 @@ router.post("/new", (req, res) => {
                                 <span style="font-size:10px"><em>Las compras digitales no tienen devoluci&oacute;n.&nbsp;<br />
                                 La comercializaci&oacute;n de los productos Anita Thomas sin autorizaci&oacute;n est&aacute; prohibida.</em></span></p>
                                 `,
-              };
-              let emailData3 = {
-                from: '"Preset Adquirido" <geronimo.bknuttzen@gmail.com>',
-                to: `${email}`,
-                subject: "Gracias por adquirir Movie Preset Pack",
-                html: `<p><span style="font-size:16px">Hola ${name},</span><br />
+            };
+            let emailData3 = {
+              from: '"Preset Adquirido" <presets.anitathomas@gmail.com>',
+              to: `${email}`,
+              subject: "Gracias por adquirir Movie Preset Pack",
+              html: `<p><span style="font-size:16px">Hola ${name},</span><br />
                                 &iexcl;Gracias por tu compra!<br />
                                 <br />
                                 Ac&aacute; vas a encontrar un link de Dropbox , tocalo y te va a llevar a la carpeta donde est&aacute;n tus presets [Movie Pack]<br />
                                 <br />
-                                <a href="https://www.dropbox.com/sh/g390d3f48y92n7e/AADabcbMUaxYAd4agHOAnGYRa?dl=0" target="_blank">https://www.dropbox.com/sh/g390d3f48y92n7e/AADabcbMUaxYAd4agHOAnGYRa?dl=0</a><br />
+                                <div style="display: flex; justify-content: center;">
+                                  <a href="https://www.dropbox.com/sh/g390d3f48y92n7e/AADabcbMUaxYAd4agHOAnGYRa?dl=0" target="_blank">
+                                    <button style="border-radius: 5% 15%; border:none; background-color: black; color: white; height: 25px; font-size: 14px; font-family: Arial; font-weight: 600">
+                                      DESCARGAR
+                                    </button>
+                                  </a><br />
+                                </div>
                                 * link de descarga valido por 5 d&iacute;as*<br />
                                 <br />
                                 Tambi&eacute;n te dejo el link al video instructivo para que puedas descargar todo y ya puedas empezar a editar.&nbsp;<br />
@@ -218,114 +235,116 @@ router.post("/new", (req, res) => {
                                 <span style="font-size:10px"><em>Las compras digitales no tienen devoluci&oacute;n.&nbsp;<br />
                                 La comercializaci&oacute;n de los productos Anita Thomas sin autorizaci&oacute;n est&aacute; prohibida.</em></span></p>
                                 `,
-              };
-              if(products.id == 1){
-                  transporter.sendMail(emailData1, (error) => {
-                    if (error) {
-                      console.log("Error al enviar email", error);
-                    } else {
-                      console.log("Correo enviado correctamente");
-                    }
-                    transporter.close();
-                  });
-              } else if(products.id == 2){
-                transporter.sendMail(emailData2, (error) => {
-                    if (error) {
-                      console.log("Error al enviar email", error);
-                    } else {
-                      console.log("Correo enviado correctamente");
-                    }
-                    transporter.close();
-                  });
-              } else if(products.id == 3){
-                transporter.sendMail(emailData3, (error) => {
-                    if (error) {
-                      console.log("Error al enviar email", error);
-                    } else {
-                      console.log("Correo enviado correctamente");
-                    }
-                    transporter.close();
-                  });
-              } else if ((products.id == 1) && (products.id == 2) && (products.id == 3)){
-                transporter.sendMail(emailData1, (error) => {
-                    if (error) {
-                      console.log("Error al enviar email", error);
-                    } else {
-                      console.log("Correo enviado correctamente");
-                    }
-                    transporter.close();
-                  });
-                  transporter.sendMail(emailData2, (error) => {
-                    if (error) {
-                      console.log("Error al enviar email", error);
-                    } else {
-                      console.log("Correo enviado correctamente");
-                    }
-                    transporter.close();
-                  });
-                  transporter.sendMail(emailData3, (error) => {
-                    if (error) {
-                      console.log("Error al enviar email", error);
-                    } else {
-                      console.log("Correo enviado correctamente");
-                    }
-                    transporter.close();
-                  });
-              } else if ((products.id == 1) && (products.id == 2)){
-                transporter.sendMail(emailData1, (error) => {
-                    if (error) {
-                      console.log("Error al enviar email", error);
-                    } else {
-                      console.log("Correo enviado correctamente");
-                    }
-                    transporter.close();
-                  });
-                  transporter.sendMail(emailData2, (error) => {
-                    if (error) {
-                      console.log("Error al enviar email", error);
-                    } else {
-                      console.log("Correo enviado correctamente");
-                    }
-                    transporter.close();
-                  });
-              } else if((products.id == 2) && (products.id == 3)){
-                transporter.sendMail(emailData2, (error) => {
-                    if (error) {
-                      console.log("Error al enviar email", error);
-                    } else {
-                      console.log("Correo enviado correctamente");
-                    }
-                    transporter.close();
-                  });
-                  transporter.sendMail(emailData3, (error) => {
-                    if (error) {
-                      console.log("Error al enviar email", error);
-                    } else {
-                      console.log("Correo enviado correctamente");
-                    }
-                    transporter.close();
-                  });
-    
-              }else if((products.id == 1) && (products.id == 3)){
-                transporter.sendMail(emailData1, (error) => {
-                    if (error) {
-                      console.log("Error al enviar email", error);
-                    } else {
-                      console.log("Correo enviado correctamente");
-                    }
-                    transporter.close();
-                  });
-                  transporter.sendMail(emailData3, (error) => {
-                    if (error) {
-                      console.log("Error al enviar email", error);
-                    } else {
-                      console.log("Correo enviado correctamente");
-                    }
-                    transporter.close();
-                  });
-    
-              }
-    
+            };
+            if (products.id == 1) {
+              transporter.sendMail(emailData1, (error) => {
+                if (error) {
+                  console.log("Error al enviar email", error);
+                } else {
+                  console.log("Correo enviado correctamente");
+                }
+                transporter.close();
+              });
+            } else if (products.id == 2) {
+              transporter.sendMail(emailData2, (error) => {
+                if (error) {
+                  console.log("Error al enviar email", error);
+                } else {
+                  console.log("Correo enviado correctamente");
+                }
+                transporter.close();
+              });
+            } else if (products.id == 3) {
+              transporter.sendMail(emailData3, (error) => {
+                if (error) {
+                  console.log("Error al enviar email", error);
+                } else {
+                  console.log("Correo enviado correctamente");
+                }
+                transporter.close();
+              });
+            } else if (
+              products.id == 1 &&
+              products.id == 2 &&
+              products.id == 3
+            ) {
+              transporter.sendMail(emailData1, (error) => {
+                if (error) {
+                  console.log("Error al enviar email", error);
+                } else {
+                  console.log("Correo enviado correctamente");
+                }
+                transporter.close();
+              });
+              transporter.sendMail(emailData2, (error) => {
+                if (error) {
+                  console.log("Error al enviar email", error);
+                } else {
+                  console.log("Correo enviado correctamente");
+                }
+                transporter.close();
+              });
+              transporter.sendMail(emailData3, (error) => {
+                if (error) {
+                  console.log("Error al enviar email", error);
+                } else {
+                  console.log("Correo enviado correctamente");
+                }
+                transporter.close();
+              });
+            } else if (products.id == 1 && products.id == 2) {
+              transporter.sendMail(emailData1, (error) => {
+                if (error) {
+                  console.log("Error al enviar email", error);
+                } else {
+                  console.log("Correo enviado correctamente");
+                }
+                transporter.close();
+              });
+              transporter.sendMail(emailData2, (error) => {
+                if (error) {
+                  console.log("Error al enviar email", error);
+                } else {
+                  console.log("Correo enviado correctamente");
+                }
+                transporter.close();
+              });
+            } else if (products.id == 2 && products.id == 3) {
+              transporter.sendMail(emailData2, (error) => {
+                if (error) {
+                  console.log("Error al enviar email", error);
+                } else {
+                  console.log("Correo enviado correctamente");
+                }
+                transporter.close();
+              });
+              transporter.sendMail(emailData3, (error) => {
+                if (error) {
+                  console.log("Error al enviar email", error);
+                } else {
+                  console.log("Correo enviado correctamente");
+                }
+                transporter.close();
+              });
+            } else if (products.id == 1 && products.id == 3) {
+              transporter.sendMail(emailData1, (error) => {
+                if (error) {
+                  console.log("Error al enviar email", error);
+                } else {
+                  console.log("Correo enviado correctamente");
+                }
+                transporter.close();
+              });
+              transporter.sendMail(emailData3, (error) => {
+                if (error) {
+                  console.log("Error al enviar email", error);
+                } else {
+                  console.log("Correo enviado correctamente");
+                }
+                transporter.close();
+              });
+            }
+
             database
               .table("orders_details")
               .insert({
@@ -342,7 +361,7 @@ router.post("/new", (req, res) => {
                   .catch((error) => console.log(error));
               })
               .catch((error) => console.log(error));
-              console.log(products.id)
+            console.log(products.id);
           });
         } else {
           res.json({

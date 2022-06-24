@@ -1,12 +1,13 @@
+import { MpagoService } from './mpago.service';
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
-import { AsyncSubject, BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { ProductService } from './product.service';
 import { OrdersService } from './orders.service';
 import { environment } from 'src/environments/environment';
 import { CartModelPublic, CartModelServer } from './../models/cart';
-import { Preset, Presets } from '../models/presets';
+import { Presets } from '../models/presets';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Like, LikeResponse } from '../models/like';
@@ -81,9 +82,10 @@ export class CartService {
     private http: HttpClient,
     private prodSvc: ProductService,
     private orderSvc: OrdersService,
+    private mpSvc : MpagoService,
     private router: Router,
     private toaster: ToastrService,
-    private spinner: NgxSpinnerService
+    private spinner: NgxSpinnerService,
   ) {
     this.cartTotalUsd$.next(this.cartDataServer.totalDolar);
     this.cartTotalPeso$.next(this.cartDataServer.totalPesos);
@@ -325,7 +327,6 @@ export class CartService {
       }
     }
   }
-
   deleteProdFromCart(index: number) {
     if (window.confirm('Está seguro que quiere eliminar este item')) {
       this.cartDataServer.data.splice(index, 1);
@@ -371,7 +372,6 @@ export class CartService {
       return;
     }
   }
-
   deleteProdFromLike(index: number) {
     if (window.confirm('Está seguro que quiere eliminar este item')) {
       this.likeDataServer.data.splice(index, 1);
@@ -480,7 +480,19 @@ export class CartService {
         }
       });
   }
-
+  checkoutMP(items:any[]) {
+    this.http
+      .post(`${this.SERVER_URL}/mp/create_preference`,{
+        items: items
+      })
+      .subscribe((res:any)=>{
+        let url = new URL(res)
+        if(res){
+          window.location.href = res
+        }
+      })
+  }
+  
   private resetServerData() {
     this.cartDataServer = {
       totalDolar: 0,

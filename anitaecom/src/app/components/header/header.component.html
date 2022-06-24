@@ -10,7 +10,7 @@
 								<span>Canasta</span>
 								<i class="bi bi-bag-fill"></i>
 							</a>
-						<div class="dropdown-menu cart-dropdown" style="left: 0px;z-index: 10000;" *ngIf="cartData.data[0].numInCart !== 0">
+						<div class="dropdown-menu cart-dropdown" style="left: 0px; z-index: 10000;" *ngIf="cartData.data[0].numInCart !== 0">
 							<!-- Cart Item -->
 							<div class="media cart-list" *ngFor="let c of cartData.data; let i=index">
 								<a class="pull-left" href="#!">
@@ -33,11 +33,10 @@
 							</div>
 							<ul class="text-center cart-buttons">
 								<li><a routerLink="/cart" class="btn btn-small">Ver canasta</a></li>
-								<li><a routerLink="/checkout" class="btn btn-small btn-solid-border">Comprar</a></li>
 							</ul>
 						</div>
 					</li><!-- / Cart -->
-				</ul><!-- / .nav .navbar-nav .navbar-right -->
+				</ul>
 			</div>
 			<div class="col-md-8 col-xs-8 col-sm-4">
 				<!-- Site Logo -->
@@ -48,24 +47,7 @@
 				</div>
 			</div>
 			<div class="col-md-4 col-xs-4 col-sm-4">
-				<ul class="top-menu text-right list-inline">
-					<!-- Wish List -->
-					<li class="dropdown search dropdown-slide">
-						<a href="#!" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown">
-							<i class="bi bi-bookmark-heart-fill"></i>
-							<span>Me Gusta</span>
-						</a>
-						<div class="dropdown-menu cart-dropdown" *ngIf="likeData.data[0].numInLike !== 0">
-							<!-- Wish Item -->
-							<div class="media" *ngFor="let l of likeData.data; let i=index">
-								<div class="media-body">
-									<h4 class="media-heading"><a>{{l.product.name}}</a></h4>
-								</div>
-								<a class="remove" (click)="cartSvc.deleteProdFromLike(i)"><i class="bi bi-x"></i></a>
-							</div>
-						</div>
-					</li>
-				</ul>
+	
 			</div>
 		</div>
 	</div>

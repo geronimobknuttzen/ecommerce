@@ -1,0 +1,25 @@
+<section class="products section bg-gray">
+    <div class="row">
+        <div class="title text-center">
+            <h2>EDITAR NOVEDADES</h2>
+        </div>
+    </div>
+    <div class="row">		
+        <div class="col-md-4" *ngFor="let novedad of news">
+            <div class="product-item">
+                <div class="product-content">
+                    <h3><a routerLink="{{novedad.title_first}}">{{novedad.title_first}}</a></h3>
+                </div>
+                <div class="product-thumb">
+                    <img class="img-responsive" [src]="novedad.image" alt="{{novedad.title_first}}" />
+                    <div class="preview-meta">
+                        <ul>
+                            <button (click)="delete(novedad.id)" title="Eliminar imagen"><i class="bi bi-file-earmark-x"></i></button>
+                        </ul>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+

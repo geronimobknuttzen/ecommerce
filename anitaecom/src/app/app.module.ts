@@ -19,7 +19,6 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { CartComponent } from './components/cart/cart.component';
-import { CheckoutComponent } from './components/checkout/checkout.component';
 import { ThankComponent } from './components/thank/thank.component';
 import { PresetComponent } from './components/preset/preset.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
@@ -28,7 +27,6 @@ import { TrabajosComponent } from './components/trabajos/trabajos.component';
 import { AutorretratosComponent } from './components/autorretratos/autorretratos.component';
 import { RetratosComponent } from './components/retratos/retratos.component';
 import { ToastrModule } from 'ngx-toastr';
-import { TerminarComponent } from './components/terminar/terminar.component';
 import { LoginComponent } from './components/login/login.component';
 import { ProfileComponent } from './components/profile/profile.component';
 import { MovieComponent } from './components/preset/movie/movie.component';
@@ -63,6 +61,14 @@ import { MountainComponent } from './components/preset/nature/mountain/mountain.
 import { PiletaComponent } from './components/preset/nature/pileta/pileta.component';
 import { NewsComponent } from './components/news/news.component';
 import { CarruselComponent } from './components/news/carrusel/carrusel.component';
+import { UploadComponent } from './components/profile/upload/upload.component';
+import { UploadokComponent } from './components/profile/uploadok/uploadok.component';
+import { AlbumComponent } from './components/profile/album/album.component';
+import { NewupComponent } from './components/profile/newup/newup.component';
+import { EditnewComponent } from './components/profile/editnew/editnew.component'
+import { AutorretratoseditComponent } from './components/profile/album/autorretratos/autorretratos.component';
+import { RetratoseditComponent } from './components/profile/album/retratos/retratos.component';
+import { TrabajoseditComponent } from './components/profile/album/trabajos/trabajos.component';
 
 @NgModule({
   declarations: [
@@ -71,7 +77,6 @@ import { CarruselComponent } from './components/news/carrusel/carrusel.component
     FooterComponent,
     HomeComponent,
     CartComponent,
-    CheckoutComponent,
     ThankComponent,
     PresetComponent,
     NavbarComponent,
@@ -79,7 +84,6 @@ import { CarruselComponent } from './components/news/carrusel/carrusel.component
     TrabajosComponent,
     AutorretratosComponent,
     RetratosComponent,
-    TerminarComponent,
     LoginComponent,
     ProfileComponent,
     MovieComponent,
@@ -114,6 +118,14 @@ import { CarruselComponent } from './components/news/carrusel/carrusel.component
     PiletaComponent,
     NewsComponent,
     CarruselComponent,
+    UploadComponent,
+    UploadokComponent,
+    AlbumComponent,
+    NewupComponent,
+    EditnewComponent,
+    AutorretratoseditComponent,
+    RetratoseditComponent,
+    TrabajoseditComponent
   ],
   imports: [
     BrowserModule,
@@ -136,16 +148,6 @@ import { CarruselComponent } from './components/news/carrusel/carrusel.component
       useValue: {
         autoLogin: false,
         providers: [
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '503195582476-bf0d1mlqdus0hvtrjkn5q8tevjh538r1.apps.googleusercontent.com'
-            )
-          },
-          // {
-          //   id: FacebookLoginProvider.PROVIDER_ID,
-          //   provider: new FacebookLoginProvider('clientId')
-          // }
         ],
         onError: (err) => {
           console.error(err);

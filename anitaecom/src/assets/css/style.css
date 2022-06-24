@@ -396,7 +396,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 }
 
 .page-wrapper {
-  padding: 70px 0;
+  padding: 35px 0 70px 0;
 }
 
 .social-media-icons ul li {
@@ -669,12 +669,12 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 .top-header .dropdown-menu {
   left: auto;
   right: 0;
-  max-width: 300px;
+  max-width: 65vw;
 }
 
 @media (max-width: 480px) {
   .top-header .dropdown-menu {
-    max-width: 100%;
+    max-width: 100vw;
   }
 }
 
@@ -783,7 +783,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 
 .cart-buttons li {
   display: inline-block;
-  width: 49%;
+  width: 100%;
 }
 
 .cart-buttons li a {

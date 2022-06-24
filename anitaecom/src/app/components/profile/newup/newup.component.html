@@ -1,0 +1,68 @@
+<div class="col-md-12 upload-img">
+    <div class="mb-3 upload-img_input-file">
+      <label for="inputGroupFile01" class="form-block-input">
+        <input
+          title="file"
+          type="file"
+          [accept]="fileType"
+          name="custom-file"
+          class="form-file"
+          (change)="fileEvent($event)"
+        />
+        <button class="form-file-button" (click)="search($event)">
+          Examinar
+        </button>
+        <span class="form-file-span">{{ imageName }}</span>
+      </label>
+    </div>
+    <div *ngIf="preview" class="upload-img_preview">
+      <img width="80%" [src]="preview" />
+    </div>
+    <form class="mb-3 upload-img_data" [formGroup]="upload">
+      <label class="upload-img_data-label">
+          <span class="upload-img_data-label-span">Titulo</span>
+          <input
+            class="form-control-lg upload-img_data-label-input"
+            formControlName="title"
+            type="text"
+            placeholder="Ingresar nombre"
+            required
+          />
+      </label>
+      <label class="upload-img_data-label">
+          <span class="upload-img_data-label-span">Url</span>
+          <input
+            class="form-control-lg upload-img_data-label-input"
+            formControlName="url"
+            type="text"
+            placeholder="Ingresar una url válida"
+          />
+      </label>
+      <label class="upload-img_data-label">
+          <span class="upload-img_data-label-span">Descripción</span>
+          <input
+            class="form-control-lg upload-img_data-label-input"
+            formControlName="description"
+            type="text"
+            placeholder="Añadir una descripción para la imagen"
+          />
+      </label>
+      <label class="upload-img_data-label">
+        <span class="upload-img_data-label-span">Sección</span>
+        <input
+          class="form-control-lg upload-img_data-label-input"
+          formControlName="section"
+          type="text"
+          placeholder="Añadir sección"
+        />
+    </label>
+    </form>
+    <div class="mb-3 upload-img_uploadbtn">
+      <button
+        class="btn btn-main text-center btn-small"
+        (click)="uploadFile(files)"
+      >
+        Subir Novedad
+      </button>
+    </div>
+  </div>

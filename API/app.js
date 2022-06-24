@@ -47,6 +47,6 @@ app.use('/api/orders', ordersRoute);
 app.use('/api/users', usersRoute);
 app.use('/api/auth', authRoute);
 app.use('/api/news', newsRoute);
-app.use('/api/mercadopago', mpRoute)
+app.use('/api/mp', mpRoute)
 
 module.exports = app;

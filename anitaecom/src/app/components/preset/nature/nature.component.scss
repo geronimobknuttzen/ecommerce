@@ -1,0 +1,52 @@
+h1{
+    margin-top: 25px;
+}
+.navigation{
+    .container{
+        #navbar{
+            display:flex;
+            justify-content: space-around;
+            margin: 0 75px 0 75px;
+            ul{
+                padding: 0 15px;
+                li{
+                    font-weight: 700;
+                    a:hover{
+                        background-color: black;
+                        color: white
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 768px){
+    .navigation{
+        .container{
+            #navbar{
+                display:flex;
+                justify-content: space-around;
+                margin: 0 25px 0 25px;
+                ul{
+                    li{
+                        font-weight: 700;
+                        a:hover{
+                            background-color: rgb(150, 122, 122);
+                            color: white
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+@media (max-width: 480px){
+    .navigation{
+        .container{
+            #navbar{
+                margin: 0;
+            }
+        }
+    }
+}

@@ -7,8 +7,8 @@ export const environment = {
   SERVER_URL: 'http://localhost:3000/api',
   INSTAGRAM_URL_GRAPH : 'http://graph.instagram.com/',
   INSTAGRAM_URL_API : 'http://api.instagram.com/',
-  CLIENT_PAYPAL: 'AYTT8pZaomgVpSuGaWICqSacaOfbH0w0FMVY1jUq9FpNccPSAJ-eSrPv0Vl_nTle3BGVf2z-adPkIGLA',
-  ACCESS_TOKEN_IG: 'IGQVJYdk5iNTZAwaFdhNEtjZAXhQYU1lbFdMY0djSUlaWTR1SnJ0RFpYeFczam5lYlhLYzZAjblVZANE15UDAzRENqNHJ4MlBwa3hYYnFjbXdDR05aWml5dUtxM294VTlDdmNvSmllOFdnTXVfV0ljMDJWVwZDZD'
+  CLIENT_PAYPAL: 'AWoX120D10yInWGiuUsI7veI_inSUoL1fbZ-ebCwVW4iT4mI3yw0QSLLrlCpfxlV0gkul_Y8nl7v43yl',
+  ACCESS_TOKEN_IG: 'IGQVJYdk5iNTZAwaFdhNEtjZAXhQYU1lbFdMY0djSUlaWTR1SnJ0RFpYeFczam5lYlhLYzZAjblVZANE15UDAzRENqNHJ4MlBwa3hYYnFjbXdDR05aWml5dUtxM294VTlDdmNvSmllOFdnTXVfV0ljMDJWVwZDZD',
 };
 
 /*

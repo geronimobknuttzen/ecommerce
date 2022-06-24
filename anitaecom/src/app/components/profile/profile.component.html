@@ -3,11 +3,12 @@
 		<div class="row">
 			<div class="col-md-12">
 				<div class="content">
-					<h1 class="page-name">Dashboard</h1>
+					<h1 class="page-name">Administración</h1>
 					<ol class="breadcrumb">
 						<li><a routerLink="/">Home</a></li>
-						<li class="active">my account</li>
+						<li class="active">AdminProfile</li>
 					</ol>
+          <button class="btn btn-main text-center" (click)="logOut()">LogOut</button>
 				</div>
 			</div>
 		</div>
@@ -16,27 +17,28 @@
 <section class="user-dashboard page-wrapper">
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
+      <div class="col-md-12 profile">
         <ul class="list-inline dashboard-menu text-center">
-          <li><a routerLink="/dashboard">Dashboard</a></li>
-          <li><a routerLink="/cart">Orders</a></li>
-          <li><a routerLink="/address">Address</a></li>
-          <li><a class="active"  routerLink="/profile">Detalles del perfil</a></li>
+          <li><button class="wrapper-btn" (click)="selectMenu('portfolio')"><a class="btn btn-main text-center" routerLink="/profile/uploadImg">PortFolio</a></button></li>
+          <li><button class="wrapper-btn" (click)="selectMenu('novedades')"><a class="btn btn-main text-center" routerLink="/profile/uploadNew">Novedades</a></button></li>
         </ul>
-        <div class="dashboard-wrapper dashboard-user-profile">
-          <div class="media">
-            <div class="pull-left text-center" routerLink="#!">
-              <img class="media-object user-img" [src]="myUser?.photoUrl" alt="{{myUser?.firstname || myUser?.nombre}}">
-              <a routerLink="#x" class="btn btn-transparent mt-20">Change Image</a>
-            </div>
-            <div class="media-body">
-              <ul class="user-profile-list">
-                <li><span>Nombre</span>{{myUser?.name || (myUser?.nombre + ' ' + myUser?.apellido)}}</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        <button class="btn btn-main text-center btn-block" (click)="logOut()">LogOut</button>
+      </div>
+    </div>
+    <div class="row profile-content">
+      <div class="col-md-2 profile-menu" *ngIf="selected == 'portfolio'">
+        <ul class="list dashboard-menu text-center" >
+          <li style="width: 100%; margin-bottom: 25px"><a class="btn btn-main text-center special-btn" routerLink="/profile/uploadImg">Subir Imagen</a></li>
+          <li style="width: 100%; margin-bottom: 25px"><a class="btn btn-main text-center special-btn" routerLink="/profile/editAlbum">Editar Album</a></li>
+        </ul>
+      </div>
+      <div class="col-md-2 profile-menu" *ngIf="selected == 'novedades'">
+        <ul class="list-inline dashboard-menu text-center" >
+          <li style="width: 100%; margin-bottom: 25px"><a class="btn btn-main text-center special-btn" routerLink="/profile/uploadNew">Subir Novedad</a></li>
+          <li style="width: 100%; margin-bottom: 25px"><a class="btn btn-main text-center special-btn" routerLink="/profile/editNew">Editar Novedades</a></li>
+        </ul>
+      </div>
+      <div class="col-md-10">
+        <router-outlet></router-outlet>
       </div>
     </div>
   </div>

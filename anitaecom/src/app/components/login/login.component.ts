@@ -1,6 +1,5 @@
 import { UserService } from './../../services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
-import { SocialAuthService } from '@abacritt/angularx-social-login';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 
@@ -14,7 +13,6 @@ email: string;
 password: string;
 
   constructor(
-    private authSvc: SocialAuthService,
     private router: Router,
     private userSvc: UserService,
     private route: ActivatedRoute
@@ -41,11 +39,4 @@ password: string;
 
     this.userSvc.loginUser(email, password);
   }
-  signInWithGoogle(){
-    this.userSvc.signInWithGoogle();
-  }
-  signInWithFacebook(){
-
-  }
-
 }

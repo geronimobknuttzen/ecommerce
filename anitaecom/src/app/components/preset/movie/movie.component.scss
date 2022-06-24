@@ -1,59 +1,52 @@
-.preset-link a:hover{
-    color: white;
-    background-color: black;
-}
-
-.preset-navbar{
-    margin: 0px -3.5px;
-}
-
-.container>.row{
-    display: flex;
-    flex-direction: column;
-    flex-wrap: nowrap;
-    align-items: center;
-}
-
-.container>.row>*{
-    flex-shrink: 1;
-}
-
-ul>li>a{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    justify-content: center;
+h1{
+    margin-top: 25px;
 }
 .navigation{
-    margin-bottom: 0;
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: .5rem;
-    padding-bottom: .5rem;
-}
-.navigation li a:hover {
-    background-color: #000;
-    color: #fff;
+    .container{
+        #navbar{
+            display:flex;
+            justify-content: space-around;
+            margin: 0 75px 0 75px;
+            ul{
+                padding: 0 15px;
+                li{
+                    font-weight: 700;
+                    a:hover{
+                        background-color: black;
+                        color: white
+                    }
+                }
+            }
+        }
+    }
 }
 
-@media only screen and (max-width: 600px){
-    .desktop{
-        display: none;
-    }
-    .mobile{
-        display: inherit;
-    }
+@media (max-width: 768px){
     .navigation{
-        display: flex;
-        background: white;
-        transition: 0.4s ease-in-out;
+        .container{
+            #navbar{
+                display:flex;
+                justify-content: space-around;
+                margin: 0 25px 0 25px;
+                ul{
+                    li{
+                        font-weight: 700;
+                        a:hover{
+                            background-color: rgb(150, 122, 122);
+                            color: white
+                        }
+                    }
+                }
+            }
+        }
     }
-
-    .navigation .navbar-nav > li {
-        position: static;
-        border-bottom: 1px solid black;
+}
+@media (max-width: 480px){
+    .navigation{
+        .container{
+            #navbar{
+                margin: 0;
+            }
+        }
     }
 }

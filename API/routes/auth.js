@@ -8,11 +8,14 @@ const bcrypt = require('bcryptjs');
 
 // LOGIN ROUTE
 router.post('/login', [helper.hasAuthFields, helper.isPasswordAndUserMatch], (req, res) => {
+    let  { email, password } = req.body
+    if(email !== null && password !== null){
     let token = jwt.sign({state: 'true',password: req.body.password, email: req.body.email, username: req.body.username}, helper.secret, {
         algorithm: 'HS512',
         expiresIn: '4h'
     });
     res.json({token: token, auth: true, password: req.body.password, email: req.body.email, username: req.body.username});
+    }
 });
 
 // REGISTER ROUTE

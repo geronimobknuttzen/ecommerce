@@ -1,10 +1,13 @@
+import { MpagoService } from './../../services/mpago.service';
 import { environment } from './../../../environments/environment';
 import { CartModelServer } from './../../models/cart';
 import { CartService } from 'src/app/services/cart.service';
 import { Component, OnInit, NgZone } from '@angular/core';
-import { ProductService } from 'src/app/services/product.service';
+import { get } from 'scriptjs';
+import { ActivatedRoute } from '@angular/router';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { MPClient } from 'src/app/models/mp';
 
 @Component({
   selector: 'app-cart',
@@ -14,7 +17,7 @@ import { NgxSpinnerService } from 'ngx-spinner';
 export class CartComponent implements OnInit {
   public payPalConfig?: IPayPalConfig;
   public showPaypalButtons: boolean;
-
+  init_point: any;
   cartData: CartModelServer;
   cartTotalUsd: number;
   cartTotalPesos: number;
@@ -26,14 +29,34 @@ export class CartComponent implements OnInit {
   name: string;
 
   medioDePago: string;
-
+  public preference?: MPClient;
+  
   constructor(
     public cartSvc: CartService,
+    private mpSvc : MpagoService,
     private spinner: NgxSpinnerService,
-    private zone: NgZone
+    private zone: NgZone,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
+    this.route.queryParams
+    .subscribe(params => {
+      let id = params['merchant_order_id']
+      if(params['status'] == 'approved') {
+        this.mpSvc.getMPorder(id).then(response=>{
+          if(response['status']== 'accredited'){
+            console.log(response)
+            this.spinner.show()
+              .then(p=>{
+                let email = response['email']
+                let name = response['name']
+                this.cartSvc.checkoutFromCart(email, name)
+              })
+          }
+        })
+      }
+    });
     this.cartSvc.cartData$.subscribe(
       (data: CartModelServer) => (this.cartData = data)
     );
@@ -43,7 +66,7 @@ export class CartComponent implements OnInit {
     this.cartSvc.cartTotalPeso$.subscribe(
       (cartTotalPesos) => (this.cartTotalPesos = cartTotalPesos)
     );
-    
+
     this.zone.runOutsideAngular(()=>{
       this.payPalConfig = {
         currency: 'USD',
@@ -88,6 +111,28 @@ export class CartComponent implements OnInit {
       };
     })
 
+  }
+
+  pagar(){
+    const items:any[] = [];
+    let item = {};
+    this.cartSvc.cartData$.subscribe(
+      (data: CartModelServer) => (this.cartData = data)
+    );
+    this.cartSvc.cartTotalPeso$.subscribe(
+      (cartTotalPesos) => (this.cartTotalPesos = cartTotalPesos)
+    );
+    this.cartData.data.forEach((p)=>{
+      item = {
+        title: p.product.name,
+        quantity: p.numInCart,
+        unit_price: p.product.precioPesos
+      }
+      items.push(item)
+    })
+    this.zone.runOutsideAngular(()=>{
+      this.cartSvc.checkoutMP(items)
+    })
   }
   getItemList(): any[]{
     const items:any[] = [];

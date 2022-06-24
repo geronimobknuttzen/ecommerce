@@ -77,9 +77,9 @@ router.post('/upload', (req, res)=>{
         if(!req.files || Object.keys(req.files).length === 0){
         return res.status(400).send('No se subieron archivos');}
         news = req.files.news;
+        console.log(news)
         uploadPath = `../anitaecom/src/assets/images/news/` + news.name
         savePath = `assets/images/news/`+ news.name
-        console.log(news)
         if(news.mimetype == 'image/jpeg' || news.mimetype == 'image/png'|| news.mimetype == 'image/jpg' ){
             news.mv(uploadPath, (error)=>{
                 if(error)
@@ -104,6 +104,38 @@ router.post('/upload', (req, res)=>{
         }    
     }
 })
+/* UPDATE NEWS DATA */
+router.patch('/update/:newsId', async (req, res) => {
+    let newsId = req.params.newsId;     // Get the News ID from the parameter
 
+  // Search User in Database if any
+    let news = await database.table('news').filter({id: newsId}).get();
+    if (news) {
+        let {title_first, title_second, link, subtitle} = req.body;
+
+        // Replace the user's information with the form data ( keep the data as is if no info is modified )
+        database.table('news').filter({id: newsId}).update({
+            title_first: title_first !== undefined ? title_first : news.title_first,
+            title_second: title_second !== undefined ? title_second : news.title_second,
+            link: link !== undefined ? link : news.link,
+            subtitle: subtitle !== undefined ? subtitle : news.subtitle
+        }).then(result => res.json({message:'Novedad Actualizada exitosamente!', success:true})).catch(err => res.json(err));
+    }
+});
+/* DELETE ONE NEW. */
+router.delete('/delete/:id', (req, res)=>{
+    let newsId = req.params.id;
+    console.log(newsId)
+    database.table('news')
+        .filter({id: newsId})
+        .remove()
+        .then(novedad => {
+            if (novedad.affectedRows>0) {
+                res.status(200).json({message: 'Se eliminó', success: true});
+            } else {
+                res.json({message: 'No se encontró imagen'})
+            }
+    });
+})
 
 module.exports = router;

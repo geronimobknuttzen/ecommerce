@@ -11,7 +11,7 @@ import { map } from 'rxjs';
 })
 export class ProfileComponent implements OnInit {
 myUser: any;
-
+public selected:string;
   constructor(
     private authSvc: SocialAuthService,
     private userSvc: UserService,
@@ -55,7 +55,9 @@ myUser: any;
         }
       })
   }
-
+  selectMenu(value:string){
+    this.selected = value
+  }
   logOut(){
     this.userSvc.signOut()
   }

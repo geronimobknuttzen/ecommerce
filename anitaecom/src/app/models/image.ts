@@ -11,3 +11,11 @@ export class Image implements Images {
         this.title = imageData.title;
     }
 }
+
+export class Archivo{
+    constructor(
+        public id: number,
+        public name: string,
+        public imagen: string,
+    ){}
+}

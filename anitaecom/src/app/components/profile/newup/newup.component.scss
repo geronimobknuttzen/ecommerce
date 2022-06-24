@@ -1,0 +1,101 @@
+.upload-img{
+
+    &_input-file{
+        .form-block-input {
+            display:flex;
+            max-width:100%;
+            overflow:hidden;
+            font-size:0.9em;
+            font-weight: 400;
+            color:rgb(83, 83, 83);
+            background:rgb(241, 241, 241);
+            margin:2px;
+            padding:0;
+            border-radius:3px;
+          }
+          input[type="file"].form-file {
+            display:none;
+          }
+          button.form-file-button {
+            vertical-align:middle;
+            color:#fff;
+            background:black;
+            margin:0;
+            border:0;
+          }
+          span.form-file-span {
+            flex:1;
+            display:inline-block;
+            text-align:left;
+            padding:2px 8px;
+          }
+          span.form-files {
+            display:inline-block;
+            background:#ccf;
+            margin:2px 8px 2px 0;
+            padding:2px 5px;
+            white-space:nowrap;
+            border-radius:3px;
+          }
+          span.form-block-span:last-child {
+            margin:2px 0;
+          }
+    }
+    &_preview{
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        padding: 5px;
+    }
+    &_data{
+        margin-top: 15px;
+        &-label{
+            display:flex;
+            max-width:100%;
+            overflow:hidden;
+            font-size:0.9em;
+            font-weight: 400;
+            color:rgb(83, 83, 83);
+            background:rgb(241, 241, 241);
+            padding:0;
+            border-radius:3px;
+          &-span{
+            vertical-align:middle;
+            text-align: center;
+            line-height:35px;
+            color:#fff;
+            background:black;
+            width: 100px;
+            padding: 5px;
+            margin:0;
+            border:0;
+          }
+          &-input{
+              display:flex;
+              width:100%;
+              overflow:hidden;
+              font-size:0.9em;
+              color:rgb(83, 83, 83);
+              background:rgb(241, 241, 241);
+              padding:0 15px;
+              border-radius:3px;
+              border: none;
+          }
+        }
+        select{
+            display:flex;
+            width:100%;
+            overflow:hidden;
+            font-size:0.9em;
+            color:rgb(83, 83, 83);
+            background:rgb(241, 241, 241);
+            margin:2px 0;
+            padding:0;
+            border-radius:3px;
+        }
+    }
+    &_uploadbtn{
+        margin-top: 15px;
+    }
+}
