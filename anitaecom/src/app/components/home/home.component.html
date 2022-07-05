@@ -3,13 +3,12 @@
       <div class="container">
         <div class="row">
           <div class="col-lg-8 text-left">
-            <h1 data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".5">Hola! Soy Anita,</h1>
-            <p data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".1">Fotógrafa, directora creativa y mamá del pequeño Silvestre.<br>
+            <h1 >Hola! Soy Anita,</h1>
+            <p>Fotógrafa, directora creativa y mamá del pequeño Silvestre.<br>
               En este espacio voy a ir compartiendo con ustedes las últimas novedades.<br>
               Además pueden encontrar todos mis presets para dejar sus fotos iguales a las mias.<br>
               Si están buscando un poco de inspiración, les dejo algunos de mis últimos trabajos en mi portfolio.  
               Nos vemos en las redes!</p>
-            <a data-duration-in=".3" data-animation-in="fadeInUp" data-delay-in=".8" class="btn" href="shop.html">Leer más</a>
           </div>
         </div>
       </div>
@@ -57,7 +56,7 @@
             <div class="title">
                 <h2>@AnitaThomas</h2>
             </div>
-            <div class="col-md-3 col-sm-2" *ngFor="let ir of instaResponse | slice:0:4; let i=index">
+            <div class="col-md-3 col-sm-3" *ngFor="let ir of instaResponse | slice:0:4; let i=index">
               <div class="product-item">
                 <div class="product-thumb">
                   <img class="img-responsive" src="{{ir.media_url}}" alt="{{ir.media_type}}" />

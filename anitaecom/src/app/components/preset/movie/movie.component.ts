@@ -1,3 +1,4 @@
+import { CartService } from './../../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,21 +7,16 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./movie.component.scss']
 })
 export class MovieComponent implements OnInit {
-presets: any[] = [
-  {id:1 , desc: 'acantilado'},
-  {id:2 , desc: 'desert'},
-  {id:3 , desc: 'hollywood'},
-  {id:4 , desc: 'margaritas'},
-  {id:5 , desc: 'nubes'},
-  {id:6 , desc: 'ruta'},
-  {id:7 , desc: 'verdeagua'}
-]
-  constructor() { }
+  constructor(
+    private cartSvc: CartService
+    ) { }
 
   ngOnInit(): void {
-    this.getPresets()
+    document.getElementById('header').scrollIntoView();
   }
-  getPresets(){
-    return this.presets
+  
+  AddToCart(id:number){
+    this.cartSvc.AddProductToCart(id);
   }
+  
 }

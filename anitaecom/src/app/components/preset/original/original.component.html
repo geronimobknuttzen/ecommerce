@@ -1,25 +1,74 @@
-<section class="original-pack">
+<section id="original" class="original-pack">
     <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="text-center">
                     <h1>ORIGINAL PACK</h1>
+                    <button class="btn btn-main text-center" (click)="AddToCart(3)">
+                        {{'comprar' | uppercase}}
+                    </button> 
                 </div>
-                <div class="desktop">
-                    <nav class="navbar navigation">
-                        <div class="container">
-                            <div id="navbar" class="text-center">
-                                <ul class="nav navbar-nav" *ngFor="let p of presets">
-                                    <li class="dropdown ">
-                                        <a routerLink="/preset/original/{{p.desc}}" routerLinkActive="activebutton">{{p.id}}</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
-                </div>
+
 			</div>
         </div>
-        <router-outlet></router-outlet>
+        <div class="row">
+            <div class="col-md-12 col-xs-12">
+                <app-atardecer></app-atardecer>
+                <hr>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <app-bajandountono></app-bajandountono>
+                <hr>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <app-blancoynaranja></app-blancoynaranja>
+                <hr>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <app-detalle></app-detalle>
+                <hr>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <app-feliz></app-feliz>
+                <hr>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <app-lavado></app-lavado>
+                <hr>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <app-nevando></app-nevando>
+                <hr>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <app-noche></app-noche>
+                <hr>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <app-otonio></app-otonio>
+                <hr>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <app-suave></app-suave>
+                <hr>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <app-verano></app-verano>
+                <hr>
+            </div>
+            <div class="col-md-6 col-xs-12">
+                <app-yinyang></app-yinyang>
+                <hr>
+            </div>
+        </div>
+        <p>
+            Si te gustaron estos presets y querés descargártelos a tu celular, podes
+            hacer click en el botón de comprar y elegir la opción DESDE ARGENTINA
+            (Mercado Pago) o DESDE EL EXTERIOR (PayPal) si estas en cualquier otra
+            parte del mundo. Una vez que realices la compra te va a llegar un mail
+            dentro de las siguientes 24 hs con tu pack y un instructivo! Si tenes
+            alguna duda podes hacer click en el botón de Consultas. ¡ Espero que
+            disfrutes tus presets !
+        </p>
     </div>
 </section>

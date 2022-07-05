@@ -1,6 +1,14 @@
 h1{
     margin-top: 25px;
 }
+
+.btn:active{
+    background-color: rgb(26, 26, 26);
+}
+.btn{
+    margin-bottom: 15px;
+}
+
 .navigation{
     .container{
         #navbar{
@@ -20,14 +28,18 @@ h1{
         }
     }
 }
+p{
+    margin-top: 1rem;
+    text-align: center;
+    font-size: small;
+    padding: 0 2rem;
+}
 
 @media (max-width: 768px){
     .navigation{
         .container{
             #navbar{
-                display:flex;
-                justify-content: space-around;
-                margin: 0 25px 0 25px;
+                display:inline-block;
                 ul{
                     li{
                         font-weight: 700;
@@ -40,11 +52,15 @@ h1{
             }
         }
     }
+    p{
+        font-size: smaller;
+    }
 }
 @media (max-width: 480px){
     .navigation{
         .container{
             #navbar{
+                display:inline-block;
                 margin: 0;
             }
         }

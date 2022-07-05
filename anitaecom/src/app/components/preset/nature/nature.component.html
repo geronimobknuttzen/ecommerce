@@ -4,22 +4,57 @@
             <div class="col-md-12">
                 <div class="text-center">
                     <h1>NATURE PACK</h1>
-                </div>
-                <div class="desktop">
-                    <nav class="navbar navigation">
-                        <div class="container">
-                            <div id="navbar" class="text-center">
-                                <ul class="nav navbar-nav" *ngFor="let p of presets">
-                                    <li class="dropdown ">
-                                        <a routerLink="/preset/nature/{{p.desc}}" routerLinkActive="activebutton">{{p.id}}</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </nav>
+                    <button class="btn btn-main text-center" (click)="AddToCart(3)">
+                        {{'comprar' | uppercase}}
+                    </button> 
                 </div>
 			</div>
         </div>
-        <router-outlet></router-outlet>
+        <div class="row">
+                <div class="col-md-12 col-xs-12">
+                    <app-arena></app-arena>
+                    <hr>
+                </div>
+    
+                <div class="col-md-6 col-xs-12">
+                    <app-avion></app-avion>
+                    <hr>
+                </div>
+    
+                <div class="col-md-6 col-xs-12">
+                    <app-hotel></app-hotel>
+                    <hr>
+                </div>
+    
+                <div class="col-md-6 col-xs-12">
+                    <app-jungla></app-jungla>
+                    <hr>
+                </div>
+    
+                <div class="col-md-6 col-xs-12">
+                    <app-moody></app-moody>
+                    <hr>
+                </div>
+    
+                <div class="col-md-6 col-xs-12">
+                    <app-mountain></app-mountain>
+                    <hr>
+                </div>
+    
+                <div class="col-md-6 col-xs-12">
+                    <app-pileta></app-pileta>
+                    <hr>
+                </div>
+    
+            </div>
+        <p>
+            Si te gustaron estos presets y querés descargártelos a tu celular, podes
+            hacer click en el botón de comprar y elegir la opción DESDE ARGENTINA
+            (Mercado Pago) o DESDE EL EXTERIOR (PayPal) si estas en cualquier otra
+            parte del mundo. Una vez que realices la compra te va a llegar un mail
+            dentro de las siguientes 24 hs con tu pack y un instructivo! Si tenes
+            alguna duda podes hacer click en el botón de Consultas. ¡ Espero que
+            disfrutes tus presets !
+          </p>
     </div>
 </section>

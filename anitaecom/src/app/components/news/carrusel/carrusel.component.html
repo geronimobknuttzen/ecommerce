@@ -1,22 +1,28 @@
-<div class="dsc-carousel" [ngStyle]="{'min-height': finalHeight}">
-    <div class="dsc-carousel_btns">
-        <i class="bi bi-chevron-left" (click)="setBackPosition()"></i>
-        <i class="bi bi-chevron-right" (click)="setNextPosition()"></i>
-    </div>
+<div class="dsc-carousel">
+    <ng-container *ngIf="images">
+        <div class="dsc-carousel_btns">
+            <button (click)="setBackPosition()" ><i class="bi bi-chevron-left" ></i></button>
+            <button (click)="setNextPosition()" ><i class="bi bi-chevron-right" ></i></button>
+        </div>
+    </ng-container>
     <div class="dsc-carousel_content">
         <ng-container *ngFor="let section of images">
-            <div class="dsc-carousel_content-item" [ngStyle]="{'background-image': 'url('+ section.image +')', 'margin-left': section.marginLeft + '%'}">
-                <h1>{{section.title_first}}
-                    <ng-container *ngIf="section.title_second !== '' ">
-                        <span>  {{section.title_second}}</span>
-                    </ng-container>
-                </h1>
-                <p>{{section.subtitle}}</p>
-            </div>
+            <ng-container *ngIf="section.title_first !== '' ">
+                <div class="dsc-carousel_content-item" [ngStyle]="{ 'margin-left': section.marginLeft + '%'}">
+                        <div class="row">
+                            <div class="col-sm-6 image">
+                                <img [src]="section.image" alt="" />
+                                <ng-container *ngIf="section.title_second !== '' ">
+                                    <a href="{{section.title_second}}"><h2>{{section.title_first}}</h2></a>
+                                </ng-container>
+                            </div>
+                            <div class="col-sm-6 text">
+                                <h1>{{section.title_first}}</h1>
+                                <p>{{section.subtitle}}</p>
+                            </div>
+                        </div>
+                </div>
+            </ng-container>
         </ng-container>
-    </div>
-    <div class="dsc-carousel_steps">
-        <div class="dsc-carousel_steps-step dsc-carousel_steps-step-{{currentPosition === item.id ? 'active' : ''}}" *ngFor="let item of images" (click)="setCurrentPosition(item.id)">
-        </div>
     </div>
 </div>

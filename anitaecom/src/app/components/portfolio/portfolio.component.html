@@ -2,7 +2,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="title text-center">
-				<h2>MIS PORTFOLIOS</h2>
+				<h1>MIS PORTFOLIOS</h1>
 			</div>
 		</div>
 		<div class="row">		
@@ -15,7 +15,7 @@
 						<img class="img-responsive" [src]="a.img_url" alt="{{a.name}}" />
 						<div class="preview-meta">
 							<ul>
-								<li><a routerLink="{{a.name | lowercase}}" title="Ver detalles" alt="Ver detalles"><i class="bi bi-search"></i></a>
+								<li><a routerLink="{{a.name | lowercase}}" title="Ver detalles" alt="Ver detalles">{{'ver' | uppercase}}</a>
 								</li>
 							</ul>
                       	</div>

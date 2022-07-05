@@ -44,6 +44,9 @@
 -------------------------------------------------------------------*/
 /*=== MEDIA QUERY ===*/
 @import url("https://fonts.googleapis.com/css?family=Poppins:300,400,500");
+*{
+  box-sizing: border-box;
+}
 body {
   line-height: 1.5;
   font-family: "Poppins", sans-serif;
@@ -675,7 +678,20 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 @media (max-width: 480px) {
   .top-header .dropdown-menu {
     max-width: 100vw;
+    display: none;
   }
+  .dropdown-slide:hover .dropdown-menu {
+    display: none;
+    opacity: 1;
+    display:none;
+    -webkit-transform: translate(0px, 0px);
+    transform: translate(0px, 0px);
+    opacity: 1;
+    visibility: visible;
+    color: #777;
+    -webkit-transform: translateY(0px);
+    transform: translateY(0px);
+}
 }
 
 .top-header .contact-number {
@@ -836,6 +852,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 .navigation .navbar-nav > li > a {
   color: #333;
   font-size: 14px;
+  font-weight: 800;
   padding: 20px 15px;
   text-transform: uppercase;
   transition: .2s ease-in-out 0s;
@@ -1113,16 +1130,17 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 
 .product-item .product-thumb .preview-meta li {
   display: inline-block;
+  margin: 10px;
 }
 
 .product-item .product-thumb .preview-meta li a, .product-item .product-thumb .preview-meta li span {
   background: #fff;
-  padding: 10px 0px;
+  padding: 5px 0px;
   cursor: pointer;
   display: inline-block;
-  font-size: 20px;
   transition: .2s all;
-  width: 50px;
+  text-align: center;
+  width: 90px;
 }
 
 .product-item .product-thumb .preview-meta li a:hover, .product-item .product-thumb .preview-meta li span:hover {
@@ -1195,6 +1213,9 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 @media (max-width: 480px) {
   .product-modal .modal-dialog {
     width: 100%;
+  }
+  .navigation .navbar-nav {
+    width: 50vw;
   }
 }
 
@@ -1600,6 +1621,7 @@ input[type="email"]:focus, input[type="password"]:focus, input[type="text"]:focu
 }
 
 .instagram-feed {
+  padding-top: 0;
   text-align: center;
 }
 

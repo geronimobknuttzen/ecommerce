@@ -2,6 +2,7 @@ const express = require('express');
 const multer = require('multer')
 const router = express.Router();
 const { database } = require('../config/helpers');
+const fs = require('fs').promises;
 
 
 
@@ -124,18 +125,35 @@ router.patch('/update/:newsId', async (req, res) => {
 });
 /* DELETE ONE NEW. */
 router.delete('/delete/:id', (req, res)=>{
-    let newsId = req.params.id;
-    console.log(newsId)
-    database.table('news')
-        .filter({id: newsId})
-        .remove()
-        .then(novedad => {
-            if (novedad.affectedRows>0) {
-                res.status(200).json({message: 'Se eliminó', success: true});
-            } else {
-                res.json({message: 'No se encontró imagen'})
-            }
-    });
+    let id = req.params.id;
+    database.table('news as n')
+    .filter({'n.id': id})
+    .get()
+    .then(news => {
+        if (news) {
+            let imgPath = news.img_url
+            fs.unlink(imgPath)
+                .then(()=>{
+                    console.log('File Removed')
+                }).catch((e)=>{
+                    console.log('Error, something happend: ',e)
+                })
+            database.table('news')
+                .filter({id: news.id})
+                .remove()
+                .then(novedad => {
+                    if (novedad.affectedRows>0) {
+                        res.status(200).json({message: 'Se eliminó', success: true});
+                    } else {
+                        res.json({message: 'No se encontró imagen', success: false})
+                    }
+            });
+        } else {
+            res.json({message: 'Imagen no encontrada con ese id', success: false})
+        }
+    })
+    .catch(err => console.log(err));
+    // console.log(id)
 })
 
 module.exports = router;

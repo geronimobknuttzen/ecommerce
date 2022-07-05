@@ -3,7 +3,39 @@
 	<div class="container">
 		<div class="row">
 			<div class="title text-center">
-				<h2>MIS PRESETS</h2>
+				<h1>MIS PRESETS</h1>
+				<p class="text-center">
+					Los presets son filtros, ajustes de color, temperatura y textura de una foto.
+					Estos son los que uso en todos mis trabajos, adaptados para usar en tu celular.
+					Funcionan con cualquier tipo de fotos y están pensados de manera que siempre encuentres el filtro perfecto.
+					<br>
+					Cuanta más calidad tenga la foto, mejor van a aplicarse los presets.
+				</p>
+			</div>
+		</div>
+		<div class="row preset-tip">
+			<div class="col-md-6 col-xs-12">
+				<div class="description">
+					<i class="bi bi-lightning first"></i>
+					<div class="description-text">
+						<h3>{{'instalacion' | uppercase}}</h3>
+						<p>
+							Necesitas bajarte la app <strong>"Lightroom"</strong> pero no te preocupes, no necesitas ninguna suscripción paga.
+							Cuando realices tu compra te va a llegar un mail con tu pack junto a un instructivo para que puedas instalar los filtros en tu celular.
+						</p>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6 col-xs-12">
+				<div class="description">
+					<i class="bi bi-card-checklist second"></i>
+					<div class="description-text">
+						<h3>{{'tips' | uppercase}}</h3>
+						<p class="">
+							Entre estos <strong>{{'presets' | uppercase}}</strong> siempre vas a encontrar uno que vaya con la foto que queres editar. Te recomiendo que una vez que elijas el mood que le queres dar a la imagen, juegues con la exposición y la temperatura para que el filtro quede perfectamente ajustado a tu foto.
+						</p>
+					</div>
+				</div>
 			</div>
 		</div>
 		<div class="row">		
@@ -13,15 +45,15 @@
 						<img class="img-responsive" [src]="p.image" alt="{{p.name}}" />
 						<div class="preview-meta">
 							<ul>
-								<li><a routerLink="{{p.short_desc}}" title="Ver detalles" alt="Ver detalles"><i class="bi bi-search"></i></a>
-								</li>
-								<li><a title="Me Gusta" alt="Me Gusta" (click)="AddToLike(p.id)"><i class="bi bi-heart-fill"></i></a>
+								<li>
+									<a [routerLink]="[p.short_desc]" title="Ver detalles" alt="Ver detalles" >
+									<p>{{'ver' | uppercase}}</p>
+									</a>
 								</li>
 								<li>
 									<a title="Agregar al carrito" alt="Agregar al carrito" [class.disabled]="p.quantity < 1"
 									(click)="AddToCart(p.id)">
-										<i class="bi bi-bag-fill">
-										</i>
+									<p>{{'comprar' | uppercase}}</p>
 									</a>
 								</li>
 							</ul>

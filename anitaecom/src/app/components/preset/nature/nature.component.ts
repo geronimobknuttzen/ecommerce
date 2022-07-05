@@ -1,3 +1,4 @@
+import { CartService } from './../../../services/cart.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,22 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./nature.component.scss']
 })
 export class NatureComponent implements OnInit {
-  presets: any[] = [
-    {id:1 , desc: 'arena'},
-    {id:2 , desc: 'avion'},
-    {id:3 , desc: 'hotel'},
-    {id:4 , desc: 'jungla'},
-    {id:5 , desc: 'moody'},
-    {id:6 , desc: 'mountain'},
-    {id:7 , desc: 'pileta'}
-  ]
-  constructor() { }
+  
+  constructor(
+    private cartSvc: CartService
+    ) { }
 
   ngOnInit(): void {
-    this.getPresets()
+    document.getElementById('header').scrollIntoView();
   }
-  getPresets(){
-    return this.presets
+
+  AddToCart(id:number){
+    this.cartSvc.AddProductToCart(id);
   }
+
 
 }

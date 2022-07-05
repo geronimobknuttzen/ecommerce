@@ -16,6 +16,7 @@ router.post('/login', [helper.hasAuthFields, helper.isPasswordAndUserMatch], (re
     });
     res.json({token: token, auth: true, password: req.body.password, email: req.body.email, username: req.body.username});
     }
+    console.log('RESPUESTA')
 });
 
 // REGISTER ROUTE
@@ -39,15 +40,15 @@ router.post('/register', [
     })
 ], async (req, res) => {
     const errors = validationResult(req);
-
+    console.log(req.body.password)
     if (!errors.isEmpty()) {
         return res.status(422).json({errors: errors.array()});
     } else {
 
         let email = req.body.email;
         let username = email.split("@")[0];
-        let salt = bcrypt.genSaltSync(10)
-        let password = bcrypt.hashSync(req.body.password, salt);
+        // let salt = bcrypt.genSaltSync(10)
+        let password = bcrypt.hashSync(req.body.password, 8);
         let nombre = req.body.nombre;
         let apellido = req.body.apellido;
 
@@ -59,7 +60,7 @@ router.post('/register', [
             username: username,
             password: password,
             email: email,
-            role: 'CUSTOMER',
+            role: 'ADMIN',
             apellido: apellido || null,
             nombre: nombre || null
         }).then(lastId => {

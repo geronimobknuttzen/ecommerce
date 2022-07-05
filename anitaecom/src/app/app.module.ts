@@ -7,10 +7,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { FormsModule } from '@angular/forms';
 import { NgxPayPalModule } from 'ngx-paypal';
 import { SocialLoginModule, SocialAuthServiceConfig } from '@abacritt/angularx-social-login';
-import {
-  GoogleLoginProvider,
-  FacebookLoginProvider
-} from '@abacritt/angularx-social-login';
+import {LocationStrategy, HashLocationStrategy} from '@angular/common'
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -69,6 +66,7 @@ import { EditnewComponent } from './components/profile/editnew/editnew.component
 import { AutorretratoseditComponent } from './components/profile/album/autorretratos/autorretratos.component';
 import { RetratoseditComponent } from './components/profile/album/retratos/retratos.component';
 import { TrabajoseditComponent } from './components/profile/album/trabajos/trabajos.component';
+import { DeleteokComponent } from './components/profile/deleteok/deleteok.component';
 
 @NgModule({
   declarations: [
@@ -125,7 +123,8 @@ import { TrabajoseditComponent } from './components/profile/album/trabajos/traba
     EditnewComponent,
     AutorretratoseditComponent,
     RetratoseditComponent,
-    TrabajoseditComponent
+    TrabajoseditComponent,
+    DeleteokComponent
   ],
   imports: [
     BrowserModule,
@@ -143,6 +142,10 @@ import { TrabajoseditComponent } from './components/profile/album/trabajos/traba
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
+    {
+      provide: LocationStrategy, 
+      useClass: HashLocationStrategy
+    },
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

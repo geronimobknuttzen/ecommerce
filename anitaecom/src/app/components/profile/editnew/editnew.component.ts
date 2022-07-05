@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { NewsService } from 'src/app/services/news.service';
 
@@ -10,7 +11,8 @@ export class EditnewComponent implements OnInit {
   news:any[] = [];
 
   constructor(
-    private newsSvc: NewsService
+    private newsSvc: NewsService,
+    private router: Router
     ) { }
 
   ngOnInit(): void {
@@ -22,7 +24,7 @@ export class EditnewComponent implements OnInit {
     console.log(id)
     this.newsSvc.deleteNew(id).subscribe((img: any)=>{
       console.log(img.success)
-      window.location.reload()
+      this.router.navigate(['/profile/', 'deleteOk']);
     })
   }
 

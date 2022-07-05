@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
 import { ImagesService } from 'src/app/services/images.service';
 
@@ -10,7 +11,10 @@ export class TrabajoseditComponent implements OnInit {
   
   images: any[] = [];
   image: any[] = []
-  constructor(private imgSvc: ImagesService) { }
+  constructor(
+    private imgSvc: ImagesService,
+    private router: Router
+    ) { }
 
   ngOnInit(): void {
     let album = 'TRABAJOS';
@@ -22,7 +26,7 @@ export class TrabajoseditComponent implements OnInit {
   delete(id){
     console.log(id)
     this.imgSvc.deleteImg(id).subscribe((img: any)=>{
-      window.location.reload()
+      this.router.navigate(['/profile/', 'deleteOk']);
     })
   }
 }

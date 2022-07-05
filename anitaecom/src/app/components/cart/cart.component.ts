@@ -40,6 +40,7 @@ export class CartComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    this.medioDePago = 'mercadoPago'
     this.route.queryParams
     .subscribe(params => {
       let id = params['merchant_order_id']

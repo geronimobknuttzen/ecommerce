@@ -22,6 +22,7 @@ userData$: BehaviorSubject<ResponseModel> = new BehaviorSubject<ResponseModel>(n
           this.auth = data.auth;
           this.authStatus$.next(this.auth);
           this.userData$.next(data);
+          console.log(data)
         });
     }
     signOut(): void {

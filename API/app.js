@@ -40,13 +40,13 @@ app.use(fileUpload());
 app.use(express.static(path.join(__dirname, 'public')));
 
 //USE ROUTES
-app.use('/api/presets', productsRoute);
-app.use('/api/images', imagesRoute);
-app.use('/api/portfolios', portfoliosRoute);
-app.use('/api/orders', ordersRoute);
-app.use('/api/users', usersRoute);
-app.use('/api/auth', authRoute);
-app.use('/api/news', newsRoute);
-app.use('/api/mp', mpRoute)
+app.use('/presets', productsRoute);
+app.use('/images', imagesRoute);
+app.use('/portfolios', portfoliosRoute);
+app.use('/orders', ordersRoute);
+app.use('/users', usersRoute);
+app.use('/auth', authRoute);
+app.use('/news', newsRoute);
+app.use('/mp', mpRoute)
 
 module.exports = app;

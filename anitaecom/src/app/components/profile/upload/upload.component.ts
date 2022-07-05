@@ -56,11 +56,11 @@ export class UploadComponent implements OnInit {
         let cat_id = this.upload.value.cat_id;
         let category = ''
         if(cat_id == 1){
-          category = "Autorretratos"
-        }else if(cat_id == 2){
           category = "Retratos"
-        }else if(cat_id == 3){
+        }else if(cat_id == 2){
           category = "Trabajos"
+        }else if(cat_id == 3){
+          category = "Autorretratos"
         }
         console.log(file[0])
         console.log(this.upload.value)
@@ -83,7 +83,7 @@ export class UploadComponent implements OnInit {
               positionClass: 'toast-top-full-width',
             }
             );
-            this.router.navigate(['/profile/', 'uploadImg']);
+            this.router.navigate(['/profile/', 'uploadOk']);
         }
       })
 

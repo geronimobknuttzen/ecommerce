@@ -10,6 +10,13 @@ let conn = new Mysqli( {
     db:'atweb'
 })
 
+// let conn = new Mysqli( {
+//     host:'localhost',
+//     user:'atweb_user',
+//     passwd:'HbR@%^9@7X?H',
+//     db:'atweb'
+// })
+
 let db = conn.emit(false,'')
 const secret = "1SBz93MsqTs7KgwARcB0I0ihpILIjk3w";
 
@@ -57,20 +64,16 @@ module.exports = {
         const myPlaintextPassword = req.body.password;
         const myEmail = req.body.email;          
               
-        const user = await db.table('users').filter({$or:[{ email : myEmail },{ username : myEmail }]}).get();
+        const user = await db.table('users').filter({$or:[{ email : myEmail }]}).get();
         if (user) {
             const match = bcrypt.compareSync(myPlaintextPassword, user.password);
             console.log(match)
-            
-            // if (match) {
-                req.username = user.username;
-                req.email = user.email;
-                next();
-            // } else {
-            //     res.status(401).send("Username or password incorrect");
-            // }
-            
+            if(match){
+
+                return next()
+            }
         } else {
+            console.log('User incorrect')
             res.status(401).send("Username or password incorrect");
         }
     }
