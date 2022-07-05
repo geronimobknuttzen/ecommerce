@@ -72,7 +72,7 @@ export class NewupComponent implements OnInit {
               positionClass: 'toast-top-full-width',
             }
             );
-            this.router.navigate([this.router.url]);
+            this.router.navigate(['/profile/', 'uploadOk']);
         }
       })
 
