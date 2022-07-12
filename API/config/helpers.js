@@ -3,21 +3,16 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 let conn = new Mysqli( {
-    host:'localhost',
-    post:3306,
-    user:'root',
-    passwd:'',
-    db:'atweb'
-})
+    host:'45.132.157.103',
+    port:3306,
+    user:'u295231004_atweb',
+    passwd:'HbR@%^9@7X?H',
+    db:'u295231004_atweb'
+});
 
-// let conn = new Mysqli( {
-//     host:'localhost',
-//     user:'atweb_user',
-//     passwd:'HbR@%^9@7X?H',
-//     db:'atweb'
-// })
 
-let db = conn.emit(false,'')
+let db = conn.emit(false,'');
+
 const secret = "1SBz93MsqTs7KgwARcB0I0ihpILIjk3w";
 
 module.exports = {
@@ -63,17 +58,19 @@ module.exports = {
     isPasswordAndUserMatch: async (req, res, next) => {
         const myPlaintextPassword = req.body.password;
         const myEmail = req.body.email;          
-              
-        const user = await db.table('users').filter({$or:[{ email : myEmail }]}).get();
+        const user = await db.table('users')
+            .filter({$or:[{ email : myEmail }]})
+            .get();
         if (user) {
             const match = bcrypt.compareSync(myPlaintextPassword, user.password);
-            console.log(match)
+            console.log(match);
             if(match){
 
-                return next()
+            console.log('User correct');
+                return next();
             }
         } else {
-            console.log('User incorrect')
+            console.log('User incorrect');
             res.status(401).send("Username or password incorrect");
         }
     }

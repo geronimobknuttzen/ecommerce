@@ -108,17 +108,17 @@ router.post("/new", (req, res) => {
             let emailData1 = {
               from: '"Preset Adquirido" <presets@anitathomas.com.ar>',
               to: `${email}`,
-              subject: "Gracias por adquirir Original Preset Pack",
+              subject: "Gracias por adquirir Nature Preset Pack",
               html: `<p><span style="font-size:16px">Hola ${name},</span><br />
                                 &iexcl;Gracias por tu compra!<br />
                                 <br />
-                                Ac&aacute; vas a encontrar un link de Dropbox , tocalo y te va a llevar a la carpeta donde est&aacute;n tus presets [Original Pack]<br />
+                                Ac&aacute; vas a encontrar un link de Dropbox , tocalo y te va a llevar a la carpeta donde est&aacute;n tus presets [Nature Pack]<br />
                                 <br />
                                 <div style="display: flex; justify-content: center;">
-                                  <a href="https://www.dropbox.com/sh/g390d3f48y92n7e/AADabcbMUaxYAd4agHOAnGYRa?dl=1" target="_blank" rel="noopener">
+                                  <a href="https://www.dropbox.com/sh/n427m4wmgp08zuk/AABlN6YGSkn_XlVlbnhU9ZSIa?dl=1" target="_blank" rel="noopener">
                                     <button style="width: 150px; height: 50px ;border-radius: 5%; border:none; background-color: black; color: white; height: 25px; font-size: 14px; font-family: Arial; font-weight: 500; cursor: hand;">
                                       DESCARGAR</button>
-                                    </a><br />
+                                    </a><br /><br /><br />
                                 </div>
                                 * link de descarga valido por 5 d&iacute;as*<br />
                                 <br />
@@ -151,18 +151,18 @@ router.post("/new", (req, res) => {
             let emailData2 = {
               from: '"Preset Adquirido" <presets@anitathomas.com.ar>',
               to: `${email}`,
-              subject: "Gracias por adquirir Nature Preset Pack",
+              subject: "Gracias por adquirir Original Preset Pack",
               html: `<p><span style="font-size:16px">Hola ${name},</span><br />
                                 &iexcl;Gracias por tu compra!<br />
                                 <br />
-                                Ac&aacute; vas a encontrar un link de Dropbox , tocalo y te va a llevar a la carpeta donde est&aacute;n tus presets [Nature Pack]<br />
+                                Ac&aacute; vas a encontrar un link de Dropbox , tocalo y te va a llevar a la carpeta donde est&aacute;n tus presets [Original Pack]<br />
                                 <br />
                                 <div style="display: flex; justify-content: center;">
-                                  <a href="https://www.dropbox.com/sh/n427m4wmgp08zuk/AABlN6YGSkn_XlVlbnhU9ZSIa?dl=1" target="_blank">
+                                  <a href="https://www.dropbox.com/sh/g390d3f48y92n7e/AADabcbMUaxYAd4agHOAnGYRa?dl=1" target="_blank">
                                     <button style="width: 150px; height: 50px ;border-radius: 5%; border:none; background-color: black; color: white; height: 25px; font-size: 14px; font-family: Arial; font-weight: 500; cursor: hand;">
                                       DESCARGAR
                                     </button>
-                                  </a><br />
+                                  </a><br /><br /><br />
                                 </div>
                                 * link de descarga valido por 5 d&iacute;as*<br />
                                 <br />
@@ -206,7 +206,7 @@ router.post("/new", (req, res) => {
                                     <button style="width: 150px; height: 50px ;border-radius: 5%; border:none; background-color: black; color: white; height: 25px; font-size: 14px; font-family: Arial; font-weight: 500; cursor: hand;">
                                       DESCARGAR
                                     </button>
-                                  </a><br />
+                                  </a><br /><br /><br />
                                 </div>
                                 * link de descarga valido por 5 d&iacute;as*<br />
                                 <br />

@@ -149,7 +149,7 @@ export class CartService {
           `${prod.name} agregado a la canasta`,
           'Preset agregado',
           {
-            timeOut: 1500,
+            timeOut: 2500,
             progressBar: true,
             progressAnimation: 'increasing',
             positionClass: 'toast-top-right',
@@ -178,7 +178,7 @@ export class CartService {
             `${prod.name} te espera en la canasta`,
             'Ya agregado',
             {
-              timeOut: 1500,
+              timeOut: 2500,
               progressBar: true,
               progressAnimation: 'increasing',
               positionClass: 'toast-top-full-width',
@@ -200,7 +200,7 @@ export class CartService {
             `${prod.name} agregado a la canasta`,
             'Preset agregado',
             {
-              timeOut: 1500,
+              timeOut: 2500,
               progressBar: true,
               progressAnimation: 'increasing',
               positionClass: 'toast-top-right',
@@ -235,7 +235,7 @@ export class CartService {
           `${prod.name} Agregago a Favoritos`,
           'Preset favorito',
           {
-            timeOut: 1500,
+            timeOut: 2500,
             progressBar: true,
             progressAnimation: 'increasing',
             positionClass: 'toast-bottom-full-width',
@@ -261,7 +261,7 @@ export class CartService {
           this.likeDataClient.likeData[index].inlike =
             this.likeDataServer.data[index].numInLike;
           this.toaster.info(`${prod.name} está en favoritos`, 'Ya agregado', {
-            timeOut: 1500,
+            timeOut: 2500,
             progressBar: true,
             progressAnimation: 'increasing',
             positionClass: 'toast-bottom-full-width',
@@ -282,7 +282,7 @@ export class CartService {
             `${prod.name} Agregago a Favoritos`,
             'Preset favorito',
             {
-              timeOut: 1500,
+              timeOut: 2500,
               progressBar: true,
               progressAnimation: 'increasing',
               positionClass: 'toast-bottom-full-width',
@@ -471,7 +471,7 @@ export class CartService {
             `Perdón, he fallado en agendar su pedido`,
             'Estado del Pedido',
             {
-              timeOut: 1500,
+              timeOut: 2500,
               progressBar: true,
               progressAnimation: 'increasing',
               positionClass: 'toast-top-right',

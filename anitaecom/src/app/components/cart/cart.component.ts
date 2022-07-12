@@ -43,7 +43,7 @@ export class CartComponent implements OnInit {
     this.medioDePago = 'mercadoPago'
     this.route.queryParams
     .subscribe(params => {
-      let id = params['merchant_order_id']
+      let id = params['payment_id']
       if(params['status'] == 'approved') {
         this.mpSvc.getMPorder(id).then(response=>{
           if(response['status']== 'accredited'){
@@ -55,6 +55,8 @@ export class CartComponent implements OnInit {
                 this.cartSvc.checkoutFromCart(email, name)
               })
           }
+        }).catch(e=>{
+          console.log(e)
         })
       }
     });

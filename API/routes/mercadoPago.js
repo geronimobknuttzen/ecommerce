@@ -4,18 +4,18 @@ const mercadopago = require("mercadopago");
 const { database } = require('../config/helpers');
 
 mercadopago.configure({
-  access_token: `${process.env.ACCESS_TOKEN}`,
+  access_token: `APP_USR-1217822907008421-060112-94753537348b7ac196dc1d536a684c86-67146415`,
 });
 
 router.post("/create_preference", (req, res) => {
   let preference = {
     // purpose: "wallet_purchase",
     external_reference: "ABC",
-    // notification_url: "https://webhook.site/9d89035d-3a11-4744-950d-220b3ed3aae9",
-    notification_url: "https://api.anitathomas.com.ar/mp/webhook",
+    notification_url: "https://webhook.site/9d89035d-3a11-4744-950d-220b3ed3aae9",
+    // notification_url: "https://api.anitathomas.com.ar/mp/webhook",
     items: req.body.items,
     back_urls: {
-      success: "localhost:4200/cart",
+      success: "https://anitathomas.com.ar/#/cart",
     },
     auto_return: "approved",
     payment_methods: {
@@ -105,24 +105,18 @@ router.get("/info", (req, res)=>{
 
 router.get("/feedback/:id", (req, res) => {
 	const orderId = req.params.id;
+	console.log('order Id es:', orderId)
 	  let email = '';
 	  let name = '';
 	  mercadopago.payment
-		.search(orderId)
+		.findById(orderId)
 		.then((response)=> {
-			const result = [] = response.body.results;
-			const getLastResult = (arr)=>{
-				let lastResult = arr.pop()
-				return lastResult
-			}
-			const orderResult = getLastResult(result)
-			status_details =  orderResult.status_detail
-			items = [] = orderResult.additional_info.items
-			// email = orderResult.payer.email;
-			email = 'geronimo.bknuttzen@gmail.com';
-			name = orderResult.payer.first_name + ' ' +  orderResult.payer.last_name;
-				console.log({items:items, email: email, name: name, status: status_details})
-				res.status(200).json({items:items, email: email, name: name, status: status_details});
+			status_detail = response.body.status_detail
+			items = response.body.description
+			email = response.body.payer.email;
+			name = response.body.payer.first_name + ' ' +  response.body.payer.last_name;
+				console.log({items:items, email: email, name: name, status: status_detail})
+				res.status(200).json({items:items, email: email, name: name, status: status_detail});
 		})
 		.catch(function (error) {
 			console.log(error)
