@@ -79,12 +79,12 @@ router.post('/upload', (req, res)=>{
         return res.status(400).send('No se subieron archivos');}
         news = req.files.news;
         console.log(news)
-        uploadPath = `../anitaecom/src/assets/images/news/` + news.name
-        savePath = `assets/images/news/`+ news.name
+        uploadPath = `https://www.anitathomas.com.ar/assets/images/news/` + news.name
+        savePath = `https://www.anitathomas.com.ar/assets/images/news/`+ news.name
         if(news.mimetype == 'image/jpeg' || news.mimetype == 'image/png'|| news.mimetype == 'image/jpg' ){
             news.mv(uploadPath, (error)=>{
                 if(error)
-                    return res.status(500).send(error);
+                    return res.status(500).send(uploadPath, error);
                 
                 database.table('news')
                     .insert({
@@ -131,7 +131,8 @@ router.delete('/delete/:id', (req, res)=>{
     .get()
     .then(news => {
         if (news) {
-            let imgPath = news.img_url
+            let imgPath = news.image
+            console.log(news)
             fs.unlink(imgPath)
                 .then(()=>{
                     console.log('File Removed')
