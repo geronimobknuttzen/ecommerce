@@ -1,5 +1,5 @@
 import { ICarrouselItem } from '../../../models/icarrusel-items.metadata';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, NgZone, OnInit } from '@angular/core';
 import { NewsService } from 'src/app/services/news.service';
 
 @Component({
@@ -17,7 +17,9 @@ export class CarruselComponent implements OnInit {
   public finalHeight: string | number = 0;
   public currentPosition = 0;
 
-  constructor(private newsSvc: NewsService) { 
+  constructor(
+    private newsSvc: NewsService,
+    private zone: NgZone,) { 
     this.finalHeight = this.isFullScreen ? '100vh' : `${this.height}px`
   }
 

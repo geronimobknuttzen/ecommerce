@@ -1,6 +1,6 @@
 export const environment = {
   production: true,
-  SERVER_URL: 'https://api.anitathomas.com.ar',
+  SERVER_URL: 'https://infinite-ocean-61334.herokuapp.com',
   INSTAGRAM_URL_GRAPH : 'https://graph.instagram.com/',
   INSTAGRAM_URL_API : 'https://api.instagram.com/',
   CLIENT_PAYPAL: 'ASVWnmtHh3eBRoy1u5uvVV9kjG0AWQ2YLSGocW9JGkH4xG2MPn26n-1WARrc2Z8ZSl46xKgr-veq4YMw',

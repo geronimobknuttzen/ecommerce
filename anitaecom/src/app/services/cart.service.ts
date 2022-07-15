@@ -1,6 +1,6 @@
 import { MpagoService } from './mpago.service';
 import { HttpClient } from '@angular/common/http';
-import { Inject, Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { ProductService } from './product.service';
@@ -82,7 +82,6 @@ export class CartService {
     private http: HttpClient,
     private prodSvc: ProductService,
     private orderSvc: OrdersService,
-    private mpSvc : MpagoService,
     private router: Router,
     private toaster: ToastrService,
     private spinner: NgxSpinnerService,

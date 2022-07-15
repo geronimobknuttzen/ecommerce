@@ -1,13 +1,10 @@
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { UploadService } from 'src/app/services/upload.service';
-import { environment } from 'src/environments/environment';
-import { Archivo } from 'src/app/models/image';
 import { DomSanitizer } from '@angular/platform-browser';
 import { AlbumsService } from 'src/app/services/albums.service';
-import { FormControl, FormControlName, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-upload',
