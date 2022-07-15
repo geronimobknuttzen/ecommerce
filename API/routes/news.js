@@ -84,7 +84,7 @@ router.post('/upload', (req, res)=>{
         if(news.mimetype == 'image/jpeg' || news.mimetype == 'image/png'|| news.mimetype == 'image/jpg' ){
             news.mv(uploadPath, (error)=>{
                 if(error)
-                    return res.status(500).send(uploadPath, error);
+                    return res.status(500).send(error);
                 
                 database.table('news')
                     .insert({
