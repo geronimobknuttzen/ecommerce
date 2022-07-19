@@ -1,10 +1,10 @@
 export interface ICarrouselItem {
     id: number,
-    title_first: string,
-    title_second: string,
+    title: string,
+    url: string,
     marginLeft: number;
-    subtitle: string;
-    link?: string,
+    description: string;
+    section?: string,
     image: string,
     order?: string,
 }

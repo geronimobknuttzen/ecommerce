@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   SERVER_URL: 'http://localhost:3000',
+  SERVER_XAMPP: 'http://127.0.0.1/anitathomasApi',
   INSTAGRAM_URL_GRAPH : 'http://graph.instagram.com/',
   INSTAGRAM_URL_API : 'http://api.instagram.com/',
   CLIENT_PAYPAL: 'AWoX120D10yInWGiuUsI7veI_inSUoL1fbZ-ebCwVW4iT4mI3yw0QSLLrlCpfxlV0gkul_Y8nl7v43yl',

@@ -8,6 +8,11 @@ let conn = new Mysqli( {
     user:'u295231004_atweb',
     passwd:'HbR@%^9@7X?H',
     db:'u295231004_atweb'
+    // host:'localhost',
+    // port:3306,
+    // user:'root',
+    // passwd:'',
+    // db:'atweb'
 });
 
 

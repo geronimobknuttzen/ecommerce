@@ -54,13 +54,14 @@ export class NewupComponent implements OnInit {
         console.log(file[0])
         console.log(this.upload.value)
         dataForm.append('news', file[0]);
-        dataForm.append('title_first', title);
-        dataForm.append('title_second', url);
-        dataForm.append('subtitle', description);
-        dataForm.append('link', section);
+        dataForm.append('title', title);
+        dataForm.append('url', url);
+        dataForm.append('description', description);
+        dataForm.append('section', section);
 
       console.log(dataForm)
       this.uploadSvc.uploadNew(dataForm).subscribe(res=>{
+        console.log(res)
         if(res.success == true){
           this.toaster.success(
             'Subida',

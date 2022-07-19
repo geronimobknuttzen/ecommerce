@@ -23,10 +23,10 @@ router.get('/', function(req, res) {
     database.table('news as n')
         .withFields([
             'n.id',
-            'n.title_first',
-            'n.title_second',
-            'n.subtitle',
-            'n.link',
+            'n.title',
+            'n.url',
+            'n.description',
+            'n.section',
             'n.image',
             'n.position',
             'n.marginLeft'
@@ -52,10 +52,10 @@ router.get('/:newsID', (req,res)=>{
     database.table('news as n')
         .withFields([
             'n.id',
-            'n.title_first',
-            'n.title_second',
-            'n.subtitle',
-            'n.link',
+            'n.title',
+            'n.url',
+            'n.description',
+            'n.section',
             'n.image',
             'n.position',
             'n.marginLeft'
@@ -74,7 +74,7 @@ router.get('/:newsID', (req,res)=>{
 
 router.post('/upload', (req, res)=>{
     if(req.method == 'POST'){
-        let {title_first, title_second, link, subtitle} = req.body;
+        let {title, title_second, link, subtitle} = req.body;
         if(!req.files || Object.keys(req.files).length === 0){
         return res.status(400).send('No se subieron archivos');}
         news = req.files.news;
@@ -88,7 +88,7 @@ router.post('/upload', (req, res)=>{
                 
                 database.table('news')
                     .insert({
-                        title_first: title_first,
+                        title: title,
                         title_second: title_second,
                         subtitle: subtitle,
                         link: link,
@@ -112,11 +112,11 @@ router.patch('/update/:newsId', async (req, res) => {
   // Search User in Database if any
     let news = await database.table('news').filter({id: newsId}).get();
     if (news) {
-        let {title_first, title_second, link, subtitle} = req.body;
+        let {title, title_second, link, subtitle} = req.body;
 
         // Replace the user's information with the form data ( keep the data as is if no info is modified )
         database.table('news').filter({id: newsId}).update({
-            title_first: title_first !== undefined ? title_first : news.title_first,
+            title: title !== undefined ? title : news.title,
             title_second: title_second !== undefined ? title_second : news.title_second,
             link: link !== undefined ? link : news.link,
             subtitle: subtitle !== undefined ? subtitle : news.subtitle
