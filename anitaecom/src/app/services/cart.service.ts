@@ -485,8 +485,10 @@ export class CartService {
         items: items
       })
       .subscribe((res:any)=>{
-        let url = new URL(res)
         if(res){
+          console.log(res)
+          let contenedor = document.getElementById('mercadoPago')
+          console.log(contenedor)
           window.location.href = res
         }
       })

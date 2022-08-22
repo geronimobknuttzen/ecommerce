@@ -3,16 +3,16 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
 let conn = new Mysqli( {
-    host:'45.132.157.103',
-    port:3306,
-    user:'u295231004_atweb',
-    passwd:'HbR@%^9@7X?H',
-    db:'u295231004_atweb'
-    // host:'localhost',
+    // host:'45.132.157.103',
     // port:3306,
-    // user:'root',
-    // passwd:'',
-    // db:'atweb'
+    // user:'u295231004_atweb',
+    // passwd:'HbR@%^9@7X?H',
+    // db:'u295231004_atweb'
+    host:'localhost',
+    port:3306,
+    user:'root',
+    passwd:'',
+    db:'atweb'
 });
 
 

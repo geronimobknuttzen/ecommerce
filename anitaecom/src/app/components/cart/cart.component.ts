@@ -133,9 +133,8 @@ export class CartComponent implements OnInit {
       }
       items.push(item)
     })
-    this.zone.runOutsideAngular(()=>{
-      this.cartSvc.checkoutMP(items)
-    })
+    this.cartSvc.checkoutMP(items)
+
   }
   getItemList(): any[]{
     const items:any[] = [];

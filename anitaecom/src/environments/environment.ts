@@ -4,6 +4,7 @@
 
 export const environment = {
   production: false,
+  // SERVER_URL: 'https://infinite-ocean-61334.herokuapp.com',
   SERVER_URL: 'http://localhost:3000',
   SERVER_XAMPP: 'http://127.0.0.1/anitathomasApi',
   INSTAGRAM_URL_GRAPH : 'http://graph.instagram.com/',
