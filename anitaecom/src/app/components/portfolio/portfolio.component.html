@@ -9,13 +9,13 @@
 			<div class="col-md-4" *ngFor="let a of albums">
 				<div class="product-item">
                     <div class="product-content">
-						<h3><a routerLink="{{a.name}}">{{a.name}}</a></h3>
+						<h3><a routerLink="{{a.title | lowercase}}">{{a.title}}</a></h3>
 					</div>
 					<div class="product-thumb">
-						<img class="img-responsive" [src]="a.img_url" alt="{{a.name}}" />
+						<img class="img-responsive" [src]="a.img_url" alt="{{a.title}}" />
 						<div class="preview-meta">
 							<ul>
-								<li><a routerLink="{{a.name | lowercase}}" title="Ver detalles" alt="Ver detalles">{{'ver' | uppercase}}</a>
+								<li><a routerLink="{{a.title | lowercase}}" title="Ver detalles" alt="Ver detalles">{{'ver' | uppercase}}</a>
 								</li>
 							</ul>
                       	</div>

@@ -1,5 +1,5 @@
 <!-- Start Top Header Bar -->
-<section id="header" class="top-header">
+<header id="header" class="top-header">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-4 col-xs-4 col-sm-4">
@@ -32,22 +32,18 @@
 							<!-- Cart Item -->
 							<div class="media cart-list" *ngFor="let c of cartData.data; let i=index">
 								<a class="pull-left" href="#!">
-									<img class="media-object" [src]="c.product.image" alt="{{c.product.name}}" />
+									<img class="media-object" [src]="c.product[0].image" alt="{{c.product[0].title}}" />
 								</a>
 								<div class="product-widget">
 									<div class="media-body">
-										<h4 class="media-heading"><a>{{c.product.name}}</a></h4>
-										<div class="cart-price">
-											<span>{{c.numInCart}} x</span>
-											<span>{{c.product?.price | currency:'USD'}}</span>
-										</div>
+										<h4 class="media-heading"><a>{{c.product[0].title}}</a></h4>
 									</div>
 									<a class="remove" (click)="cartSvc.deleteProdFromCart(i)"><i class="bi bi-x"></i></a>
 								</div>
 							</div><!-- / Cart Item -->
 							<div class="cart-summary">
 								<span>Total</span>
-								<span class="total-price">{{cartTotalUsd | currency: 'USD'}}</span>
+								<span class="total-price">{{cartTotalUsd | currency: 'USD'}} / {{cartTotalPeso | currency: 'USD'}}</span>
 							</div>
 							<ul class="text-center cart-buttons">
 								<li><a routerLink="/cart" class="btn btn-small">Ver canasta</a></li>
@@ -58,4 +54,4 @@
 			</div>
 		</div>
 	</div>
-</section><!-- End Top Header Bar -->
+</header><!-- End Top Header Bar -->

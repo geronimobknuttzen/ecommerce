@@ -7,26 +7,10 @@
             <h2 class="text-center">Gracias por tu compra!</h2>
             <p><strong>Por favor revisa haber recibido en tu email</strong> la orden de confirmación</p>
             <p>Numero de Orden : <strong>{{orderId}}</strong></p>
-            <table class="table">
-              <thead>
-                <tr>
-                  <th>Imagen</th>
-                  <th>Titulo</th>
-                  <th>Precio</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let p of products">
-                  <ng-container *ngIf="p.price">
-                    <td>
-                      <img width="80" [src]="p.image" alt="">
-                    </td>
-                    <td class="text-start">{{p.name}}</td>
-                    <td class="text-start">Adquirido!</td>
-                  </ng-container>                  
-                </tr>
-              </tbody>
-            </table>
+            <div>
+              <p>TE PEDIMOS QUE GUARDES EL COMPROBANTE DE COMPRA</p>
+              <p>Ante cualquier eventualidad comunicate con <strong><a href="mailto:soporte@anitathomas.com.ar">nuestro soporte</a></strong></p>
+            </div>
             <a routerLink="/" class="btn btn-main mt-20">Volver a Inicio</a>
           </div>
         </div>

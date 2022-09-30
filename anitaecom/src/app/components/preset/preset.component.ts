@@ -18,16 +18,12 @@ export class PresetComponent implements OnInit {
 
   ngOnInit(): void {
     this.prodSvc.getAllProducts().subscribe((pres: any)=>{
-      this.presets = pres.presets
+      this.presets = pres
     })
   }
 
   AddToCart(id:number){
     this.cartSvc.AddProductToCart(id);
-  }
-  
-  AddToLike(id:number){
-    this.cartSvc.AddProductToLike(id);
   }
 
 }

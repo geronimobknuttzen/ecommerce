@@ -29,8 +29,7 @@ export class CarruselComponent implements OnInit {
       i.marginLeft = 0;
     })
     this.newsSvc.getNews().subscribe((news: any)=>{
-      this.images = news.images
-      console.log(news.images)
+      this.images = news
     })
   }
 

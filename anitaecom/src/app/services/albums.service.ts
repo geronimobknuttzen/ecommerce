@@ -11,16 +11,12 @@ import { Album } from '../models/album';
 
 export class AlbumsService {
 
-  private SERVER_URL = environment.SERVER_URL;
+  private XAMPP = environment.XAMPP;
 
   constructor(private http: HttpClient) { }
 
-  showMessage(){
-    console.log('SERVICIO FUNCIONANDO')
-  }
-
   /* FETCH ALBUMS FROM THE BACKEND */
   getAllAlbums():Observable<Album[]> {
-    return this.http.get<Album[]>(this.SERVER_URL+'/portfolios')
+    return this.http.get<Album[]>(this.XAMPP+'/fetch_data.php?element=categories')
   }
 }

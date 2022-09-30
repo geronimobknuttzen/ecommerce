@@ -11,8 +11,8 @@ import { ToastrService } from 'ngx-toastr';
   providedIn: 'root'
 })
 export class NewsService {
-  private SERVER_URL = environment.SERVER_URL;
-
+  private XAMPP = environment.XAMPP;
+  
   constructor(
     private http: HttpClient,
     private toaster: ToastrService,
@@ -24,7 +24,7 @@ export class NewsService {
 
   /* FETCH NEWS FROM THE BACKEND */
   getNews():Observable<ICarrouselItem[]> {
-    return this.http.get<ICarrouselItem[]>(this.SERVER_URL+'/news')
+    return this.http.get<ICarrouselItem[]>(this.XAMPP+'/fetch_data.php?element=news')
   }
 
   deleteNew(id:number):Observable<Image[]>{
@@ -42,7 +42,7 @@ export class NewsService {
         }
         );
         this.router.navigate([this.router.url]);
-      return this.http.delete<Image[]>(this.SERVER_URL + `/news/delete/${id}`)
+      return this.http.delete<Image[]>(this.XAMPP + `/delete.php?element=news&id=${id}`)
     }
     this.toaster.info(
       'no eliminada',

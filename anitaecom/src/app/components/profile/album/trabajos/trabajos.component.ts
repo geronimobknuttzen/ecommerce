@@ -17,10 +17,9 @@ export class TrabajoseditComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    let album = 'TRABAJOS';
+    let album:number = 2;
     this.imgSvc.getPortfolioImg(album).subscribe((img: any)=>{
-      this.images = img.images
-      console.log(this.images)
+      this.images = img
     })
   }
   delete(id){

@@ -12,7 +12,7 @@ export class AlbumComponent implements OnInit {
 
   ngOnInit(): void {
     this.albumSvc.getAllAlbums().subscribe((album: any)=>{
-      this.albums = album.albums
+      this.albums = album
     })
   }
 

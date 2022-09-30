@@ -58,7 +58,6 @@
               "node_modules/ngx-spinner/animations/ball-scale-multiple.css"
             ],
             "scripts": [
-              "src/assets/js/script.js",
               "src/assets/plugins/bootstrap/js/bootstrap.min.js",
               "src/assets/plugins/bootstrap-touchspin/dist/jquery.bootstrap-touchspin.min.js",
               "src/assets/plugins/ekko-lightbox/dist/ekko-lightbox.min.js",

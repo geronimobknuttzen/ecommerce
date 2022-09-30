@@ -36,7 +36,7 @@ export class UploadComponent implements OnInit {
       category_name: new FormControl('')
     })
     this.albumSvc.getAllAlbums().subscribe((album: any)=>{
-      this.albums = album.albums
+      this.albums = album
     })
   }
 

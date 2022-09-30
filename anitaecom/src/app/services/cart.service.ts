@@ -1,4 +1,3 @@
-import { MpagoService } from './mpago.service';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
@@ -10,12 +9,12 @@ import { CartModelPublic, CartModelServer } from './../models/cart';
 import { Presets } from '../models/presets';
 import { ToastrService } from 'ngx-toastr';
 import { NgxSpinnerService } from 'ngx-spinner';
-import { Like, LikeResponse } from '../models/like';
 
 @Injectable({
   providedIn: 'root',
 })
 export class CartService {
+  private XAMPP = environment.XAMPP;
   private SERVER_URL = environment.SERVER_URL;
 
   //VARIABLE PARA GUARDAR LA INFORMACIÓN DEL CARRITO EN EL LOCAL STORAGE DEL CLIENTE
@@ -26,16 +25,6 @@ export class CartService {
       {
         id: 0,
         incart: 0,
-      },
-    ],
-  };
-
-  //VARIABLE PARA GUARDAR LA INFORMACIÓN DEL LIKE EN EL LOCAL STORAGE DEL CLIENTE
-  private likeDataClient: Like = {
-    likeData: [
-      {
-        id: 0,
-        inlike: 0,
       },
     ],
   };
@@ -54,29 +43,11 @@ export class CartService {
   };
 
   //VARIABLE PARA GUARDAR LA INFORMACION DEL CARRITO EN EL SERVIDOR
-  private likeDataServer: LikeResponse = {
-    data: [
-      {
-        product: {
-          id: 0,
-          name: '',
-          quantity: 0,
-          image: '',
-          description: '',
-          price: 0,
-          precioPesos: 0,
-          short_desc: '',
-        },
-        numInLike: 0,
-      },
-    ],
-  };
 
   //OBSERVABLES PARA LOS COMPONENTES
   cartTotalUsd$ = new BehaviorSubject<number>(0);
   cartTotalPeso$ = new BehaviorSubject<number>(0);
   cartData$ = new BehaviorSubject<CartModelServer>(this.cartDataServer);
-  likeData$ = new BehaviorSubject<LikeResponse>(this.likeDataServer);
 
   constructor(
     private http: HttpClient,
@@ -89,19 +60,21 @@ export class CartService {
     this.cartTotalUsd$.next(this.cartDataServer.totalDolar);
     this.cartTotalPeso$.next(this.cartDataServer.totalPesos);
     this.cartData$.next(this.cartDataServer);
-    this.likeData$.next(this.likeDataServer);
 
     //Obtengo la info desde el LocalStorage (if any)
-    let info = JSON.parse(localStorage.getItem('cart'));
+    let info: CartModelPublic = JSON.parse(localStorage.getItem('cart'));
 
     // Revisar si la variable Info es null o tiene data adentro
-    if (info !== null && info !== undefined && info.prodData[0].incart !== 0) {
+    if (info !== null && info !== undefined && info.prodData[0].incart > 0) {
       //LocalStorage no esta vacio y tiene info
       this.cartDataClient = info;
+    
       //Crear un loop para leer todas las entradas y colocarlas en el objeto cartDataServer
       this.cartDataClient.prodData.forEach((p) => {
+      
+      
         this.prodSvc.getAProduct(p.id).subscribe((actualProdInfo: Presets) => {
-          if (this.cartDataServer.data[0].numInCart === 0) {
+          if (this.cartDataServer.data[0].numInCart == 0) {
             this.cartDataServer.data[0].numInCart = p.incart;
             this.cartDataServer.data[0].product = actualProdInfo;
             this.calculateTotalPeso();
@@ -109,7 +82,8 @@ export class CartService {
             this.cartDataClient.totalDolar = this.cartDataServer.totalDolar;
             this.cartDataClient.totalPesos = this.cartDataServer.totalPesos;
             localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
-          } else {
+          } 
+          else {
             //CARTdataServer tiene información
             this.cartDataServer.data.push({
               numInCart: p.incart,
@@ -124,28 +98,27 @@ export class CartService {
           this.cartData$.next({ ...this.cartDataServer });
         });
       });
-    }
+    } 
   }
 
   AddProductToCart(id: number, quantity?: number) {
+    
+    quantity = 1; 
     this.prodSvc.getAProduct(id).subscribe((prod) => {
-      // 1.si el carro esta vacio
+    //   // 1.si el carro esta vacio
       if (this.cartDataServer.data[0].product == undefined) {
+        this.cartDataServer.data[0].numInCart = quantity !== undefined ? quantity : 1;
         this.cartDataServer.data[0].product = prod;
-        this.cartDataServer.data[0].numInCart =
-          quantity !== undefined ? quantity : 1;
         this.calculateTotalPeso();
         this.calculateTotalDolar();
-        this.cartDataClient.prodData[0].incart =
-          this.cartDataServer.data[0].numInCart;
-        this.cartDataClient.prodData[0].id = prod.id;
+        this.cartDataClient.prodData[0].incart = this.cartDataServer.data[0].numInCart;
+        this.cartDataClient.prodData[0].id = prod[0].id;
         this.cartDataClient.totalDolar = this.cartDataServer.totalDolar;
         this.cartDataClient.totalPesos = this.cartDataServer.totalPesos;
         localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
         this.cartData$.next({ ...this.cartDataServer });
-
         this.toaster.success(
-          `${prod.name} agregado a la canasta`,
+          `${prod[0].title} agregado a la canasta`,
           'Preset agregado',
           {
             timeOut: 2500,
@@ -154,27 +127,15 @@ export class CartService {
             positionClass: 'toast-top-right',
           }
         );
-      } else {
         // 2.si el carro tiene un item
-        let index = this.cartDataServer.data.findIndex(
-          (p) => p.product.id == prod.id
-        ); // -1 o un valor positivo
+      } else {
+        let index = this.cartDataServer.data.findIndex((p) => p.product[0].id == prod[0].id); // -1 o un valor positivo
+          // a.si el item esta ya en el carrito
         if (index !== -1) {
-          //    a.si el item esta ya en el carrito
-          if (quantity !== undefined && quantity <= prod.quantity) {
-            this.cartDataServer.data[index].numInCart =
-              this.cartDataServer.data[index].numInCart < prod.quantity
-                ? quantity
-                : prod.quantity;
-          } else {
-            this.cartDataServer.data[index].numInCart < prod.quantity
-              ? this.cartDataServer.data[index].numInCart++
-              : prod.quantity;
-          }
-          this.cartDataClient.prodData[index].incart =
-            this.cartDataServer.data[index].numInCart;
+          this.cartDataServer.data[index].numInCart = this.cartDataServer.data[index].numInCart < prod[0].quantity ? quantity : prod[0].quantity;
+          this.cartDataClient.prodData[index].incart = this.cartDataServer.data[index].numInCart;
           this.toaster.info(
-            `${prod.name} te espera en la canasta`,
+            `${prod[0].title} te espera en la canasta`,
             'Ya agregado',
             {
               timeOut: 2500,
@@ -187,16 +148,16 @@ export class CartService {
         //    b.si el item no esta en el carrito
         else {
           this.cartDataServer.data.push({
-            product: prod,
             numInCart: 1,
+            product: prod
           });
           this.cartDataClient.prodData.push({
-            id: prod.id,
+            id: prod[0].id,
             incart: 1,
           });
           //TOASTER
           this.toaster.success(
-            `${prod.name} agregado a la canasta`,
+            `${prod[0].title} agregado a la canasta`,
             'Preset agregado',
             {
               timeOut: 2500,
@@ -217,116 +178,41 @@ export class CartService {
     });
   }
 
-  AddProductToLike(id: number, quantity?: number) {
-    this.prodSvc.getAProduct(id).subscribe((prod) => {
-      // 1.si like esta vacio
-      if (this.likeDataServer.data[0].product == undefined) {
-        this.likeDataServer.data[0].product = prod;
-        this.likeDataServer.data[0].numInLike =
-          quantity !== undefined ? quantity : 1;
-        this.likeDataClient.likeData[0].inlike =
-          this.likeDataServer.data[0].numInLike;
-        this.likeDataClient.likeData[0].id = prod.id;
-        localStorage.setItem('like', JSON.stringify(this.likeDataClient));
-        this.likeData$.next({ ...this.likeDataServer });
 
-        this.toaster.success(
-          `${prod.name} Agregago a Favoritos`,
-          'Preset favorito',
-          {
-            timeOut: 2500,
-            progressBar: true,
-            progressAnimation: 'increasing',
-            positionClass: 'toast-bottom-full-width',
-          }
-        );
-      } else {
-        // 2.si el carro tiene un item
-        let index = this.likeDataServer.data.findIndex(
-          (p) => p.product.id == prod.id
-        ); // -1 o un valor positivo
-        if (index !== -1) {
-          //    a.si el item esta ya en el carrito
-          if (quantity !== undefined && quantity <= prod.quantity) {
-            this.likeDataServer.data[index].numInLike =
-              this.likeDataServer.data[index].numInLike < prod.quantity
-                ? quantity
-                : prod.quantity;
-          } else {
-            this.likeDataServer.data[index].numInLike < prod.quantity
-              ? this.likeDataServer.data[index].numInLike++
-              : prod.quantity;
-          }
-          this.likeDataClient.likeData[index].inlike =
-            this.likeDataServer.data[index].numInLike;
-          this.toaster.info(`${prod.name} está en favoritos`, 'Ya agregado', {
-            timeOut: 2500,
-            progressBar: true,
-            progressAnimation: 'increasing',
-            positionClass: 'toast-bottom-full-width',
-          });
-        } //END OF IF
-        //    b.si el item no esta en el carrito
-        else {
-          this.likeDataServer.data.push({
-            product: prod,
-            numInLike: 1,
-          });
-          this.likeDataClient.likeData.push({
-            id: prod.id,
-            inlike: 1,
-          });
-          //TOASTER
-          this.toaster.success(
-            `${prod.name} Agregago a Favoritos`,
-            'Preset favorito',
-            {
-              timeOut: 2500,
-              progressBar: true,
-              progressAnimation: 'increasing',
-              positionClass: 'toast-bottom-full-width',
-            }
-          );
+  // updateCartItems(index: number, increase: boolean) {
+  //   let data = this.cartDataServer.data[index];
 
-          localStorage.setItem('like', JSON.stringify(this.likeDataClient));
-          this.likeData$.next({ ...this.likeDataServer });
-        } //END OF ELSE
-      }
-    });
-  }
-  updateCartItems(index: number, increase: boolean) {
-    let data = this.cartDataServer.data[index];
+  //   if (increase) {
+  //     if ((data.numInCart = 0 && data.numInCart < 2)) {
+  //       data.numInCart < data.product.quantity ? data.numInCart++ : data.product.quantity;
+  //       this.cartDataClient.prodData[index].incart = data.numInCart;
+  //       this.calculateTotalPeso();
+  //       this.calculateTotalDolar();
+  //       this.cartDataClient.totalDolar = this.cartDataServer.totalDolar;
+  //       this.cartDataClient.totalPesos = this.cartDataServer.totalPesos;
+  //       localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+  //       this.cartData$.next({ ...this.cartDataServer });
+  //     }
+  //   } else {
+  //     data.numInCart--;
+  //     if (data.numInCart < 1) {
+  //       //BORRAR EL PRODUCTO
+  //       this.cartData$.next({ ...this.cartDataServer });
+  //     } else {
+  //       this.cartData$.next({ ...this.cartDataServer });
+  //       this.cartDataClient.prodData[index].incart = data.numInCart;
+  //       this.calculateTotalPeso();
+  //       this.calculateTotalDolar();
+  //       this.cartDataClient.totalDolar = this.cartDataServer.totalDolar;
+  //       this.cartDataClient.totalPesos = this.cartDataServer.totalPesos;
+  //       localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+  //     }
+  //   }
+  // }
 
-    if (increase) {
-      if ((data.numInCart = 0 && data.numInCart < 2)) {
-        data.numInCart < data.product.quantity
-          ? data.numInCart++
-          : data.product.quantity;
-        this.cartDataClient.prodData[index].incart = data.numInCart;
-        this.calculateTotalPeso();
-        this.calculateTotalDolar();
-        this.cartDataClient.totalDolar = this.cartDataServer.totalDolar;
-        this.cartDataClient.totalPesos = this.cartDataServer.totalPesos;
-        localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
-        this.cartData$.next({ ...this.cartDataServer });
-      }
-    } else {
-      data.numInCart--;
-      if (data.numInCart < 1) {
-        //BORRAR EL PRODUCTO
-        this.cartData$.next({ ...this.cartDataServer });
-      } else {
-        this.cartData$.next({ ...this.cartDataServer });
-        this.cartDataClient.prodData[index].incart = data.numInCart;
-        this.calculateTotalPeso();
-        this.calculateTotalDolar();
-        this.cartDataClient.totalDolar = this.cartDataServer.totalDolar;
-        this.cartDataClient.totalPesos = this.cartDataServer.totalPesos;
-        localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
-      }
-    }
-  }
   deleteProdFromCart(index: number) {
+    let info: CartModelPublic = JSON.parse(localStorage.getItem('cart'));
+  
     if (window.confirm('Está seguro que quiere eliminar este item')) {
       this.cartDataServer.data.splice(index, 1);
       this.cartDataClient.prodData.splice(index, 1);
@@ -335,10 +221,7 @@ export class CartService {
       this.cartDataClient.totalDolar = this.cartDataServer.totalDolar;
       this.cartDataClient.totalPesos = this.cartDataServer.totalPesos;
 
-      if (
-        this.cartDataClient.totalDolar == 0 &&
-        this.cartDataClient.totalPesos == 0
-      ) {
+      if ( this.cartDataClient.totalDolar == 0) {
         this.cartDataClient = {
           totalDolar: 0,
           totalPesos: 0,
@@ -353,10 +236,7 @@ export class CartService {
       } else {
         localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
       }
-      if (
-        this.cartDataServer.totalDolar == 0 &&
-        this.cartDataServer.totalPesos == 0
-      ) {
+      if ( this.cartDataServer.totalPesos == 0) {
         this.cartDataServer = {
           totalDolar: 0,
           totalPesos: 0,
@@ -371,33 +251,12 @@ export class CartService {
       return;
     }
   }
-  deleteProdFromLike(index: number) {
-    if (window.confirm('Está seguro que quiere eliminar este item')) {
-      this.likeDataServer.data.splice(index, 1);
-      this.likeDataClient.likeData.splice(index, 1);
-
-      if (this.likeDataClient.likeData?.[0]) {
-        this.likeDataClient = { likeData: [{ inlike: 0, id: 0 }] };
-        localStorage.setItem('like', JSON.stringify(this.likeDataClient));
-      } else {
-        this.likeDataClient = { likeData: [{ inlike: 0, id: 0 }] };
-        localStorage.setItem('like', JSON.stringify(this.likeDataClient));
-      }
-      if (this.likeDataServer.data[0]) {
-        this.likeDataServer = { data: [{ numInLike: 0, product: undefined }] };
-        this.likeData$.next({ ...this.likeDataServer });
-      } else {
-        this.likeDataServer = { data: [{ numInLike: 0, product: undefined }] };
-        this.likeData$.next({ ...this.likeDataServer });
-      }
-    }
-  }
 
   private calculateTotalPeso() {
     let TotalPesos = 0;
     this.cartDataServer.data.forEach((p) => {
       const { numInCart } = p;
-      const { precioPesos } = p.product;
+      const{ precioPesos } = p.product[0];
       TotalPesos = TotalPesos + numInCart * precioPesos;
     });
     this.cartDataServer.totalPesos = TotalPesos;
@@ -407,7 +266,7 @@ export class CartService {
     let TotalDolar = 0;
     this.cartDataServer.data.forEach((p) => {
       const { numInCart } = p;
-      const { price } = p.product;
+      const { price } = p.product[0];
       TotalDolar = TotalDolar + numInCart * price;
     });
     this.cartDataServer.totalDolar = TotalDolar;
@@ -415,80 +274,54 @@ export class CartService {
   }
 
   checkoutFromCart(email: string, name: string) {
-    this.http
-      .post(`${this.SERVER_URL}/orders/payment`, null)
-      .subscribe((res: { success: boolean }) => {
-        if (res.success) {
-          this.resetServerData();
-          this.http
-            .post(`${this.SERVER_URL}/orders/new`, {
-              email: email,
-              name: name,
-              products: this.cartDataClient.prodData,
-            })
-            .subscribe((data: OrderResponse) => {
-              this.orderSvc.getSingleOrder(data.order_id).then((prods) => {
-                if (data.success) {
-                  const navigationExtras: NavigationExtras = {
-                    state: {
-                      message: data.message,
-                      products: prods,
-                      orderId: data.order_id,
-                      totalPeso: this.cartDataClient.totalPesos,
-                      totalDolar: this.cartDataClient.totalDolar,
-                    },
+    this.resetServerData();
+    this.http.post(`${this.SERVER_URL}/orders/new`, {
+    // this.http.post(`${this.SERVER_URL}/orders.php?route=new`, {
+        email: email,
+        name: name,
+        products: this.cartDataClient.prodData,
+      })
+      .subscribe((data: OrderResponse) => {
+          this.orderSvc.getSingleOrder(data.order_id).subscribe((prods) => {
+            if(data.success){
+              const navigationExtras: NavigationExtras = {
+                state: {
+                  message: data.message,
+                  products: prods,
+                  orderId: data.order_id,
+                  totalPeso: this.cartDataClient.totalPesos,
+                  totalDolar: this.cartDataClient.totalDolar,
+                },
+              };
+              this.spinner.hide().then();
+              this.router
+                .navigate(['/','gracias'], navigationExtras)
+                .then((p) => {
+                  this.cartDataClient = {
+                    totalDolar: 0,
+                    totalPesos: 0,
+                    prodData: [
+                      {incart: 0,id: 0},
+                    ],
                   };
-                  this.spinner.hide().then();
-                  this.router
-                    .navigate(['/','gracias'], navigationExtras)
-                    .then((p) => {
-                      this.cartDataClient = {
-                        totalDolar: 0,
-                        totalPesos: 0,
-                        prodData: [
-                          {
-                            incart: 0,
-                            id: 0,
-                          },
-                        ],
-                      };
-                      this.cartTotalUsd$.next(0);
-                      this.cartTotalPeso$.next(0);
-                      localStorage.setItem(
-                        'cart',
-                        JSON.stringify(this.cartDataClient)
-                      );
-                    })
-                    .catch((error) => console.log(error));
-                }
-              });
-            });
-        } else {
-          this.spinner.hide().then();
-          this.router.navigateByUrl('/cart').then();
-          this.toaster.error(
-            `Perdón, he fallado en agendar su pedido`,
-            'Estado del Pedido',
-            {
-              timeOut: 2500,
-              progressBar: true,
-              progressAnimation: 'increasing',
-              positionClass: 'toast-top-right',
+                  this.cartTotalUsd$.next(0);
+                  this.cartTotalPeso$.next(0);
+                  localStorage.setItem('cart', JSON.stringify(this.cartDataClient));
+                })
+                
             }
-          );
-        }
+          });
       });
   }
-  checkoutMP(items:any[]) {
+  checkoutMP(items:any[]) {    
     this.http
       .post(`${this.SERVER_URL}/mp/create_preference`,{
         items: items
       })
       .subscribe((res:any)=>{
         if(res){
-          console.log(res)
           let contenedor = document.getElementById('mercadoPago')
-          console.log(contenedor)
+        
           window.location.href = res
         }
       })
@@ -525,7 +358,7 @@ export class CartService {
   }
 
   getCart(): CartModelServer[] {
-    console.log(JSON.parse(localStorage.getItem('cart')));
+    
     return JSON.parse(localStorage.getItem('cart'));
   }
 }

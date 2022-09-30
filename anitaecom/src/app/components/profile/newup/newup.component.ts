@@ -36,7 +36,7 @@ export class NewupComponent implements OnInit {
       section: new FormControl('')
     })
     this.albumSvc.getAllAlbums().subscribe((album: any)=>{
-      this.albums = album.albums
+      this.albums = album
     })
   }
   search(event){

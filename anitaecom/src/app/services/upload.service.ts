@@ -11,22 +11,21 @@ import { NgxSpinnerService } from 'ngx-spinner';
 })
 export class UploadService {
 public url: string;
-private SERVER_URL = environment.SERVER_URL;
-private SERVER_XAMPP = environment.SERVER_XAMPP;
+private XAMPP = environment.XAMPP;
 
   constructor(private http: HttpClient) {
   }
   uploadFile(File):Observable<any>{
    const json = File;
-   return this.http.post(`${this.SERVER_XAMPP}/upload.php`, json)
+   return this.http.post(`${this.XAMPP}/upload.php`, json)
   }
 
   uploadNew(File):Observable<any>{
    const json = File;
-   return this.http.post(`${this.SERVER_XAMPP}/upload.php`, json)
+   return this.http.post(`${this.XAMPP}/upload.php`, json)
   }
 
   getUploads():Observable<any>{
-   return this.http.get(`${this.SERVER_URL}/images`)
+   return this.http.get(`${this.XAMPP}/fetch_data.php?element=images`)
   }
 }

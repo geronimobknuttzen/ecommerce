@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class ImagesService {
 
-  private SERVER_URL = environment.SERVER_URL;
+  private XAMPP = environment.XAMPP;
 
   constructor(
     private http: HttpClient,
@@ -21,14 +21,14 @@ export class ImagesService {
 
   /* FETCH IMAGES FROM THE BACKEND */
   getAllImages():Observable<Image[]> {
-    return this.http.get<Image[]>(this.SERVER_URL+'/images')
+    return this.http.get<Image[]>(this.XAMPP+'/fetch_data.php?element=images')
   }
   getImage(id:number):Observable<Image[]>{
-    return this.http.get<Image[]>(this.SERVER_URL+'/images/'+ id)
+    return this.http.get<Image[]>(this.XAMPP+'/fetch_data.php?element=images&id='+ id)
   }
   /* FETCH IMAGES BY ALBUM FROM THE BACKEND */
-  getPortfolioImg(album:string):Observable<Image[]> {
-    return this.http.get<Image[]>(this.SERVER_URL + '/portfolios/portfolio/' + album)
+  getPortfolioImg(album:number):Observable<Image[]> {
+    return this.http.get<Image[]>(this.XAMPP+'/fetch_data.php?element=images&cat_id=' + album)
   }
     /* DELETE IMAGE FROM THE BACKEND */
   deleteImg(id:number):Observable<Image[]>{
@@ -46,7 +46,7 @@ export class ImagesService {
         }
         );
         this.router.navigate([this.router.url]);
-      return this.http.delete<Image[]>(this.SERVER_URL + `/images/delete/${id}`)
+      return this.http.delete<Image[]>(this.XAMPP + `/delete.php?element=images&id=${id}`)
     }
     this.toaster.info(
       'no eliminada',

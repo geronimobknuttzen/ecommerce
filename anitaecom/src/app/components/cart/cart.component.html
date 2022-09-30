@@ -71,11 +71,11 @@
                                 <tr class="border-0" *ngFor="let c of cartData.data; let i= index">
                                   <td class="">
                                     <div class="product-info">
-                                      <img width="80" src="{{c.product.image}}" alt="" />
-                                      <a>{{c.product.name}}</a>
+                                      <img width="80" src="{{c.product[0].image}}" alt="" />
+                                      <a>{{c.product[0].title}}</a>
                                     </div>
                                   </td>
-                                  <td class="text-center">u$d{{c.product.price}}</td>
+                                  <td class="text-center">u$d{{c.product[0].price}}</td>
                                   <td class="text-center">
                                     <button class="btn btn-danger"(click)="cartSvc.deleteProdFromCart(i)"><i class="bi bi-trash"></i></button>
                                   </td>
@@ -120,11 +120,11 @@
                                 <tr class="border-0" *ngFor="let c of cartData.data; let i= index">
                                   <td class="">
                                     <div class="product-info">
-                                      <img width="80" src="{{c.product.image}}" alt="" />
-                                      <a>{{c.product.name}}</a>
+                                      <img width="80" src="{{c.product[0].image}}" alt="" />
+                                      <a>{{c.product[0].title}}</a>
                                     </div>
                                   </td>
-                                  <td class="text-center">${{c.product.precioPesos}}</td>
+                                  <td class="text-center">${{c.product[0].precioPesos}}</td>
                                   <td class="text-center">
                                     <button class="btn btn-danger"(click)="cartSvc.deleteProdFromCart(i)"><i class="bi bi-trash"></i></button>
                                   </td>
@@ -156,7 +156,8 @@
 
 <p class="disclaimer">
   Las compras digitales no tienen devolución.<br> La comercialización de los productos Anita Thomas sin autorización está prohibida. 
-  <strong>En caso de no recibir dentro de las 12hs posteriores a la compra la confirmación enviar un mail a <a href="soporte@anitathomas.com.ar">soporte@anitathomas.com.ar</a></strong>
+  <br>
+  <strong>En caso de no recibir dentro de las 12hs posteriores a la compra la confirmación enviar un mail a <a href="mailto:soporte@anitathomas.com.ar">soporte@anitathomas.com.ar</a></strong>
 </p>
 
 

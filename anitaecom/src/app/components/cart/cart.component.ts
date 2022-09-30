@@ -3,7 +3,6 @@ import { environment } from './../../../environments/environment';
 import { CartModelServer } from './../../models/cart';
 import { CartService } from 'src/app/services/cart.service';
 import { Component, OnInit, NgZone } from '@angular/core';
-import { get } from 'scriptjs';
 import { ActivatedRoute } from '@angular/router';
 import { IPayPalConfig, ICreateOrderRequest } from 'ngx-paypal';
 import { NgxSpinnerService } from 'ngx-spinner';
@@ -127,9 +126,9 @@ export class CartComponent implements OnInit {
     );
     this.cartData.data.forEach((p)=>{
       item = {
-        title: p.product.name,
+        title: p.product[0].title,
         quantity: p.numInCart,
-        unit_price: p.product.precioPesos
+        unit_price: p.product[0].precioPesos
       }
       items.push(item)
     })

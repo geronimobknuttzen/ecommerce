@@ -1,7 +1,6 @@
 import { environment } from './../../environments/environment';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Preset } from '../models/presets';
 
@@ -10,21 +9,17 @@ import { Preset } from '../models/presets';
 })
 export class ProductService {
 
-  private SERVER_URL = environment.SERVER_URL;
+  private XAMPP = environment.XAMPP;
 
   constructor(private http: HttpClient) { }
 
-  showMessage(){
-    console.log('SERVICIO FUNCIONANDO')
-  }
-
   /* FETCH PRESETS FROM THE BACKEND */
   getAllProducts():Observable<Preset[]> {
-    return this.http.get<Preset[]>(this.SERVER_URL + '/presets')
+    return this.http.get<Preset[]>(this.XAMPP + '/fetch_data.php?element=products')
   }
 
   getAProduct(id:number):Observable<Preset>{
-    return this.http.get<Preset>(this.SERVER_URL + '/presets/' + id)
+    return this.http.get<Preset>(this.XAMPP + '/fetch_data.php?element=products&id='+id)
   }
 
 }

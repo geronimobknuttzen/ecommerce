@@ -14,7 +14,8 @@ export class PortfolioComponent implements OnInit {
 
   ngOnInit(): void {
     this.albumSvc.getAllAlbums().subscribe((album: any)=>{
-      this.albums = album.albums
+      this.albums = album
+      console.log(album)
     })
   }
 

@@ -16,10 +16,9 @@ export class RetratoseditComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    let album = 'RETRATOS';
+    let album:number = 1;
     this.imgSvc.getPortfolioImg(album).subscribe((img: any)=>{
-      this.images = img.images
-      console.log(this.images)
+      this.images = img
     })
   }
   delete(id){

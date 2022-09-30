@@ -13,9 +13,9 @@ export class TrabajosComponent implements OnInit {
   constructor(private imgSvc: ImagesService) { }
 
   ngOnInit(): void {
-    let album = 'TRABAJOS';
+    let album:number = 2;
     this.imgSvc.getPortfolioImg(album).subscribe((img: any)=>{
-      this.images = img.images
+      this.images = img
       console.log(this.images)
     })
   }

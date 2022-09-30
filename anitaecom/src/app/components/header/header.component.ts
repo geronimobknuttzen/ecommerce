@@ -11,8 +11,7 @@ import { CartService } from 'src/app/services/cart.service';
 })
 export class HeaderComponent implements OnInit {
 
-  cartData: CartModelServer;
-  likeData: LikeResponse;
+  cartData:CartModelServer;
   cartTotalPeso: number;
   cartTotalUsd: number;
   authState: boolean;
@@ -25,9 +24,10 @@ export class HeaderComponent implements OnInit {
   ngOnInit(): void {
     this.cartSvc.cartTotalPeso$.subscribe( total => this.cartTotalPeso = total);
     this.cartSvc.cartTotalUsd$.subscribe( total => this.cartTotalUsd = total);
-    this.cartSvc.cartData$.subscribe(data=> this.cartData = data);
-    this.cartSvc.likeData$.subscribe(like=> this.likeData = like);
-
+    this.cartSvc.cartData$.subscribe(res=> {
+      console.log(res); 
+      this.cartData = res
+    });
     this.userSvc.authStatus$.subscribe(authStatus$ => this.authState = authStatus$)
   }
 

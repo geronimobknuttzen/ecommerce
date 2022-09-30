@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 @Injectable({
@@ -7,14 +8,20 @@ import { environment } from 'src/environments/environment';
 })
 export class OrdersService {
   private presets: PresetResponse[] = [];
-  private SERVER_URL = environment.SERVER_URL;
+  private XAMPP = environment.XAMPP;
+  private SERVER_URL = environment.SERVER_URL
 
   constructor(private http: HttpClient) {  
     
   }
-  getSingleOrder(orderId:number){
-    return this.http.get<PresetResponse[]>(this.SERVER_URL + '/orders/' + orderId).toPromise()
+
+  getSingleOrder(id:number):Observable<PresetResponse[]>{
+      return this.http.get<PresetResponse[]>(this.SERVER_URL + '/orders/' + id)
   }
+  
+  // getSingleOrder(id:number){
+  //   return this.http.get<PresetResponse[]>(this.SERVER_URL + '/orders/' + id).toPromise()
+  // }
 }
 
 interface PresetResponse{
